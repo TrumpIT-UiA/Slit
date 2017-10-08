@@ -1,6 +1,7 @@
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Stateless
 public class UserManagerBean implements UserManagerLocal {
@@ -16,6 +17,7 @@ public class UserManagerBean implements UserManagerLocal {
         return em.find(User.class, id);
     }
 
+    @Override
     public void saveUser(User u){
         em.persist(u);
     }

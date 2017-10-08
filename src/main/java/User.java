@@ -1,12 +1,13 @@
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
     @Id
+    @Column
     private String userName;
     private String fName;
     private String lName;
+    @Column
     private String password;
     private String eMail;
 
