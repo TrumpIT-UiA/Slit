@@ -34,9 +34,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/Slit/LoginFailed.jsp");
         }
     }
-
-    // .idea test xD
-    //  dsafda
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
