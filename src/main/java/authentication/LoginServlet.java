@@ -35,6 +35,8 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+    // .idea test xD
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
