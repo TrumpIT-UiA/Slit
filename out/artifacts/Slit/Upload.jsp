@@ -1,20 +1,12 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Slit</title>
+    <title>Heihei</title>
 </head>
 <body>
-Velkommen til Slit!
 
-Hva ønsker du å gjøre?
-
-<form action="/Slit/Upload" enctype="multipart/form-data" method="post">
-    <input type="file" name="FileName"/>
-    <input type="submit" value="Upload File" />
-</form>
-
-<form method="POST" action="Upload" enctype="multipart/form-data" >
+<form method="POST" action="upload" enctype="multipart/form-data" >
     File:
     <input type="file" name="file" id="file" /> <br/>
     Destination:

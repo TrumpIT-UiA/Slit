@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/Slit/welcome.jsp");
         }
         else{
-            response.sendRedirect("/Slit/LoginFailed.jsp");
+            response.sendRedirect("/Slit/Login.jsp");
         }
     }
 
