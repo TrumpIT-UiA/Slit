@@ -10,7 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 //IO-Stream
-import java.io.*;
+import java.io.OutputStream;
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+//Logger - fra Object for å føre feil. 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
