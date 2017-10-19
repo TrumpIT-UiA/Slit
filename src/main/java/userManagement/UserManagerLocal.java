@@ -1,7 +1,6 @@
 package userManagement;
 
 import users.User;
-
 import javax.ejb.Local;
 
 @Local

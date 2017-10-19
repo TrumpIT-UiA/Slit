@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * @author Marius
  */
-@WebServlet
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
     @EJB

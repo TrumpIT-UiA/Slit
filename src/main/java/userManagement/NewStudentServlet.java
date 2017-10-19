@@ -3,6 +3,8 @@ package userManagement;
         import users.Student;
         import javax.ejb.EJB;
         import javax.servlet.ServletException;
+        import javax.servlet.annotation.HttpConstraint;
+        import javax.servlet.annotation.ServletSecurity;
         import javax.servlet.annotation.WebServlet;
         import javax.servlet.http.HttpServlet;
         import javax.servlet.http.HttpServletRequest;
@@ -13,7 +15,11 @@ package userManagement;
 /**
  * @author Marius
  */
-@WebServlet
+@WebServlet(name = "NewStudentServlet", urlPatterns = {"/newStudent"})
+@ServletSecurity(
+        @HttpConstraint(rolesAllowed = {"Teacher", "Admin"})
+)
+
 public class NewStudentServlet extends HttpServlet {
 
     @EJB

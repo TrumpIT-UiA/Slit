@@ -8,6 +8,58 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- Sikkerhets-regler start
+    <security-role>
+        <role-name>Admin</role-name>
+    </security-role>
+    <security-role>
+        <role-name>Teacher</role-name>
+    </security-role>
+    <security-role>
+        <role-name>Student</role-name>
+    </security-role>
+    <security-role>
+        <role-name>AssistantTeacher</role-name>
+    </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Registration</web-resource-name>
+            <url-pattern>/Registration/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+    <web-resource-collection>
+        <web-resource-name>Common</web-resource-name>
+        <url-pattern>/Common/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+        <role-name>Admin</role-name>
+        <role-name>Student</role-name>
+        <role-name>Teacher</role-name>
+        <role-name>AssistantTeacher</role-name>
+    </auth-constraint>
+</security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Teacher only</web-resource-name>
+            <url-pattern>/Teacher/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
+        </auth-constraint>
+    </security-constraint>
+    Sikkerhets-regler stopp -->
+
+
+    <!-- Servlet URL kartlegging -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>authentication.LoginServlet</servlet-class>
