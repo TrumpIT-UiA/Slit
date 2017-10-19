@@ -26,11 +26,16 @@ public class LoginServlet extends HttpServlet {
         String fornavn = request.getParameter("firstName");
         String etternavn = request.getParameter("lastName");
 
-        User u = manager.getUser(email.toLowerCase());
-        if(u.getPassword().equals(password)){
-            response.sendRedirect("/Slit/welcome.jsp");
+        try {
+            User u = manager.getUser(email.toLowerCase());
+            if (u.getPassword().equals(password)) {
+                response.sendRedirect("/Slit/welcome.jsp");
+            } else {
+                response.sendRedirect("/Slit/LoginFailed.jsp");
+            }
         }
-        else{
+        catch (NullPointerException nullp){
+            System.err.println("NullPointerException: " + nullp.getMessage());
             response.sendRedirect("/Slit/LoginFailed.jsp");
         }
     }
