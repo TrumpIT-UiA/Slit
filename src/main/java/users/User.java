@@ -14,13 +14,16 @@ public class  User implements Serializable{
     private String lName;
     @Column
     private String password;
+    @Column
+    private String role;
 
 
-    public User(String email, String password, String fName, String lName) {
+    public User(String email, String password, String fName, String lName, String role) {
         this.email = email;
         this.password = password;
         this.fName = fName;
         this.lName = lName;
+        this.role = role;
     }
 
     protected User(){
@@ -52,5 +55,17 @@ public class  User implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
