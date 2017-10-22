@@ -1,4 +1,4 @@
-package uploadFile;
+package fileManager;
 
 //ServletImport
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-//Logger - fra Object for å føre feil. 
+//Logger - fra Object for å føre feil.
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +32,7 @@ public class UploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        // Create path components to save the file
+        // Lagrer filen i /tmp - en teori er at den blir lagret på den virtuelle serveren
         final String path = request.getParameter("destination");
         final Part filePart = request.getPart("file");
         final String fileName = getFileName(filePart);
@@ -41,6 +41,7 @@ public class UploadServlet extends HttpServlet {
         InputStream filecontent = null;
         final PrintWriter writer = response.getWriter();
 
+        if (fileName.endsWith(".zip")) {
         try {
             out = new FileOutputStream(new File(path + File.separator
                     + fileName));
@@ -76,7 +77,11 @@ public class UploadServlet extends HttpServlet {
                 writer.close();
             }
         }
-    }
+    } else {
+            response.sendRedirect("/Slit/welcome.jsp");
+            writer.println("Filen skal være en zip-fil.");
+        }
+}
     //Felt for å hente ut filnavnet.
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
