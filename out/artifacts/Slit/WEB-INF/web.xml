@@ -30,7 +30,7 @@
 
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>uploadFile.UploadServlet</servlet-class>
+        <servlet-class>fileManager.UploadServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

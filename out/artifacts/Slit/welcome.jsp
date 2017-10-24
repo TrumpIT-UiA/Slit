@@ -9,11 +9,6 @@ Velkommen til Slit!
 
 Hva ønsker du å gjøre?
 
-<form action="/Slit/Upload" enctype="multipart/form-data" method="post">
-    <input type="file" name="FileName"/>
-    <input type="submit" value="Upload File" />
-</form>
-
 <form method="POST" action="Upload" enctype="multipart/form-data" >
     File:
     <input type="file" name="file" id="file" /> <br/>
@@ -21,7 +16,8 @@ Hva ønsker du å gjøre?
     <input type="text" value="/tmp" name="destination"/>
     </br>
     <input type="submit" value="Upload" name="upload" id="upload" />
+    <p>${message}</p>
+    <c:remove var="message" scope="session" />
 </form>
-
 </body>
 </html>
