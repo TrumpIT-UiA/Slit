@@ -8,11 +8,12 @@
 
 <form method="POST" action="upload" enctype="multipart/form-data" >
     File:
-    <input type="file" name="file" id="file" /> <br/>
-    Destination:
-    <input type="text" value="/Emil-Ruud/Documents" name="destination"/>
-    </br>
-    <input type="submit" value="Upload" name="upload" id="upload" />
+    <form method="POST" action="Upload" enctype="multipart/form-data" >
+        Last opp din fil her:
+        <input type="file" name="file" id="file" /> <br/>
+        <input type="submit" value="Upload" name="upload" id="upload" />
+        <p>${message}</p>
+        <c:remove var="message" scope="session" />
 </form>
 
 </body>
