@@ -12,6 +12,7 @@ import java.io.IOException;
 
 /**
  * @author Marius
+ * Servlet for å håndtere innlogging via forms
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
@@ -19,6 +20,12 @@ public class LoginServlet extends HttpServlet {
     @EJB
     UserManagerLocal manager;
 
+    /**
+     * Metode for å logge inn en bruker
+     * @param request Et HTTP Request objekt
+     * @param response Et HTTP Response objekt
+     * @throws IOException Standard java exception
+     */
     private void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
@@ -40,12 +47,26 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Standard Java metode for HTTP GET
+     * @param request Et HTTP Request objekt
+     * @param response Et HTTP Response objekt
+     * @throws ServletException Standard java exception
+     * @throws IOException Standard java exception
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         login(request, response);
     }
 
+    /**
+     * Standard Java metode for HTTP Post
+     * @param request Et HTTP Request objekt
+     * @param response Et HTTP Response objekt
+     * @throws ServletException Standard java exception
+     * @throws IOException Standard java exception
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{

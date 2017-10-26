@@ -14,6 +14,7 @@
 
     Passord: <input name="passWord" type="password"><br>
 
+
     <input type="submit" value="Logg inn">
 </form>
 </body>
