@@ -2,22 +2,33 @@ package fileManager;
 
 //ServletImport
 
-import javax.ejb.EJB;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadBase;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 //IO-Stream
-import java.io.*;
 
 //Logger - fra Object for å føre feil.
-import java.util.UUID;
-import java.util.logging.Level;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.List;
+
 import java.util.logging.Logger;
+
 
 /**
  * @author Emil-Ruud
@@ -25,75 +36,60 @@ import java.util.logging.Logger;
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
-    private final static Logger LOGGER =
-            Logger.getLogger(UploadServlet.class.getCanonicalName());
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request  servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an I/O error occurs
+     * @author Emil Ruud
+     */
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try {
+            PrintWriter printWriter = response.getWriter();
 
-        // Lagrer filen i /tmp - en teori er at den blir lagret på den virtuelle serveren
-        //final PrintWriter writer = response.getWriter();
-        final String id = UUID.randomUUID().toString();
-        final Part filePart = request.getPart("file");
-        //byte[] fileContent = Maybe(filePartInputStream);
+            // Check that we have a file upload request
+            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+            // Create a factory for disk-based file items
+            if (isMultipart == true ) {
+                DiskFileItemFactory factory = new DiskFileItemFactory();
+                // Configure a repository (to ensure a secure temp location is used)
+                ServletContext servletContext = this.getServletConfig().getServletContext();
+                File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+                factory.setRepository(repository);
 
-        InputStream filePartInputStream;
-            try {
-                final String fileName = getFileName(filePart);
-                filePartInputStream = filePart.getInputStream();
-                if (fileName.endsWith(".zip")) {
+                // Create a new file upload handler
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                // Parse the request
+                List<FileItem> items = upload.parseRequest(request);
 
-                    int bytesRead = 0;
-                    final byte[] buffer = new byte[1024];
-                    ByteArrayOutputStream fileOutPutStream = new ByteArrayOutputStream();
-
-                    while ((bytesRead = filePartInputStream.read(buffer)) != -1) {
-                        fileOutPutStream.write(buffer, 0, bytesRead);
+                Iterator<FileItem> iterator = items.iterator();
+                while (iterator.hasNext()) {
+                    FileItem item = iterator.next();
+                    if (item.isFormField()) {
+                        processFormField(item);
+                    } else {
+                        processUploadedFile(item);
                     }
-                    byte[] fileContent = fileOutPutStream.toByteArray();
-                    FileEntity fileEntity = new FileEntity(id, fileName, fileContent);
-                    //UploadTheDamnFile(fileEntity, writer);
-                    //writer.print(fileContent);
-                    String message = fileEntity.getFileContent().toString();
-                    String message2 = fileEntity.getFilename();
-                    String message3 = fileEntity.getId();
-                    request.getSession().setAttribute("message", "FileContent: " + message + "\n" + "_____FileName: " + message2 + "\n" + "______FileID: " + message3);
-                    response.sendRedirect("welcome.jsp");
-
-                } else {
-                    String message = "Filen må være av typen .zip!";
-                    request.getSession().setAttribute("message", message);
-                    response.sendRedirect("welcome.jsp");
                 }
-            } catch (IOException ioe) {
-                throw new ServletException();
-        }
-    }
+            } else
 
-    //Felt for å hente ut filnavnet - ferdig metode fra Oracle sine sider
-    private String getFileName(final Part part) {
-        final String partHeader = part.getHeader("content-disposition");
-        LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
-        for (String content : part.getHeader("content-disposition").split(";")) {
-            if (content.trim().startsWith("filename")) {
-                return content.substring(
-                        content.indexOf('=') + 1).trim().replace("\"", "");
+            {
+                printWriter.print("Neineinei....");
             }
+
+        } catch (FileUploadException ioFail) {
+
         }
-        return null;
     }
 
-    //public byte[] Maybe(InputStream filePartInputStream) throws IOException {
+    private void processUploadedFile(FileItem item) {
+    }
 
-
-        @EJB
-        FileManagerLocal fml;
-
-    public void UploadTheDamnFile(FileEntity fileEntity, PrintWriter writer) {
-        if (fml.saveFile(fileEntity) == true) {
-            writer.print("Suksess... Diiiiiigg");
-        } else if (fml.saveFile(fileEntity) == false) {
-            writer.print("Får ikke lastet filen opp til databasen...");
-        }
+    private void processFormField(FileItem item) {
     }
 }
