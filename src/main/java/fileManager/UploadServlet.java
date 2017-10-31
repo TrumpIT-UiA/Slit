@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -23,16 +22,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
-import java.util.logging.Logger;
-
-
-/**
- * @author Emil-Ruud
- */
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
@@ -42,20 +34,19 @@ public class UploadServlet extends HttpServlet {
      *
      * @param request  servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws ServletException: if a servlet-specific error occurs
+     * @throws IOException: if an I/O error occurs
+     * @throws FileUploadException
      * @author Emil Ruud
      */
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            PrintWriter printWriter = response.getWriter();
-
+        PrintWriter printWriter = response.getWriter();
             // Check that we have a file upload request
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
             // Create a factory for disk-based file items
-            if (isMultipart == true ) {
+            if (isMultipart == true) {
                 DiskFileItemFactory factory = new DiskFileItemFactory();
                 // Configure a repository (to ensure a secure temp location is used)
                 ServletContext servletContext = this.getServletConfig().getServletContext();
@@ -65,31 +56,33 @@ public class UploadServlet extends HttpServlet {
                 // Create a new file upload handler
                 ServletFileUpload upload = new ServletFileUpload(factory);
                 // Parse the request
-                List<FileItem> items = upload.parseRequest(request);
+                List<FileItem> items = null;
+                try {
+                    items = upload.parseRequest(request);
+                } catch (FileUploadException e) {
+                    e.printStackTrace();
+                }
 
                 Iterator<FileItem> iterator = items.iterator();
                 while (iterator.hasNext()) {
                     FileItem item = iterator.next();
                     if (item.isFormField()) {
                         processFormField(item);
-                    } else {
+                    } else if (!item.isFormField()) {
                         processUploadedFile(item);
                     }
                 }
-            } else
-
-            {
+            } else {
                 printWriter.print("Neineinei....");
             }
 
-        } catch (FileUploadException ioFail) {
-
         }
-    }
-
     private void processUploadedFile(FileItem item) {
+        
     }
 
     private void processFormField(FileItem item) {
+
     }
 }
+
