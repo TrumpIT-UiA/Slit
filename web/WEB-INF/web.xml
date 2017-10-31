@@ -8,6 +8,8 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- Servlet URL kartlegging     -->
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>authentication.LoginServlet</servlet-class>
@@ -27,4 +29,5 @@
         <servlet-name>NewStudentServlet</servlet-name>
         <url-pattern>/NewStudent</url-pattern>
     </servlet-mapping>
+
 </web-app>
