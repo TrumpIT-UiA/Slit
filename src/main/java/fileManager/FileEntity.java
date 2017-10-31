@@ -1,11 +1,12 @@
 package fileManager;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.sql.Blob;
 
 @Entity
-public class FileEntity implements Serializable{
+public class FileEntity implements Serializable {
     @Id
     @Column
     private String id;

@@ -1,6 +1,6 @@
 package fileManager;
 
-//ServletImport
+//Servlet-importer
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 //IO-Stream
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.ByteArrayOutputStream;
 
 //Logger - fra Object for å føre feil.
 import java.util.UUID;
@@ -23,50 +26,49 @@ import java.util.logging.Logger;
  * @author Emil-Ruud
  */
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
-@MultipartConfig
+@MultipartConfig(maxFileSize = 16777216) //16Mib
 public class UploadServlet extends HttpServlet {
     private final static Logger LOGGER =
             Logger.getLogger(UploadServlet.class.getCanonicalName());
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    @EJB
+    FileManagerLocal fml;
 
-        // Lagrer filen i /tmp - en teori er at den blir lagret på den virtuelle serveren
-        //final PrintWriter writer = response.getWriter();
+    private void Upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        //Globale variabler
         final String id = UUID.randomUUID().toString();
         final Part filePart = request.getPart("file");
         //byte[] fileContent = Maybe(filePartInputStream);
 
+        //Lager en inputstream som skal "holde" på strømmen av bits ("Parts" som til sammen er filen)
         InputStream filePartInputStream;
-            try {
-                final String fileName = getFileName(filePart);
-                filePartInputStream = filePart.getInputStream();
-                if (fileName.endsWith(".zip")) {
+        try {
+            final String fileName = getFileName(filePart);
+            filePartInputStream = filePart.getInputStream();
+            if (fileName.endsWith(".zip") && filePart.getSize() <= 16777216) {
 
-                    int bytesRead = 0;
-                    final byte[] buffer = new byte[1024];
-                    ByteArrayOutputStream fileOutPutStream = new ByteArrayOutputStream();
+                byte[] fileContent = convertToByteArray(filePartInputStream);
+                FileEntity fileEntity = new FileEntity(id, fileName, fileContent);
 
-                    while ((bytesRead = filePartInputStream.read(buffer)) != -1) {
-                        fileOutPutStream.write(buffer, 0, bytesRead);
-                    }
-                    byte[] fileContent = fileOutPutStream.toByteArray();
-                    FileEntity fileEntity = new FileEntity(id, fileName, fileContent);
-                    //UploadTheDamnFile(fileEntity, writer);
-                    //writer.print(fileContent);
-                    String message = fileEntity.getFileContent().toString();
-                    String message2 = fileEntity.getFilename();
-                    String message3 = fileEntity.getId();
-                    request.getSession().setAttribute("message", "FileContent: " + message + "\n" + "_____FileName: " + message2 + "\n" + "______FileID: " + message3);
+                //Dette skal "sende" filen ved hjelp av persistence til databasen
+                if (fml.saveFile(fileEntity)) {
+                    String message = "Filen er lastet opp ";
+                    request.getSession().setAttribute("message", message);
                     response.sendRedirect("welcome.jsp");
-
                 } else {
-                    String message = "Filen må være av typen .zip!";
+                    String message = "Får ikke lastet filen opp til databasen";
                     request.getSession().setAttribute("message", message);
                     response.sendRedirect("welcome.jsp");
                 }
-            } catch (IOException ioe) {
-                throw new ServletException();
+            } else {
+                String message = "Filen må være av typen .zip og under 16Mb for å kunne bli lastet opp";
+                request.getSession().setAttribute("message", message);
+                response.sendRedirect("welcome.jsp");
+            }
+        } catch (IOException ioe) {
+            throw new ServletException();
         }
     }
 
@@ -83,17 +85,21 @@ public class UploadServlet extends HttpServlet {
         return null;
     }
 
-    //public byte[] Maybe(InputStream filePartInputStream) throws IOException {
+    private byte[] convertToByteArray(InputStream filePartInputStream) throws IOException {
+        int bytesRead;
+        byte[] buffer = new byte[8192];
+        ByteArrayOutputStream fileOutPutStream = new ByteArrayOutputStream();
 
-
-        @EJB
-        FileManagerLocal fml;
-
-    public void UploadTheDamnFile(FileEntity fileEntity, PrintWriter writer) {
-        if (fml.saveFile(fileEntity) == true) {
-            writer.print("Suksess... Diiiiiigg");
-        } else if (fml.saveFile(fileEntity) == false) {
-            writer.print("Får ikke lastet filen opp til databasen...");
+        while ((bytesRead = filePartInputStream.read(buffer)) != -1) {
+            fileOutPutStream.write(buffer, 0, bytesRead);
         }
+        fileOutPutStream.flush();
+
+        return fileOutPutStream.toByteArray();
+    }
+
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Upload(request, response);
     }
 }

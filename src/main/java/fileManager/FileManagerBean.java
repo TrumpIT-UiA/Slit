@@ -22,6 +22,7 @@ public class FileManagerBean implements FileManagerLocal {
         FileEntity existing = getFile(fileEntity.getId());
         if (existing == null) {
             emFile.persist(fileEntity);
+            emFile.flush();
         } else {
             return false;
         }
@@ -31,7 +32,6 @@ public class FileManagerBean implements FileManagerLocal {
     public boolean updateFile(FileEntity fileEntity) {
         FileEntity existing = getFile(fileEntity.getId());
         if (existing != null) {
-            emFile.remove(fileEntity);
             emFile.persist(fileEntity);
         } else {
             return false;
