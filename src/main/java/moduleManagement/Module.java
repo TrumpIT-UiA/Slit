@@ -28,4 +28,51 @@ public class Module implements Serializable {
 
     }
 
+    public int getModuleID() {
+        return moduleID;
+    }
+
+    public void setModuleID(int moduleID) {
+        this.moduleID = moduleID;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
+    public String getLearningGoals() {
+        return learningGoals;
+    }
+
+    public void setLearningGoals(String learningGoals) {
+        this.learningGoals = learningGoals;
+    }
+
+    public String getResources() {
+        return resources;
+    }
+
+    public void setResources(String resources) {
+        this.resources = resources;
+    }
+
+    public String getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(String tasks) {
+        this.tasks = tasks;
+    }
+
+    public String getApprovalCriteria() {
+        return approvalCriteria;
+    }
+
+    public void setApprovalCriteria(String approvalCriteria) {
+        this.approvalCriteria = approvalCriteria;
+    }
 }
