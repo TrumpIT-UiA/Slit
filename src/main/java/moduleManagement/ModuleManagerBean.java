@@ -4,6 +4,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * EJB som med metoder som behandler modulobjekter
+ */
+
 @Stateless
 public class ModuleManagerBean implements ModuleManagerLocal {
 
@@ -13,7 +17,7 @@ public class ModuleManagerBean implements ModuleManagerLocal {
     public ModuleManagerBean(){
 
     }
-
+    
     @Override
     public Module getModule(int id) {
         return em.find(Module.class, id);

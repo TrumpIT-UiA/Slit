@@ -19,7 +19,7 @@ public class UserManagerBean implements UserManagerLocal {
     }
 
     /**
-     * Lar deg finne en spesifik bruker i databasen.
+     * Lar deg finne en spesifikk bruker i databasen.
      * @param id Primary key i databasen.
      */
     @Override

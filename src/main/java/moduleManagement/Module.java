@@ -2,7 +2,9 @@ package moduleManagement;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.soap.Text;
 import java.io.Serializable;
 
 /**
@@ -11,10 +13,9 @@ import java.io.Serializable;
 @Entity
 public class Module implements Serializable {
     @Id
+    @GeneratedValue
     @Column
     private int moduleID;
-    @Column
-    private String moduleName;
     @Column
     private String learningGoals;
     @Column
@@ -23,10 +24,21 @@ public class Module implements Serializable {
     private String tasks;
     @Column
     private String approvalCriteria;
+    @Column
+    private String deadline;
 
+    public Module(String learningGoals, String resources, String tasks, String approvalCriteria, String deadline) {
+        this.learningGoals = learningGoals;
+        this.resources = resources;
+        this.tasks = tasks;
+        this.approvalCriteria = approvalCriteria;
+        this.deadline = deadline;
+
+    }
     public Module(){
 
     }
+
 
     public int getModuleID() {
         return moduleID;
@@ -34,14 +46,6 @@ public class Module implements Serializable {
 
     public void setModuleID(int moduleID) {
         this.moduleID = moduleID;
-    }
-
-    public String getModuleName() {
-        return moduleName;
-    }
-
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
     }
 
     public String getLearningGoals() {
@@ -74,5 +78,13 @@ public class Module implements Serializable {
 
     public void setApprovalCriteria(String approvalCriteria) {
         this.approvalCriteria = approvalCriteria;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 }
