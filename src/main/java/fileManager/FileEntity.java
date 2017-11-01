@@ -1,22 +1,20 @@
 package fileManager;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class FileEntity implements Serializable {
     @Id
     @Column
-    private String id;
+    @GeneratedValue
+    private int id;
     @Column
     private String filename;
     @Column
     private byte[] fileContent;
 
-    public FileEntity(String id, String filename, byte[] fileContent) {
-        this.id = id;
+    public FileEntity(String filename, byte[] fileContent) {
         this.filename = filename;
         this.fileContent = fileContent;
     }
@@ -25,8 +23,8 @@ public class FileEntity implements Serializable {
     }
 
     // Getter og setter for fil-id
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     // Getter og setter for filnavn
     public String getFilename() { return filename; }

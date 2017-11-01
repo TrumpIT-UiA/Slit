@@ -12,10 +12,7 @@ Hva ønsker du å gjøre her?
 <form method="POST" action="Upload" enctype="multipart/form-data" >
     File:
     <input type="file" name="file" id="file" /> <br/>
-    Destination:
-    <input type="text" value="/tmp" name="destination"/>
-    </br>
-    <input type="submit" value="Upload" name="upload" id="upload" />
+    <input type="submit" value="Upload" name="upload" id="Upload" />
     <p>${message}</p>
     <c:remove var="message" scope="session" />
 </form>

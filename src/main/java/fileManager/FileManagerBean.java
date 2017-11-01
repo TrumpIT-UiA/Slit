@@ -15,7 +15,7 @@ public class FileManagerBean implements FileManagerLocal {
     }
 
     @Override
-    public FileEntity getFile(String id) { return emFile.find(FileEntity.class, id); }
+    public FileEntity getFile(int id) { return emFile.find(FileEntity.class, id); }
 
     @Override
     public boolean saveFile(FileEntity fileEntity) {

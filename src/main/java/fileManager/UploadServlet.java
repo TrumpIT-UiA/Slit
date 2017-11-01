@@ -17,7 +17,6 @@ import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
 //Logger - fra Object for å føre feil.
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,7 +24,7 @@ import java.util.logging.Logger;
  * @author Emil-Ruud
  */
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
-@MultipartConfig(maxFileSize = 15728640) //16Mib
+@MultipartConfig(maxFileSize = 10485760) //10Mib
 public class UploadServlet extends HttpServlet {
     private final static Logger LOGGER =
             Logger.getLogger(UploadServlet.class.getCanonicalName());
@@ -37,7 +36,6 @@ public class UploadServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         //Globale variabler
-        final String id = UUID.randomUUID().toString();
         final Part filePart = request.getPart("file");
 
         //Lager en inputstream som skal "holde" på strømmen av bits ("Parts" som til sammen er filen)
@@ -46,10 +44,10 @@ public class UploadServlet extends HttpServlet {
             final String fileName = getFileName(filePart);
             filePartInputStream = filePart.getInputStream();
             if (fileName.endsWith(".zip")) { //Sjekker om fil-endelsen er .zip
-                if (filePart.getSize() <= 15728640) { //Sjekker at filen IKKE er større enn 15Mib
+                if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
                     byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
-                    FileEntity fileEntity = new FileEntity(id, fileName, fileContent);
+                    FileEntity fileEntity = new FileEntity(fileName, fileContent);
 
                     /**
                      * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
@@ -67,10 +65,9 @@ public class UploadServlet extends HttpServlet {
                         response.sendRedirect("welcome.jsp");
                     }
                 } else {
-                    String message = "Filen kan ikke være større enn 15Mib (15 728 640 bytes).";
+                    String message = "Filen kan ikke være større enn 10Mib (10 485 760 bytes).";
                     request.getSession().setAttribute("message", message);
                     response.sendRedirect("welcome.jsp");
-
                 }
             } else {
                 String message = "Filen må være av typen .zip (en helt vanlig zip-fil).";
@@ -109,8 +106,8 @@ public class UploadServlet extends HttpServlet {
      * @param filePartInputStream
      * @return fileOutPutStream som en array av bytes.
      * @throws IOException
-     * Skriver InputStream-en til en ByteArrayOutputStream som blir returnert
-     * som en array av bytes.
+     * Skriver InputStream-en til en ByteArrayOutputStream ved hjelp av en while-løkke
+     * som blir returner i form av en array av bytes.
      */
     private byte[] convertToByteArray(InputStream filePartInputStream) throws IOException {
         int bytesRead;
