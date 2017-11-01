@@ -4,7 +4,8 @@ Bruker i SQL som heter Slit med passord Mongoper!
 
 Følgende må legges til i Wildfly sin standalone.xml 
 
-<security-domain name="Slit" cache-type = "default">
+```xml
+<scurity-domain name="Slit" cache-type = "default">
   <authentication>
     <login-module code="Database" flag="required">
       <module-option name="dsJndiName" value="java:/SlitDS"/>
@@ -13,4 +14,4 @@ Følgende må legges til i Wildfly sin standalone.xml
     </login-module>
   </authentication>
 </security-domain>
-
+```
