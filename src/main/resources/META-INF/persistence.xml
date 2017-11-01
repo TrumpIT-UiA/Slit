@@ -6,20 +6,12 @@
         <jta-data-source>java:/SlitDS</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-            <!--
-               <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-
-          <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/slit?Reconnect=true&amp;useSSL=false"/>
-          <property name="javax.persistence.jdbc.user" value="Slit"/>
-          <property name="javax.persistence.jdbc.password" value="Mongoper!"/>
-          Hibernate properties
-                      -->
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.connection.charSet" value="UTF-8"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>
