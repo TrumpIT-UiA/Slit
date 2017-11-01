@@ -20,7 +20,6 @@ package userManagement;
 @ServletSecurity(
         @HttpConstraint(rolesAllowed = {"Teacher", "Admin"})
 )
-
 public class NewStudentServlet extends HttpServlet {
 
     @EJB

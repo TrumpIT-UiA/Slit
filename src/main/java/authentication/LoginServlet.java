@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author Marius
  * Servlet for å håndtere innlogging via forms
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {
 
     @EJB
@@ -32,6 +32,8 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("passWord");
         String fornavn = request.getParameter("firstName");
         String etternavn = request.getParameter("lastName");
+
+        request.getAuthType();
 
         try {
             User u = manager.getUser(email.toLowerCase());
