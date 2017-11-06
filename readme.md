@@ -1,8 +1,9 @@
 Checklist:
 
-Bruker i SQL som heter Slit med passord Mongoper!
+Bruker i SQL som heter Slit med passord Mongoper! 
+Og et schema med navn Slit  
 
-Følgende må legges til i Wildfly sin standalone.xml 
+Følgende må legges til i Wildfly sin standalone.xml:  
 
 ```xml
 <scurity-domain name="Slit" cache-type = "default">
