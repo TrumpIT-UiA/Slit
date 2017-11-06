@@ -9,7 +9,8 @@ Velkommen til Slit!
 
 Hva ønsker du å gjøre?
 
-<form action="/Slit/Login.jsp">
+<form action="/Slit/Login" method = post>
     <input type="submit" value="Levere modul" />
+</form>
 </body>
 </html>

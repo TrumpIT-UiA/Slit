@@ -17,12 +17,18 @@ public class ModuleManagerBean implements ModuleManagerLocal {
     public ModuleManagerBean(){
 
     }
-    
+
     @Override
     public Module getModule(int id) {
         return em.find(Module.class, id);
     }
 
+
+    /**
+     *
+     * @param
+     * @return
+     */
     @Override
     public boolean saveModule(Module module) {
         Module existing = getModule(module.getModuleID());
