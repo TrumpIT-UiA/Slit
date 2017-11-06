@@ -105,9 +105,8 @@ public class UploadServlet extends HttpServlet {
     /**
      * @param filePartInputStream
      * @return fileOutPutStream som en array av bytes.
-     * @throws IOException
-     * Skriver InputStream-en til en ByteArrayOutputStream ved hjelp av en while-løkke
-     * som blir returner i form av en array av bytes.
+     * @throws IOException Skriver InputStream-en til en ByteArrayOutputStream ved hjelp av en while-løkke
+     *                     som blir returner i form av en array av bytes.
      */
     private byte[] convertToByteArray(InputStream filePartInputStream) throws IOException {
         int bytesRead;
@@ -126,3 +125,19 @@ public class UploadServlet extends HttpServlet {
         Upload(request, response);
     }
 }
+
+///////////////////////////////////////////////////////
+/**
+ * Kode for å sjekke tiden, skal brukes senere for deadline og lukke innlevering.
+ * Date date = new Date() ;
+ * SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm") ;
+ * dateFormat.format(date);
+ * System.out.println(dateFormat.format(date));
+ *
+ * if(dateFormat.parse(dateFormat.format(date)).after(dateFormat.parse("12:07")))
+ * {
+ * System.out.println("Current time is greater than 12.07");
+ * }else{
+ * System.out.println("Current time is less than 12.07");
+ * }
+ */

@@ -10,6 +10,8 @@ public class FileEntity implements Serializable {
     @GeneratedValue
     private int id;
     @Column
+    private int modulNr;
+    @Column
     private String filename;
     @Column
     private byte[] fileContent;
@@ -25,6 +27,10 @@ public class FileEntity implements Serializable {
     // Getter og setter for fil-id
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
+
+    // Getter og setter for nr på modul
+    public int getModulNr() { return modulNr; }
+    public void setModulNr(int modulNr) { this.modulNr = modulNr; }
 
     // Getter og setter for filnavn
     public String getFilename() { return filename; }

@@ -3,6 +3,7 @@ package fileManager;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.File;
 
 @Stateless
 public class FileManagerBean implements FileManagerLocal {
