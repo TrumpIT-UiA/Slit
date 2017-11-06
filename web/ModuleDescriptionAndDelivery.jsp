@@ -24,12 +24,13 @@
 </form>
 <form action="${pageContext.request.contextPath}/SetModuleNumber" method="post">
         <div class="moduleButtons">
-            <input type="submit" name="module1" value="Modul 1" />
-            <input type="submit" name="module2" value="Modul 2" />
-            <input type="submit" name="module3" value="Modul 3" />
-            <input type="submit" name="module4" value="Modul 4" />
-            <input type="submit" name="module5" value="Modul 5" />
+            <a href="Upload.jsp" target="modulVindu"><input type="button" name="module1" value="Modul 1"/></a>
+            <a href="NewStudent.jsp" target="modulVindu"><input type="button" name="module2" value="Modul 2"/></a>
+            <input type="button" name="module3" value="Modul 3"/>
+            <input type="button" name="module4" value="Modul 4"/>
+            <input type="button" name="module5" value="Modul 5"/>
         </div>
     </form>
+<iframe height="300px" width="100%" src="Login.jsp" name="modulVindu"></iframe>
 </body>
 </html>

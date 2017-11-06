@@ -32,7 +32,7 @@ public class UploadServlet extends HttpServlet {
     @EJB
     FileManagerLocal fml;
 
-    private void Upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
         //Globale variabler
@@ -122,7 +122,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Upload(request, response);
+        upload(request, response);
     }
 }
 
