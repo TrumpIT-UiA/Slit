@@ -2,9 +2,10 @@ Checklist:
 
 Bruker i SQL som heter Slit med passord Mongoper! 
 Og et schema med navn Slit  
+En Java EE server konfigurert med java:/Slit som JNDI navn, med samme login som definert over 
 
-Følgende må legges til i Wildfly sin standalone.xml:  
 
+Følgende må legges til i Wildfly sin standalone.xml, om ikke det er gjort allerede :  
 ```xml
 <scurity-domain name="Slit" cache-type = "default">
   <authentication>
