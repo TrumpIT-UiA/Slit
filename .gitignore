@@ -23,3 +23,12 @@ hs_err_pid*
 
 #Idea folder
 .idea/*
+
+#Out folder
+out/*
+
+#IML file
+*.iml
+
+#Target folder
+/target/*
