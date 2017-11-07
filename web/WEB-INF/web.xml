@@ -36,4 +36,36 @@
             <form-error-page>/LoginFailed.jsp</form-error-page>
         </form-login-config>
     </login-config>
+
+    <error-page>
+        <location>/403.jsp</location>
+    </error-page>
+
+    <error-page>
+        <location>/error.jsp</location>
+    </error-page>
+
+    <!-- Definerer hvilke roller som har tilgang til hvilke mapper -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin only</web-resource-name>
+            <url-pattern>/Admin/*</url-pattern>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <role-name>Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Registrering av brukere</web-resource-name>
+            <url-pattern>/Registration/*</url-pattern>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>
