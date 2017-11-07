@@ -9,7 +9,7 @@
 
 <h1>Vennligst oppgi informasjon til modulen i feltene under</h1>
 <form action="/Slit/newModule" method="post">
-    <input type="radio" name="module" value="1" checked> Modul 1<br>
+    <input type="radio" name="module" value="1"> Modul 1<br>
     <input type="radio" name="module" value="2"> Modul 2<br>
     <input type="radio" name="module" value="3"> Modul 3<br>
     <input type="radio" name="module" value="4"> Modul 4<br>
@@ -21,6 +21,9 @@
     Approval criteria: <input name="approvalCriteria" type="text"><br>
     Deadline: <input name="deadline" type="text"><br>
     <input type="submit" value="Lagre">
+
+    <p>${errorMessage}</p>
+    <c:remove var="errorMessage" scope="session"/>
 </form>
 
 </body>

@@ -10,8 +10,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * @Author Vebjørn
  * Servlet som oppretter en modul i databasen fra parameterne som skrives inn.
  */
+
 @WebServlet(name = "newModule", urlPatterns = {"/newModule"})
 public class NewModuleServlet extends HttpServlet {
     /**
@@ -20,7 +22,12 @@ public class NewModuleServlet extends HttpServlet {
 
 
     private void newModule(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (request.getParameter("module").equals("1")) {
+        if (request.getParameter("module") == null) {
+            String errorMessage = "NB! Du må velge modulnummer!";
+            request.getSession().setAttribute("errorMessage", errorMessage);
+            response.sendRedirect("newModule.jsp");
+        }
+        else if (request.getParameter("module").equals("1")) {
             int moduleID = 1;
             String learningGoals = request.getParameter("learningGoals");
             String resources = request.getParameter("resources");
