@@ -3,6 +3,8 @@ package userManagement;
         import users.Student;
         import javax.ejb.EJB;
         import javax.servlet.ServletException;
+        import javax.servlet.annotation.HttpConstraint;
+        import javax.servlet.annotation.ServletSecurity;
         import javax.servlet.annotation.WebServlet;
         import javax.servlet.http.HttpServlet;
         import javax.servlet.http.HttpServletRequest;
@@ -12,13 +14,23 @@ package userManagement;
 
 /**
  * @author Marius
+ * Servlet for å håndtere opprettelse av nye brukere
  */
-@WebServlet
+@WebServlet(name = "NewStudentServlet", urlPatterns = {"/NewStudent"})
+@ServletSecurity(
+        @HttpConstraint(rolesAllowed = {"Teacher", "Admin"})
+)
 public class NewStudentServlet extends HttpServlet {
 
     @EJB
     UserManagerLocal manager;
 
+    /**
+     * Lager en ny student og lagrer den i databasen dersom alt går bra.
+     * @param request Ett HTTP request objekt
+     * @param response Ett HTTP response objekt
+     * @throws IOException
+     */
     private void newStudent (HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -36,15 +48,28 @@ public class NewStudentServlet extends HttpServlet {
         } else if (manager.saveUser(s) == false){
             out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
         }
-
     }
 
+    /**
+     * Standard Java metode for HTTP GET
+     * @param request Et HTTP Request objekt
+     * @param response Et HTTP Response objekt
+     * @throws ServletException Standard java exception
+     * @throws IOException Standard java exception
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         newStudent(request, response);
     }
 
+    /**
+     * Standard Java metode for HTTP Post
+     * @param request Et HTTP Request objekt
+     * @param response Et HTTP Response objekt
+     * @throws ServletException Standard java exception
+     * @throws IOException Standard java exception
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

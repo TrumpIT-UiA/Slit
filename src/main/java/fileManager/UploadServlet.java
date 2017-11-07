@@ -4,6 +4,7 @@ package fileManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,9 @@ import java.util.logging.Logger;
  * @author Emil-Ruud
  */
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
-@MultipartConfig(maxFileSize = 10485760) //10Mib
+@HttpConstraint(rolesAllowed = {"Teacher", "Admin", "Student", "AssistantTeacher"})
+@MultipartConfig(maxFileSize = 15728640) //16Mib
+
 public class UploadServlet extends HttpServlet {
     private final static Logger LOGGER =
             Logger.getLogger(UploadServlet.class.getCanonicalName());
@@ -74,8 +77,7 @@ public class UploadServlet extends HttpServlet {
                 request.getSession().setAttribute("message", message);
                 response.sendRedirect("welcome.jsp");
             }
-        } catch (
-                IOException ioe)
+        } catch (IOException ioe)
 
         {
             throw new ServletException();
