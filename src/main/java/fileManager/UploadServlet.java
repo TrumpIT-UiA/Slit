@@ -4,6 +4,7 @@ package fileManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -77,8 +78,7 @@ public class UploadServlet extends HttpServlet {
                 request.getSession().setAttribute("message", message);
                 response.sendRedirect("welcome.jsp");
             }
-        } catch (
-                IOException ioe)
+        } catch (IOException ioe)
 
         {
             throw new ServletException();

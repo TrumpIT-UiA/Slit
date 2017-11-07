@@ -7,6 +7,11 @@
     <welcome-file-list>
         <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
+
+    <error-page>
+        <location>/403.jsp</location>
+    </error-page>
+
     <!-- Definerer navnene på sikkerhetsrollene, disse er samme som brukertypene.
     Disse blir via standalone.xml referert til slik at eks alle objekter som er instanceof Admin er i Admin security-rollen.
    -->
