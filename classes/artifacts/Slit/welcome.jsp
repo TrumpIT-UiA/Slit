@@ -5,9 +5,9 @@
     <title>Slit</title>
 </head>
 <body>
-Velkommen til Slit!
+Her kan du laste opp din innlevering!
 
-Hva ønsker du å gjøre?
+Filen du laster opp må være en zip-fil og kan ikke være større enn 15Mib.
 
 <<<<<<< HEAD
 <form action="/Slit/Login.jsp">

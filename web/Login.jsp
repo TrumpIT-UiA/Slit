@@ -10,7 +10,7 @@
 
 <h1>Velkommen til Slit, vennligst logg inn</h1>
 <form action="/Slit/Login" method="post">
-    Brukernavn: <input name="email" type="text"><br>
+    Email: <input name="email" type="text"><br>
 
     Passord: <input name="passWord" type="password"><br>
 
