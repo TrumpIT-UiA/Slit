@@ -1,4 +1,4 @@
-package fileManager;
+package fileManagement;
 
 //Servlet-importer
 

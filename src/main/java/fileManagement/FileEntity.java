@@ -1,7 +1,11 @@
-package fileManager;
+package fileManagement;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+/**
+ * @Author Emil-Ruud
+ */
 
 @Entity
 public class FileEntity implements Serializable {

@@ -1,6 +1,6 @@
 package moduleManagement;
 
-import fileManager.FileEntity;
+import fileManagement.FileEntity;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
