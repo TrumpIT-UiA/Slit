@@ -7,9 +7,14 @@
 <body>
 Velkommen til Slit!
 
-Hva ønsker du å gjøre?
+Hva ønsker du å gjøre her?
 
-<form action="/Slit/Login.jsp">
-    <input type="submit" value="Levere modul" />
+<form method="POST" action="Upload" enctype="multipart/form-data" >
+    File:
+    <input type="file" name="file" id="file" /> <br/>
+    <input type="submit" value="Upload" name="upload" id="Upload" />
+    <p>${message}</p>
+    <c:remove var="message" scope="session" />
+</form>
 </body>
 </html>
