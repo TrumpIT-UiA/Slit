@@ -19,13 +19,13 @@ public class FileManagerBean implements FileManagerLocal {
     }
 
     @Override
-    public FileEntity getFile(int id) { return emFile.find(FileEntity.class, id); }
+    public File getFile(int id) { return emFile.find(File.class, id); }
 
     @Override
-    public boolean saveFile(FileEntity fileEntity) {
-        FileEntity existing = getFile(fileEntity.getId());
+    public boolean saveFile(File file) {
+        File existing = getFile(file.getId());
         if (existing == null) {
-            emFile.persist(fileEntity);
+            emFile.persist(file);
             emFile.flush();
         } else {
             return false;
@@ -33,10 +33,10 @@ public class FileManagerBean implements FileManagerLocal {
         return true;
     }
 
-    public boolean updateFile(FileEntity fileEntity) {
-        FileEntity existing = getFile(fileEntity.getId());
+    public boolean updateFile(File file) {
+        File existing = getFile(file.getId());
         if (existing != null) {
-            emFile.persist(fileEntity);
+            emFile.persist(file);
         } else {
             return false;
         }

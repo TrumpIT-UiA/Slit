@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 @Entity
-public class FileEntity implements Serializable {
+public class File implements Serializable {
     @Id
     @Column
     @GeneratedValue
@@ -20,11 +20,11 @@ public class FileEntity implements Serializable {
     @Column
     private byte[] fileContent;
 
-    public FileEntity(String filename, byte[] fileContent) {
+    public File(String filename, byte[] fileContent) {
         this.filename = filename;
         this.fileContent = fileContent;
     }
-    public FileEntity(){
+    public File(){
         //Denne "constructoren" skal være tom...
     }
 

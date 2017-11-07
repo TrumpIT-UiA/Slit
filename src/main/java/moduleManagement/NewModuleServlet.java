@@ -16,10 +16,11 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "newModule", urlPatterns = {"/newModule"})
 public class NewModuleServlet extends HttpServlet {
-    /**
-     * Oppretter entity manager for modul
-     */
 
+    /**
+     * Sjekker hvilken "radio" ("Modul 1", "Modul 2", osv.) som er blitt merket
+     * og skriver informasjonen til et nytt objekt: Module.
+     */
 
     private void newModule(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getParameter("module") == null) {
@@ -102,6 +103,15 @@ public class NewModuleServlet extends HttpServlet {
 
     @EJB
     ModuleManagerLocal manager;
+
+    /**
+     *
+     * @param m
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     * Lagrer modulen i databasen
+     */
 
     private void lastOppTilDB(Module m, HttpServletResponse response) throws ServletException, IOException {
         if (manager.saveModule(m) == true) {

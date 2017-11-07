@@ -1,6 +1,6 @@
 package moduleManagement;
 
-import fileManagement.FileEntity;
+import fileManagement.File;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -27,7 +27,7 @@ public class ViewModule extends HttpServlet {
     ModuleManagerLocal em;
 
     private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        FileEntity fe = new FileEntity();
+        File fe = new File();
         if (request.getParameter("module1") != null) {
             Module module = em.getModule(1);
             String mNr = "1";

@@ -47,7 +47,7 @@ public class UploadServlet extends HttpServlet {
                 if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
                     byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
-                    FileEntity fileEntity = new FileEntity(fileName, fileContent);
+                    File file = new File(fileName, fileContent);
 
                     /**
                      * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
@@ -55,7 +55,7 @@ public class UploadServlet extends HttpServlet {
                      * for å se kommunikasjonen med databasen.
                      */
 
-                    if (fml.saveFile(fileEntity)) {
+                    if (fml.saveFile(file)) {
                         String message = "Hurra! Filen er lastet opp!";
                         request.getSession().setAttribute("message", message);
                         response.sendRedirect("welcome.jsp");
