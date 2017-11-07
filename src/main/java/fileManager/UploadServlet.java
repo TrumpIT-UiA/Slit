@@ -26,6 +26,7 @@ import java.util.logging.Logger;
  * @author Emil-Ruud
  */
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
+@HttpConstraint(rolesAllowed = {"Teacher", "Admin", "Student", "AssistantTeacher"})
 @MultipartConfig(maxFileSize = 15728640) //16Mib
 public class UploadServlet extends HttpServlet {
     private final static Logger LOGGER =
