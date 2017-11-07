@@ -20,7 +20,7 @@ public class FileEntity implements Serializable {
         this.filename = filename;
         this.fileContent = fileContent;
     }
-    protected FileEntity(){
+    public FileEntity(){
         //Denne "constructoren" skal være tom...
     }
 
