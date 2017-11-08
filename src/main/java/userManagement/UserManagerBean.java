@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 
 /**
- * En klasse for å håndtere lagringen av brukerobjekter i databasen
+ * Håndterer lagring av objekter mot en Database
  */
 @Stateless
 public class UserManagerBean implements UserManagerLocal {
@@ -28,7 +28,7 @@ public class UserManagerBean implements UserManagerLocal {
     }
 
     /**
-     * Lar deg lagre en bruker i databasen.
+     * Lar deg lagre et brukerobjekt i databasen.
      * @param u Brukerobjektet du ønsker å lagre.
      * @return Returnerer true eller false dersom operasjonen er gyldig/ugyldig.
      */
@@ -44,7 +44,7 @@ public class UserManagerBean implements UserManagerLocal {
     }
 
     /**
-     * Lar deg oppdatere en bruker i databasen.
+     * Lar deg oppdatere et brukerobjekt i databasen.
      * @param u Brukerobjektet du ønsker å oppdatere.
      * @return Returnerer true/false avhengig av om operasjonen er gyldig/ugyldig.
      */

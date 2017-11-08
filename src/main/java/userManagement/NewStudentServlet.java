@@ -31,7 +31,7 @@ public class NewStudentServlet extends HttpServlet {
      * @param response Ett HTTP response objekt
      * @throws IOException
      */
-    private void newStudent (HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void createNewStudent (HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
@@ -60,7 +60,7 @@ public class NewStudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        newStudent(request, response);
+        createNewStudent(request, response);
     }
 
     /**
@@ -73,7 +73,7 @@ public class NewStudentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        newStudent(request, response);
+        createNewStudent(request, response);
     }
 }
 

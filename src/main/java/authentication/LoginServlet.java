@@ -30,8 +30,6 @@ public class LoginServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("passWord");
-        String fornavn = request.getParameter("firstName");
-        String etternavn = request.getParameter("lastName");
 
         request.getAuthType();
 

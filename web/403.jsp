@@ -11,8 +11,6 @@
     <title>Slit</title>
 </head>
 <body>
-Oops, her ser det ut som om du ikke har tilgang!
-
 HTTP Error 403 Access Denied!
 <img src="images/403.png"/>
 </body>
