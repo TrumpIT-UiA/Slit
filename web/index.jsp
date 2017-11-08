@@ -1,3 +1,4 @@
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -16,5 +17,14 @@
   <form action="/Slit/NewStudent.jsp" method="post">
     <input type="submit" value="Opprette ny bruker">
   </form>
+
+
+<form action="/Slit/Upload.jsp" method="post">
+  <input type="submit" value="Laste opp fil">
+</form>
+
+<form action="/PDS" method="post">
+  <<input type="submit" value="Laste ned fil">
+</form>
 </body>
 </html>

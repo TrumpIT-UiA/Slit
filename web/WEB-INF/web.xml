@@ -27,12 +27,5 @@
         <servlet-name>NewStudentServlet</servlet-name>
         <url-pattern>/NewStudent</url-pattern>
     </servlet-mapping>
-    
-    <servlet>
-    <servlet-name>UploadServlet</servlet-name>
-    <servlet-class>fileManager.UploadServlet</servlet-class>
-    <servlet-mapping>
-        <servlet-name>UploadServlet</servlet-name>
-        <url-pattern>/Upload</url-pattern>
-    </servlet-mapping>
+
 </web-app>
