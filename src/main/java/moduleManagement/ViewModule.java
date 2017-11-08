@@ -1,6 +1,7 @@
 package moduleManagement;
 
 import fileManagement.File;
+import fileManagement.UploadServlet;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class ViewModule extends HttpServlet {
     ModuleManagerLocal em;
 
     private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        File fe = new File();
+        UploadServlet us = new UploadServlet();
         if (request.getParameter("module1") != null) {
             Module module = em.getModule(1);
             String mNr = "1";
@@ -36,7 +37,7 @@ public class ViewModule extends HttpServlet {
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            fe.setModulNr(1);
+            us.setModulNr(mNr);
 
             request.getSession().setAttribute("mNr", mNr);
             request.getSession().setAttribute("goals", goals);
@@ -54,7 +55,7 @@ public class ViewModule extends HttpServlet {
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            fe.setModulNr(2);
+            us.setModulNr(mNr);
 
             request.getSession().setAttribute("mNr", mNr);
             request.getSession().setAttribute("goals", goals);
@@ -72,7 +73,7 @@ public class ViewModule extends HttpServlet {
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            fe.setModulNr(3);
+            us.setModulNr(mNr);
 
             request.getSession().setAttribute("mNr", mNr);
             request.getSession().setAttribute("goals", goals);
@@ -90,7 +91,7 @@ public class ViewModule extends HttpServlet {
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            fe.setModulNr(4);
+            us.setModulNr(mNr);
 
             request.getSession().setAttribute("mNr", mNr);
             request.getSession().setAttribute("goals", goals);
@@ -108,7 +109,7 @@ public class ViewModule extends HttpServlet {
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            fe.setModulNr(5);
+            us.setModulNr(mNr);
 
             request.getSession().setAttribute("mNr", mNr);
             request.getSession().setAttribute("goals", goals);

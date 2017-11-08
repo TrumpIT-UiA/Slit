@@ -61,7 +61,7 @@ input[type=submit] {
     background-color: #4CAF50;
     color: white;
     padding: 20px 10px;
-    border: none;
+    border: 3px;
     border-radius: 2px;
     cursor: pointer;
     display: inline;
@@ -71,7 +71,7 @@ input[type=submit] {
 
 /* When moving the mouse over the submit button, add a darker green color */
 input[type=submit]:hover {
-    background-color: rgba(45, 123, 0, 0.59);
+    background-color: rgba(0, 0, 0, 0.64);
 }
 input[type=submit]:not(:last-child){
     border-bottom: none; /* Prevent double borders */

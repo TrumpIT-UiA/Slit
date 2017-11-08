@@ -29,13 +29,16 @@ public class UploadServlet extends HttpServlet {
     private final static Logger LOGGER =
             Logger.getLogger(UploadServlet.class.getCanonicalName());
 
+    // Globale variabler
+    private String modulNr = getModulNr();
+
     @EJB
     FileManagerLocal fml;
 
     private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        //Globale variabler
+        //Lokale variabler
         final Part filePart = request.getPart("file");
 
         //Lager en inputstream som skal "holde" på strømmen av bits ("Parts" som til sammen er filen)
@@ -47,7 +50,7 @@ public class UploadServlet extends HttpServlet {
                 if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
                     byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
-                    File file = new File(fileName, fileContent);
+                    File file = new File(getModulNr(), fileName, fileContent);
 
                     /**
                      * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
@@ -56,23 +59,23 @@ public class UploadServlet extends HttpServlet {
                      */
 
                     if (fml.saveFile(file)) {
-                        String message = "Hurra! Filen er lastet opp!";
+                        String message = "Hurra! Filen er lastet opp! MNr: " + file.getModulNr();
                         request.getSession().setAttribute("message", message);
-                        response.sendRedirect("welcome.jsp");
+                        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
                     } else {
                         String message = "Får ikke lastet filen opp til databasen.";
                         request.getSession().setAttribute("message", message);
-                        response.sendRedirect("welcome.jsp");
+                        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
                     }
                 } else {
                     String message = "Filen kan ikke være større enn 10Mib (10 485 760 bytes).";
                     request.getSession().setAttribute("message", message);
-                    response.sendRedirect("welcome.jsp");
+                    response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
                 }
             } else {
                 String message = "Filen må være av typen .zip (en helt vanlig zip-fil).";
                 request.getSession().setAttribute("message", message);
-                response.sendRedirect("welcome.jsp");
+                response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
             }
         } catch (
                 IOException ioe)
@@ -121,6 +124,9 @@ public class UploadServlet extends HttpServlet {
         return fileOutPutStream.toByteArray();
     }
 
+    public void setModulNr(String modulNr) { this.modulNr = modulNr; }
+    public String getModulNr() { return modulNr; }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         upload(request, response);
     }
@@ -133,7 +139,7 @@ public class UploadServlet extends HttpServlet {
  * SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm") ;
  * dateFormat.format(date);
  * System.out.println(dateFormat.format(date));
- *
+ * <p>
  * if(dateFormat.parse(dateFormat.format(date)).after(dateFormat.parse("12:07")))
  * {
  * System.out.println("Current time is greater than 12.07");

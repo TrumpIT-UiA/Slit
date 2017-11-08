@@ -14,15 +14,16 @@ public class File implements Serializable {
     @GeneratedValue
     private int id;
     @Column
-    private int modulNr;
+    private String modulNr;
     @Column
     private String filename;
     @Column
     private byte[] fileContent;
 
-    public File(String filename, byte[] fileContent) {
+    public File(String modulNr, String filename, byte[] fileContent) {
         this.filename = filename;
         this.fileContent = fileContent;
+        this.modulNr = modulNr;
     }
     public File(){
         //Denne "constructoren" skal være tom...
@@ -33,8 +34,8 @@ public class File implements Serializable {
     public void setId(int id) { this.id = id; }
 
     // Getter og setter for nr på modul
-    public int getModulNr() { return modulNr; }
-    public void setModulNr(int modulNr) { this.modulNr = modulNr; }
+    public String getModulNr() { return modulNr; }
+    public void setModulNr(String modulNr) { this.modulNr = modulNr; }
 
     // Getter og setter for filnavn
     public String getFilename() { return filename; }

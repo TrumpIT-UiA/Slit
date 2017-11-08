@@ -3,7 +3,6 @@
   User: Emil-Ruud
   Date: 03/11/2017
   Time: 15:00
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -26,7 +25,7 @@
         </a>
     </div>
 
-    <h2>Modul nr: ${mNr}</h2>
+    <h2>Modul ${mNr}</h2>
     <c:remove var="mNr" scope="session"/>
 
     <h3>Mål:</h3>
@@ -50,7 +49,6 @@
     <c:remove var="tasks" scope="session"/>
 
 </form>
-
 <h2>Her kan du laste opp din innlevering!</h2>
 <p>NB! Filen du laster opp må være en zip-fil og kan ikke være større enn 10Mib.</p>
 <form method="POST" action="Upload" enctype="multipart/form-data">
