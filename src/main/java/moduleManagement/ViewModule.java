@@ -18,7 +18,7 @@ import java.io.IOException;
 
 @WebServlet(name = "ViewModule", urlPatterns = {"/ViewModule"})
 public class ViewModule extends HttpServlet {
-
+    private String modulNummer = getModulNummer();
     /**
      * Sjekker hvilken av modulknappene som har blitt trykket i
      * ModuleDescriptionAndDelivery
@@ -28,102 +28,86 @@ public class ViewModule extends HttpServlet {
     ModuleManagerLocal em;
 
     private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UploadServlet us = new UploadServlet();
+
         if (request.getParameter("module1") != null) {
             Module module = em.getModule(1);
-            String mNr = "1";
+            String modulNummer = "1";
+            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            us.setModulNr(mNr);
 
-            request.getSession().setAttribute("mNr", mNr);
-            request.getSession().setAttribute("goals", goals);
-            request.getSession().setAttribute("resources", resources);
-            request.getSession().setAttribute("deadline", deadline);
-            request.getSession().setAttribute("approvalCriterias", approvalCriterias);
-            request.getSession().setAttribute("tasks", tasks);
-            response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
 
         } else if (request.getParameter("module2") != null) {
             Module module = em.getModule(2);
-            String mNr = "2";
+            String modulNummer = "2";
+            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            us.setModulNr(mNr);
 
-            request.getSession().setAttribute("mNr", mNr);
-            request.getSession().setAttribute("goals", goals);
-            request.getSession().setAttribute("resources", resources);
-            request.getSession().setAttribute("deadline", deadline);
-            request.getSession().setAttribute("approvalCriterias", approvalCriterias);
-            request.getSession().setAttribute("tasks", tasks);
-            response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
 
         } else if (request.getParameter("module3") != null) {
             Module module = em.getModule(3);
-            String mNr = "3";
+            String modulNummer = "3";
+            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            us.setModulNr(mNr);
 
-            request.getSession().setAttribute("mNr", mNr);
-            request.getSession().setAttribute("goals", goals);
-            request.getSession().setAttribute("resources", resources);
-            request.getSession().setAttribute("deadline", deadline);
-            request.getSession().setAttribute("approvalCriterias", approvalCriterias);
-            request.getSession().setAttribute("tasks", tasks);
-            response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
 
         } else if (request.getParameter("module4") != null) {
             Module module = em.getModule(4);
-            String mNr = "4";
+            String modulNummer = "4";
+            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            us.setModulNr(mNr);
 
-            request.getSession().setAttribute("mNr", mNr);
-            request.getSession().setAttribute("goals", goals);
-            request.getSession().setAttribute("resources", resources);
-            request.getSession().setAttribute("deadline", deadline);
-            request.getSession().setAttribute("approvalCriterias", approvalCriterias);
-            request.getSession().setAttribute("tasks", tasks);
-            response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
 
         } else if (request.getParameter("module5") != null) {
             Module module = em.getModule(5);
-            String mNr = "5";
+            String modulNummer = "5";
+            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
-            us.setModulNr(mNr);
 
-            request.getSession().setAttribute("mNr", mNr);
-            request.getSession().setAttribute("goals", goals);
-            request.getSession().setAttribute("resources", resources);
-            request.getSession().setAttribute("deadline", deadline);
-            request.getSession().setAttribute("approvalCriterias", approvalCriterias);
-            request.getSession().setAttribute("tasks", tasks);
-            response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
-
+            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
         }
-
-
     }
 
+    public void skrivModul(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String deadline, String approvalCriterias, String tasks) throws IOException {
+        request.getSession().setAttribute("mNr", modulNummer);
+        request.getSession().setAttribute("goals", goals);
+        request.getSession().setAttribute("resources", resources);
+        request.getSession().setAttribute("deadline", deadline);
+        request.getSession().setAttribute("approvalCriterias", approvalCriterias);
+        request.getSession().setAttribute("tasks", tasks);
+        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+    }
+
+    public void setModulNr(String modulNummer) {
+        this.modulNummer = modulNummer;
+    }
+
+    public String getModulNummer() {
+        return modulNummer;
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

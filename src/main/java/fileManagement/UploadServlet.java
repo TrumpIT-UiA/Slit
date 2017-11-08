@@ -2,6 +2,8 @@ package fileManagement;
 
 //Servlet-importer
 
+import moduleManagement.ViewModule;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -30,7 +32,8 @@ public class UploadServlet extends HttpServlet {
             Logger.getLogger(UploadServlet.class.getCanonicalName());
 
     // Globale variabler
-    private String modulNr = getModulNr();
+    ViewModule vm = new ViewModule();
+    private String modulNummer = vm.getModulNummer();
 
     @EJB
     FileManagerLocal fml;
@@ -50,7 +53,7 @@ public class UploadServlet extends HttpServlet {
                 if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
                     byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
-                    File file = new File(getModulNr(), fileName, fileContent);
+                    File file = new File(modulNummer, fileName, fileContent);
 
                     /**
                      * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
@@ -123,9 +126,6 @@ public class UploadServlet extends HttpServlet {
 
         return fileOutPutStream.toByteArray();
     }
-
-    public void setModulNr(String modulNr) { this.modulNr = modulNr; }
-    public String getModulNr() { return modulNr; }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         upload(request, response);
