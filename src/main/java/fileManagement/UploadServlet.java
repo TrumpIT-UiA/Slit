@@ -5,13 +5,11 @@ package fileManagement;
 import moduleManagement.ViewModule;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 
 //IO-Stream
 import java.io.IOException;
@@ -31,10 +29,6 @@ public class UploadServlet extends HttpServlet {
     private final static Logger LOGGER =
             Logger.getLogger(UploadServlet.class.getCanonicalName());
 
-    // Globale variabler
-    ViewModule vm = new ViewModule();
-    private String modulNummer = vm.getModulNummer();
-
     @EJB
     FileManagerLocal fml;
 
@@ -46,12 +40,15 @@ public class UploadServlet extends HttpServlet {
 
         //Lager en inputstream som skal "holde" på strømmen av bits ("Parts" som til sammen er filen)
         InputStream filePartInputStream;
+
         try {
             final String fileName = getFileName(filePart);
             filePartInputStream = filePart.getInputStream();
             if (fileName.endsWith(".zip")) { //Sjekker om fil-endelsen er .zip
                 if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
+                    HttpSession session = request.getSession();
+                    String modulNummer = (String) session.getAttribute("modulNummer");
                     byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
                     File file = new File(modulNummer, fileName, fileContent);
 

@@ -1,14 +1,14 @@
 package moduleManagement;
 
-import fileManagement.File;
-import fileManagement.UploadServlet;
-
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -18,7 +18,6 @@ import java.io.IOException;
 
 @WebServlet(name = "ViewModule", urlPatterns = {"/ViewModule"})
 public class ViewModule extends HttpServlet {
-    private String modulNummer = getModulNummer();
     /**
      * Sjekker hvilken av modulknappene som har blitt trykket i
      * ModuleDescriptionAndDelivery
@@ -27,12 +26,11 @@ public class ViewModule extends HttpServlet {
     @EJB
     ModuleManagerLocal em;
 
-    private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         if (request.getParameter("module1") != null) {
             Module module = em.getModule(1);
             String modulNummer = "1";
-            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
@@ -44,7 +42,6 @@ public class ViewModule extends HttpServlet {
         } else if (request.getParameter("module2") != null) {
             Module module = em.getModule(2);
             String modulNummer = "2";
-            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
@@ -56,7 +53,6 @@ public class ViewModule extends HttpServlet {
         } else if (request.getParameter("module3") != null) {
             Module module = em.getModule(3);
             String modulNummer = "3";
-            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
@@ -68,7 +64,6 @@ public class ViewModule extends HttpServlet {
         } else if (request.getParameter("module4") != null) {
             Module module = em.getModule(4);
             String modulNummer = "4";
-            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
@@ -80,7 +75,6 @@ public class ViewModule extends HttpServlet {
         } else if (request.getParameter("module5") != null) {
             Module module = em.getModule(5);
             String modulNummer = "5";
-            setModulNr(modulNummer);
             String goals = module.getLearningGoals();
             String resources = module.getResources();
             String deadline = module.getDeadline();
@@ -91,7 +85,8 @@ public class ViewModule extends HttpServlet {
         }
     }
 
-    public void skrivModul(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String deadline, String approvalCriterias, String tasks) throws IOException {
+    private void skrivModul(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String deadline, String approvalCriterias, String tasks) throws IOException, ServletException {
+
         request.getSession().setAttribute("mNr", modulNummer);
         request.getSession().setAttribute("goals", goals);
         request.getSession().setAttribute("resources", resources);
@@ -99,14 +94,9 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("approvalCriterias", approvalCriterias);
         request.getSession().setAttribute("tasks", tasks);
         response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
-    }
 
-    public void setModulNr(String modulNummer) {
-        this.modulNummer = modulNummer;
-    }
-
-    public String getModulNummer() {
-        return modulNummer;
+        HttpSession session = request.getSession();
+        session.setAttribute("modulNummer", modulNummer);
     }
 
     @Override
