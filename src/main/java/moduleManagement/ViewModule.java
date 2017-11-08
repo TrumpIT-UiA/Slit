@@ -1,9 +1,7 @@
 package moduleManagement;
 
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,19 +10,24 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * @Author Vebjørn
+ * @Author Emil-Ruud
  * Dette er en servlet som henter ut data fra en gitt modul
  */
 
 @WebServlet(name = "ViewModule", urlPatterns = {"/ViewModule"})
 public class ViewModule extends HttpServlet {
-    /**
-     * Sjekker hvilken av modulknappene som har blitt trykket i
-     * ModuleDescriptionAndDelivery
-     */
 
     @EJB
     ModuleManagerLocal em;
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException
+     * Sjekker hvilken av modulknappene som har blitt trykket i
+     * ModuleDescriptionAndDelivery
+     */
 
     private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
@@ -85,6 +88,19 @@ public class ViewModule extends HttpServlet {
         }
     }
 
+    /**
+     * @param request
+     * @param response
+     * @param modulNummer
+     * @param goals
+     * @param resources
+     * @param deadline
+     * @param approvalCriterias
+     * @param tasks
+     * @throws IOException
+     * @throws ServletException
+     */
+
     private void skrivModul(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String deadline, String approvalCriterias, String tasks) throws IOException, ServletException {
 
         request.getSession().setAttribute("mNr", modulNummer);
@@ -95,6 +111,8 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("tasks", tasks);
         response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
 
+        //Dette "passer" et parameter til session, slik at andre servlets
+        //kan hente inn verdien.
         HttpSession session = request.getSession();
         session.setAttribute("modulNummer", modulNummer);
     }

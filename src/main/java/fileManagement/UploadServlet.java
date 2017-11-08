@@ -1,22 +1,24 @@
 package fileManagement;
 
 //Servlet-importer
-
-import moduleManagement.ViewModule;
-
-import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.Part;
+import javax.servlet.http.HttpSession;
+
+//EJB for kommunikasjon med databasen
+import javax.ejb.EJB;
 
 //IO-Stream
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
-//Logger - fra Object for å føre feil.
+//Logger - fra Object for å føre feil
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

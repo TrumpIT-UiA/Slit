@@ -12,7 +12,7 @@ public class File implements Serializable {
     @Id
     @Column
     @GeneratedValue
-    private int id;
+    private int fileID;
     @Column
     private String modulNr;
     @Column
@@ -30,8 +30,8 @@ public class File implements Serializable {
     }
 
     // Getter og setter for fil-id
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() { return fileID; }
+    public void setId(int fileID) { this.fileID = fileID; }
 
     // Getter og setter for nr på modul
     public String getModulNr() { return modulNr; }
