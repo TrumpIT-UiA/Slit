@@ -5,9 +5,10 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
 
+<<<<<<< HEAD
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>authentication.LoginServlet</servlet-class>
@@ -27,4 +28,40 @@
         <servlet-name>NewStudentServlet</servlet-name>
         <url-pattern>/NewStudent</url-pattern>
     </servlet-mapping>
+=======
+    <error-page>
+        <location>/403.jsp</location>
+    </error-page>
+
+    <!-- Definerer navnene på sikkerhetsrollene, disse er samme som brukertypene.
+    Disse blir via standalone.xml referert til slik at eks alle objekter som er instanceof Admin er i Admin security-rollen.
+   -->
+    <security-role>
+        <role-name>Admin</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>Teacher</role-name>
+    </security-role>
+
+
+    <security-role>
+        <role-name>AssistantTeacher</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>Student</role-name>
+    </security-role>
+
+    <!-- Definerer hva slags autentiseringstype man vil bruke (FORM i dette tilfellet)
+    Og også hvilke sider man vil vise når det kreves innlogging/innloggingen feilet
+    -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/Login.jsp</form-login-page>
+            <form-error-page>/LoginFailed.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+>>>>>>> 62ff87796b641dd43094f19c55bc23ac60fc1a79
 </web-app>
