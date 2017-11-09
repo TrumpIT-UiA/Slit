@@ -62,7 +62,7 @@ public class ViewModule extends HttpServlet {
 
     private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) {
         Module module = em.getModule(knappTrykketInt);
-        String modulNummer = "1";
+        String modulNummer = Integer.toString(knappTrykketInt);
         String goals = module.getLearningGoals();
         String resources = module.getResources();
         String deadline = module.getDeadline();

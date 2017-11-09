@@ -33,7 +33,6 @@
             <version>5.2.10.Final</version>
         </dependency>
 
-
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
@@ -41,4 +40,5 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
 </project>
