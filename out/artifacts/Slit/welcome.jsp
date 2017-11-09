@@ -5,14 +5,14 @@
     <title>Slit</title>
 </head>
 <body>
-Her kan du laste opp din innlevering!
+Velkommen til Slit!
 
-Filen du laster opp må være en zip-fil og kan ikke være større enn 15Mib.
+Hva ønsker du å gjøre her?
 
 <form method="POST" action="Upload" enctype="multipart/form-data" >
     File:
     <input type="file" name="file" id="file" /> <br/>
-    <input type="submit" value="Upload" name="upload" id="upload" />
+    <input type="submit" value="Upload" name="upload" id="Upload" />
     <p>${message}</p>
     <c:remove var="message" scope="session" />
 </form>

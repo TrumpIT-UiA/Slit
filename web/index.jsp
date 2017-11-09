@@ -23,8 +23,8 @@
   <input type="submit" value="Laste opp fil">
 </form>
 
-<form action="/PDS" method="post">
-  <<input type="submit" value="Laste ned fil">
+<form action="/Slit/PDS" method="post">
+  <input type="submit" value="Laste ned fil">
 </form>
 </body>
 </html>

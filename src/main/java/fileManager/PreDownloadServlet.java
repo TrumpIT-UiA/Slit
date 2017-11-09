@@ -1,11 +1,6 @@
 package fileManager;
 
-import fileManager.FileEntity;
-import fileManager.FileManagerLocal;
-
 import javax.ejb.EJB;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,33 +13,31 @@ import java.util.List;
 @WebServlet(name = "PDS", urlPatterns = {"/PDS"})
 public class PreDownloadServlet extends HttpServlet {
 
-    private EntityManager emDL;
-
     @EJB
     FileManagerLocal fml;
 
     private void pds(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        PrintWriter printWriter = response.getWriter();
+        PrintWriter out = response.getWriter();
+        out.println("<!DOCTYPE html>");
+        out.println("<html");
+        out.println("<title>Tittel</title>");
+        out.println("</head>");
+        out.println("<body>");
 
-        printWriter.println("xD");
-      /*  List<FileEntity> fileList = emDL.createQuery("select * from fileentity").getResultList();
+        List<FileEntity> fileEntityList = fml.getFromQuery("SELECT * FROM fileentity", FileEntity.class);
 
-        String password = request.getParameter("password");
-        String name = request.getParameter("loginid");
-
-        printWriter.print(password);
-        printWriter.print(name);
-
-
-        printWriter.println(fml.getFile(1));
-
-        for (FileEntity fentity : fileList) {
-            printWriter.print("\n File ID: " + fentity.getId()
-                    + "Filename: " + fentity.getFilename() + "Moudle number: " + fentity.getModulNr());
-        }*/
+        for (FileEntity fileEntity : fileEntityList) {
+            out.println("<form action=\"/Slit/PDS-" + fileEntity.getId() + "\" method=\"post\">");
+            out.println("<input type=\"submit\" value=\"" + fileEntity.getFilename() + "\"> Lastet opp av: "); // Legg til hvem som har levert.
+            out.println("</form>");
+            // out.println(fileEntity.getFilename());
+        }
+        out.println("</body>");
+        out.println("</html>");
 
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -3,7 +3,7 @@ package fileManager;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.io.File;
+import java.util.List;
 
 @Stateless
 public class FileManagerBean implements FileManagerLocal {
@@ -17,6 +17,11 @@ public class FileManagerBean implements FileManagerLocal {
 
     @Override
     public FileEntity getFile(int id) { return emFile.find(FileEntity.class, id); }
+
+    @Override
+    public List getFromQuery(String query, Class<FileEntity> fileEntityClass){
+        return emFile.createNativeQuery(query, fileEntityClass).getResultList();
+    }
 
     @Override
     public boolean saveFile(FileEntity fileEntity) {
