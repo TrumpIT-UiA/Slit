@@ -16,14 +16,17 @@ public class File implements Serializable {
     @Column
     private String modulNr;
     @Column
+    private String userEmailFile;
+    @Column
     private String filename;
     @Column
     private byte[] fileContent;
 
-    public File(String modulNr, String filename, byte[] fileContent) {
+    public File(String userEmailFile, String modulNr, String filename, byte[] fileContent) {
+        this.userEmailFile = userEmailFile;
+        this.modulNr = modulNr;
         this.filename = filename;
         this.fileContent = fileContent;
-        this.modulNr = modulNr;
     }
     public File(){
         //Denne "constructoren" skal være tom...
@@ -46,4 +49,7 @@ public class File implements Serializable {
     // Getter for innhold i fil
     public byte[] getFileContent() { return fileContent; }
     public void setFileContent(byte[] fileContent) { this.fileContent = fileContent; }
+
+    public String getUserEmailFile() { return userEmailFile; }
+    public void setUserEmailFile(String userEmailFile) { this.userEmailFile = userEmailFile; }
 }

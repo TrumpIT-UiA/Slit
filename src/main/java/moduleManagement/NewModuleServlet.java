@@ -29,78 +29,47 @@ public class NewModuleServlet extends HttpServlet {
         }
         else if (request.getParameter("module").equals("1")) {
             int moduleID = 1;
-            String learningGoals = request.getParameter("learningGoals");
-            String resources = request.getParameter("resources");
-            String tasks = request.getParameter("tasks");
-            String approvalCriteria = request.getParameter("approvalCriteria");
-            String deadline = request.getParameter("deadline");
-
-            Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadline);
-            try {
-                lastOppTilDB(m, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            }
+            getParameters(moduleID, request, response);
         } else if (request.getParameter("module").equals("2")) {
             int moduleID = 2;
-            String learningGoals = request.getParameter("learningGoals");
-            String resources = request.getParameter("resources");
-            String tasks = request.getParameter("tasks");
-            String approvalCriteria = request.getParameter("approvalCriteria");
-            String deadline = request.getParameter("deadline");
-
-            Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadline);
-            try {
-                lastOppTilDB(m, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            }
+            getParameters(moduleID, request, response);
         } else if (request.getParameter("module").equals("3")) {
             int moduleID = 3;
-            String learningGoals = request.getParameter("learningGoals");
-            String resources = request.getParameter("resources");
-            String tasks = request.getParameter("tasks");
-            String approvalCriteria = request.getParameter("approvalCriteria");
-            String deadline = request.getParameter("deadline");
-
-            Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadline);
-            try {
-                lastOppTilDB(m, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            }
+            getParameters(moduleID, request, response);
         } else if (request.getParameter("module").equals("4")) {
             int moduleID = 4;
-            String learningGoals = request.getParameter("learningGoals");
-            String resources = request.getParameter("resources");
-            String tasks = request.getParameter("tasks");
-            String approvalCriteria = request.getParameter("approvalCriteria");
-            String deadline = request.getParameter("deadline");
+            getParameters(moduleID, request, response);
 
-            Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadline);
-            try {
-                lastOppTilDB(m, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            }
         } else if (request.getParameter("module").equals("5")) {
             int moduleID = 5;
-            String learningGoals = request.getParameter("learningGoals");
-            String resources = request.getParameter("resources");
-            String tasks = request.getParameter("tasks");
-            String approvalCriteria = request.getParameter("approvalCriteria");
-            String deadline = request.getParameter("deadline");
+            getParameters(moduleID, request, response);
+        }
+    }
 
-            Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadline);
-            try {
-                lastOppTilDB(m, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            }
+    /**
+     * @param moduleID
+     * @param request
+     * @param response
+     */
+    private void getParameters(int moduleID, HttpServletRequest request, HttpServletResponse response) {
+        String learningGoals = request.getParameter("learningGoals");
+        String resources = request.getParameter("resources");
+        String tasks = request.getParameter("tasks");
+        String approvalCriteria = request.getParameter("approvalCriteria");
+        String deadline = request.getParameter("deadline");
+
+        Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadline);
+        try {
+            lastOppTilDB(m, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
         }
     }
 
     @EJB
+    private
     ModuleManagerLocal manager;
 
     /**

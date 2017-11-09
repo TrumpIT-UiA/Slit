@@ -3,6 +3,9 @@ package fileManagement;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @Author Emil-Ruud
@@ -19,7 +22,9 @@ public class FileManagerBean implements FileManagerLocal {
     }
 
     @Override
-    public File getFile(int id) { return emFile.find(File.class, id); }
+    public File getFile(int id) {
+        return emFile.find(File.class, id);
+    }
 
     @Override
     public boolean saveFile(File file) {
@@ -33,10 +38,15 @@ public class FileManagerBean implements FileManagerLocal {
         return true;
     }
 
-    public boolean updateFile(File file) {
-        File existing = getFile(file.getId());
-        if (existing != null) {
+    @Override
+    public boolean updateFile(File file, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String emailActiveUserEmail = (String) session.getAttribute("emailActiveUser");
+        String modulNummer = (String) session.getAttribute("modulNummer");
+        if (file.getUserEmailFile().equals(emailActiveUserEmail) && file.getModulNr().equals(modulNummer)) {
+
             emFile.persist(file);
+            emFile.flush();
         } else {
             return false;
         }

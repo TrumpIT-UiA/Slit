@@ -18,73 +18,62 @@ import java.io.IOException;
 public class ViewModule extends HttpServlet {
 
     @EJB
+    private
     ModuleManagerLocal em;
+
     /**
-     *
      * @param request
      * @param response
      * @throws IOException
-     * @throws ServletException
-     * Sjekker hvilken av modulknappene som har blitt trykket i
-     * ModuleDescriptionAndDelivery
+     * @throws ServletException Sjekker hvilken av modulknappene som har blitt trykket i
+     *                          ModuleDescriptionAndDelivery
      */
 
     private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         if (request.getParameter("module1") != null) {
-            Module module = em.getModule(1);
-            String modulNummer = "1";
-            String goals = module.getLearningGoals();
-            String resources = module.getResources();
-            String deadline = module.getDeadline();
-            String approvalCriterias = module.getApprovalCriteria();
-            String tasks = module.getTasks();
-
-            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
+            int knappTrykketInt = 1;
+            getModuleData(knappTrykketInt, request, response);
 
         } else if (request.getParameter("module2") != null) {
-            Module module = em.getModule(2);
-            String modulNummer = "2";
-            String goals = module.getLearningGoals();
-            String resources = module.getResources();
-            String deadline = module.getDeadline();
-            String approvalCriterias = module.getApprovalCriteria();
-            String tasks = module.getTasks();
-
-            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
+            int knappTrykketInt = 2;
+            getModuleData(knappTrykketInt, request, response);
 
         } else if (request.getParameter("module3") != null) {
-            Module module = em.getModule(3);
-            String modulNummer = "3";
-            String goals = module.getLearningGoals();
-            String resources = module.getResources();
-            String deadline = module.getDeadline();
-            String approvalCriterias = module.getApprovalCriteria();
-            String tasks = module.getTasks();
-
-            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
+            int knappTrykketInt = 3;
+            getModuleData(knappTrykketInt, request, response);
 
         } else if (request.getParameter("module4") != null) {
-            Module module = em.getModule(4);
-            String modulNummer = "4";
-            String goals = module.getLearningGoals();
-            String resources = module.getResources();
-            String deadline = module.getDeadline();
-            String approvalCriterias = module.getApprovalCriteria();
-            String tasks = module.getTasks();
-
-            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
+            int knappTrykketInt = 4;
+            getModuleData(knappTrykketInt, request, response);
 
         } else if (request.getParameter("module5") != null) {
-            Module module = em.getModule(5);
-            String modulNummer = "5";
-            String goals = module.getLearningGoals();
-            String resources = module.getResources();
-            String deadline = module.getDeadline();
-            String approvalCriterias = module.getApprovalCriteria();
-            String tasks = module.getTasks();
+            int knappTrykketInt = 5;
+            getModuleData(knappTrykketInt, request, response);
+        }
+    }
 
+    /**
+     * @param knappTrykketInt
+     * @param request
+     * @param response
+     */
+
+    private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) {
+        Module module = em.getModule(knappTrykketInt);
+        String modulNummer = "1";
+        String goals = module.getLearningGoals();
+        String resources = module.getResources();
+        String deadline = module.getDeadline();
+        String approvalCriterias = module.getApprovalCriteria();
+        String tasks = module.getTasks();
+
+        try {
             skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
         }
     }
 
