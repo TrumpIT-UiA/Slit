@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * @Author Emil-Ruud
+ * @Author Vebjørn & Emil-Ruud
  * Dette er en servlet som henter ut data fra en gitt modul
  */
 
@@ -25,8 +25,9 @@ public class ViewModule extends HttpServlet {
      * @param request
      * @param response
      * @throws IOException
-     * @throws ServletException Sjekker hvilken av modulknappene som har blitt trykket i
-     *                          ModuleDescriptionAndDelivery
+     * @throws ServletException
+     * Sjekker hvilken av modulknappene som har blitt trykket i
+     * ModuleDescriptionAndDelivery
      */
 
     private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -69,7 +70,7 @@ public class ViewModule extends HttpServlet {
         String tasks = module.getTasks();
 
         try {
-            skrivModul(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
+            skrivModulTilJSP(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {
@@ -90,7 +91,7 @@ public class ViewModule extends HttpServlet {
      * @throws ServletException
      */
 
-    private void skrivModul(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String deadline, String approvalCriterias, String tasks) throws IOException, ServletException {
+    private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String deadline, String approvalCriterias, String tasks) throws IOException, ServletException {
 
         request.getSession().setAttribute("mNr", modulNummer);
         request.getSession().setAttribute("goals", goals);
@@ -100,8 +101,8 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("tasks", tasks);
         response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
 
-        //Dette "passer" et parameter til session, slik at andre servlets
-        //kan hente inn verdien.
+        //Dette sender en varibelverdi som et parameter til session -
+        //slik at andre servlets kan hente inn verdien.
         HttpSession session = request.getSession();
         session.setAttribute("modulNummer", modulNummer);
     }
