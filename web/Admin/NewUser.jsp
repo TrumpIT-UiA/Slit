@@ -1,4 +1,6 @@
+<%@ page import="users.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% User user = (User) session.getAttribute("user");%>
 <!DOCTYPE html>
 <html>
 <head>

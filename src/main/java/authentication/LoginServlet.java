@@ -22,16 +22,17 @@ public class LoginServlet extends HttpServlet {
 
     /**
      * @author Marius
-     * Metode for å logge inn en bruker
-     * @param request Et HTTP Request objekt
+     * @param request  Et HTTP Request objekt
      * @param response Et HTTP Response objekt
      * @throws IOException Standard java exception
+     * Metode for å logge inn en bruker
      */
     private void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("passWord");
-        
+
         try {
             User u = manager.getUser(email.toLowerCase());
             if (u.getPassword().equals(password)) {
@@ -41,8 +42,7 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("error", "Unknown login, try again");
                 response.sendRedirect("/Slit/LoginFailed.jsp");
             }
-        }
-        catch (NullPointerException nullp){
+        } catch (NullPointerException nullp) {
             System.err.println("NullPointerException: " + nullp.getMessage());
             response.sendRedirect("/Slit/LoginFailed.jsp");
         }
@@ -50,10 +50,11 @@ public class LoginServlet extends HttpServlet {
 
     /**
      * Standard Java metode for HTTP GET
-     * @param request Et HTTP Request objekt
+     *
+     * @param request  Et HTTP Request objekt
      * @param response Et HTTP Response objekt
      * @throws ServletException Standard java exception
-     * @throws IOException Standard java exception
+     * @throws IOException      Standard java exception
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -63,17 +64,19 @@ public class LoginServlet extends HttpServlet {
 
     /**
      * Standard Java metode for HTTP Post
-     * @param request Et HTTP Request objekt
+     *
+     * @param request  Et HTTP Request objekt
      * @param response Et HTTP Response objekt
      * @throws ServletException Standard java exception
-     * @throws IOException Standard java exception
+     * @throws IOException      Standard java exception
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         login(request, response);
     }
 }
+
 
 
 
