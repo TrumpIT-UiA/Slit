@@ -32,7 +32,7 @@
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/test/Login.jsp</form-login-page>
+            <form-login-page>/Login.jsp</form-login-page>
             <form-error-page>/LoginFailed.jsp</form-error-page>
         </form-login-config>
     </login-config>
@@ -52,7 +52,6 @@
             <web-resource-name>Admin only</web-resource-name>
             <url-pattern>/Admin/*</url-pattern>
         </web-resource-collection>
-
         <auth-constraint>
             <role-name>Admin</role-name>
         </auth-constraint>
@@ -63,7 +62,6 @@
             <web-resource-name>Registrering av brukere</web-resource-name>
             <url-pattern>/Registration/*</url-pattern>
         </web-resource-collection>
-
         <auth-constraint>
             <role-name>Admin</role-name>
             <role-name>Teacher</role-name>

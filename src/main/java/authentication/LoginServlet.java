@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
     UserManagerLocal manager;
 
     /**
+     * @author Marius
      * Metode for å logge inn en bruker
      * @param request Et HTTP Request objekt
      * @param response Et HTTP Response objekt
@@ -30,14 +31,14 @@ public class LoginServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("passWord");
-
-        request.getAuthType();
-
+        
         try {
             User u = manager.getUser(email.toLowerCase());
             if (u.getPassword().equals(password)) {
+                request.getSession().setAttribute("user", u);
                 response.sendRedirect("/Slit/welcome.jsp");
             } else {
+                request.setAttribute("error", "Unknown login, try again");
                 response.sendRedirect("/Slit/LoginFailed.jsp");
             }
         }

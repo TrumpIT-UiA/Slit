@@ -44,7 +44,6 @@ public class NewUserServlet extends HttpServlet {
         String lastname = request.getParameter("lastName");
         String usertype = request.getParameter("userType");
 
-
         if (usertype.equals("Teacher")) {
             Teacher t = new Teacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(t)) {
