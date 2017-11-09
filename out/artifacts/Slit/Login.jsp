@@ -1,20 +1,26 @@
+<!--Pulling Awesome Font -->
+<!--Hentet fra: https://codepen.io/colorlib/pen/rxddKy -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/Slit/Templates/CSS/LoginTemplate.css">
+    </head>
+    <body>
     <title>Slit</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-<h1>Velkommen til Slit</h1>
-<form action="/Slit/Login" method="post">
-    Brukernavn: <input name="email" type="text"><br>
-
-    Passord: <input name="passWord" type="password"><br>
-
-    <input type="submit" value="Logg inn">
-</form>
-</body>
+    <div class="login-page">
+        <div class="form">
+            <h1>Slit</h1>
+            <form class="login-form" action="/Slit/Login" method="post">
+                <input type="email" name="email" placeholder="E-post"/>
+                <input type="password" name ="passWord" placeholder="Passord"/>
+                <button input type="submit">Logg inn</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    </body>
 </html>
