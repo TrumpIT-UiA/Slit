@@ -58,7 +58,7 @@
 
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>fileManager.UploadServlet</servlet-class>
+        <servlet-class>fileManagement.UploadServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

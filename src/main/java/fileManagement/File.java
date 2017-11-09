@@ -1,26 +1,31 @@
-package fileManager;
+package fileManagement;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @Author Emil-Ruud
+ */
+
 @Entity
-public class FileEntity implements Serializable {
+public class File implements Serializable {
     @Id
     @Column
     @GeneratedValue
     private int id;
     @Column
-    private int modulNr;
+    private String modulNr;
     @Column
     private String filename;
     @Column
     private byte[] fileContent;
 
-    public FileEntity(String filename, byte[] fileContent) {
+    public File(String modulNr, String filename, byte[] fileContent) {
         this.filename = filename;
         this.fileContent = fileContent;
+        this.modulNr = modulNr;
     }
-    protected FileEntity(){
+    public File(){
         //Denne "constructoren" skal være tom...
     }
 
@@ -29,8 +34,8 @@ public class FileEntity implements Serializable {
     public void setId(int id) { this.id = id; }
 
     // Getter og setter for nr på modul
-    public int getModulNr() { return modulNr; }
-    public void setModulNr(int modulNr) { this.modulNr = modulNr; }
+    public String getModulNr() { return modulNr; }
+    public void setModulNr(String modulNr) { this.modulNr = modulNr; }
 
     // Getter og setter for filnavn
     public String getFilename() { return filename; }
