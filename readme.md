@@ -1,8 +1,8 @@
 Checklist:
 
-Bruker i SQL som heter Slit med passord Mongoper! 
+Bruker i SQL som heter Slit med passord Mongoper!
 Og et schema med navn Slit  
-En Java EE server konfigurert med java:/Slit som JNDI navn, med samme login som definert over 
+En Java EE server konfigurert med java:/Slit som JNDI navn, med samme login som definert over
 
 
 Følgende må legges til i Wildfly sin standalone.xml, om ikke det er gjort allerede :  
@@ -19,32 +19,31 @@ Følgende må legges til i Wildfly sin standalone.xml, om ikke det er gjort alle
 ```
 <br></br>
 ## Cheatsheet (triks i Ludo)
-#### For å sende et parameter til jsp: 
-Skriv følgende i en servlet: 
+#### For å sende et parameter til jsp:
+Skriv følgende i en servlet:
 ```java
     String message = "Testing, testing... Dette vil ble skrevet i gitt jsp.";
     request.getSession().setAttribute("message", message);
     response.sendRedirect("FilenDuVilSendeParameteret.jsp");  
 ```
 Skriv så følgende i jsp:
-```jsp
+```html
    <p>${message}</p>
    <c:remove var="message" scope="session"/>
-
 ```
 
 #### For å legge ut et parameter i session
 Hensikten med dette er å kunne sende parametere mellom servlets.
 <br>NB! Kan ligge flere verdier i session, så vær påpasselig med navnet på attributten.
 
-Servlet1: 
+Servlet1:
 ```java
 HttpSession session = request.getSession();
-exampleVar = "Dette er paramterets "value"";
+exampleVar = "Dette er paramterets value";
 session.setAttribute("exampleParameter", exampleVar);
 ```
 
-Servlet2: 
+Servlet2:
 ```java
 HttpSession session = request.getSession();
 String modulNummer = (String) session.getAttribute("exampleParameter");
