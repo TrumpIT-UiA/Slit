@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * @author Marius
- * Servlet for å håndtere innlogging via forms
+ * Autentiserer en bruker mot lagret data
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {
@@ -21,60 +21,62 @@ public class LoginServlet extends HttpServlet {
     UserManagerLocal manager;
 
     /**
-     * Metode for å logge inn en bruker
-     * @param request Et HTTP Request objekt
-     * @param response Et HTTP Response objekt
-     * @throws IOException Standard java exception
+     * @author Marius
+     * @param request  En HTTP Request spørring
+     * @param response En HTTP Response spørring
+     * @throws IOException Kastes når man får feil v/ Input/Output
+     * Metode for å logge inn en bruker i systemet
      */
     private void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
-        String email = request.getParameter("email");
-        String password = request.getParameter("passWord");
-        String fornavn = request.getParameter("firstName");
-        String etternavn = request.getParameter("lastName");
 
-        request.getAuthType();
+        String emailFromForm = request.getParameter("email").toLowerCase();
+        String passwordFromForm = request.getParameter("passWord");
 
         try {
-            User u = manager.getUser(email.toLowerCase());
-            if (u.getPassword().equals(password)) {
+            User userThatLogsIn = manager.getUser(emailFromForm);
+            String passwordFromDB = userThatLogsIn.getPassword();
+
+            if (passwordFromDB.equals(passwordFromForm)) {
+                request.getSession().setAttribute("TheLoggedInUser", userThatLogsIn);
                 response.sendRedirect("/Slit/welcome.jsp");
             } else {
+                request.setAttribute("error", "Unknown login, try again");
                 response.sendRedirect("/Slit/LoginFailed.jsp");
             }
-        }
-        catch (NullPointerException nullp){
-            System.err.println("NullPointerException: " + nullp.getMessage());
+        } catch (NullPointerException nullPointer) {
+            System.err.println("NullPointerException: " + nullPointer.getMessage());
             response.sendRedirect("/Slit/LoginFailed.jsp");
         }
     }
 
     /**
-     * Standard Java metode for HTTP GET
-     * @param request Et HTTP Request objekt
+     * Standard Java metode for HTTP GET spørringer
+     * @param request  Et HTTP Request objekt
      * @param response Et HTTP Response objekt
      * @throws ServletException Standard java exception
-     * @throws IOException Standard java exception
+     * @throws IOException      Standard java exception
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        login(request, response);
+        //login(request, response);
     }
 
     /**
-     * Standard Java metode for HTTP Post
-     * @param request Et HTTP Request objekt
+     * Standard Java metode for HTTP Post spørringer
+     * @param request  Et HTTP Request objekt
      * @param response Et HTTP Response objekt
      * @throws ServletException Standard java exception
-     * @throws IOException Standard java exception
+     * @throws IOException      Standard java exception
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         login(request, response);
     }
 }
+
 
 
 

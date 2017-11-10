@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -20,7 +19,6 @@
     <option value="Teacher">Lærer</option>
     <option value="AssistantTeacher">Hjelpelærer</option>
     </select> <br>
-    <input name = "userType" type="text"> <br>
     <input type="submit" value="Lagre"> <br>
 </form>
 </body>

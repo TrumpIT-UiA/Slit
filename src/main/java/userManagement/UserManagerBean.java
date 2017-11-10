@@ -5,9 +5,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
 /**
- * En klasse for å håndtere lagringen av brukerobjekter i databasen
+ * @author Marius
+ * Håndterer lagring av objekter mot en Database
  */
 @Stateless
 public class UserManagerBean implements UserManagerLocal {
@@ -19,8 +19,9 @@ public class UserManagerBean implements UserManagerLocal {
     }
 
     /**
+     * @author Marius
      * Lar deg finne en spesifik bruker i databasen.
-     * @param id Primary key i databasen.
+     * @param id Den primære nøkkelen til brukerobjektet
      */
     @Override
     public User getUser(String id) {
@@ -28,30 +29,32 @@ public class UserManagerBean implements UserManagerLocal {
     }
 
     /**
-     * Lar deg lagre en bruker i databasen.
-     * @param u Brukerobjektet du ønsker å lagre.
+     * @author Marius
+     * Lar deg lagre et brukerobjekt i databasen.
+     * @param UserYouWantToSave Brukerobjektet du ønsker å lagre.
      * @return Returnerer true eller false dersom operasjonen er gyldig/ugyldig.
      */
     @Override
-    public boolean saveUser(User u){
-        User existing = getUser(u.getEmail().toLowerCase());
-        if  (existing == null){
-            em.persist(u);
-        } else{
+    public boolean saveUser(User UserYouWantToSave){
+        User TheUserToBeSaved = getUser(UserYouWantToSave.getEmail();
+        if  (TheUserToBeSaved == null){
+            em.persist(TheUserToBeSaved);
+        } else {
             return false;
         }
         return true;
     }
 
     /**
-     * Lar deg oppdatere en bruker i databasen.
-     * @param u Brukerobjektet du ønsker å oppdatere.
+     * @author Marius
+     * Lar deg oppdatere et brukerobjekt i databasen.
+     * @param UserYouWantToUpdate Brukerobjektet du ønsker å oppdatere.
      * @return Returnerer true/false avhengig av om operasjonen er gyldig/ugyldig.
      */
-    public boolean updateUser(User u){
-        User existing = getUser(u.getEmail().toLowerCase());
-        if  (existing == null){
-            em.merge(u);
+    public boolean updateUser(User UserYouWantToUpdate){
+        User UserToBeUpdated = getUser(UserYouWantToUpdate.getEmail().toLowerCase());
+        if  (UserToBeUpdated == null){
+            em.merge(UserToBeUpdated);
         } else{
             return false;
         }
