@@ -64,10 +64,11 @@ public class UploadServlet extends HttpServlet {
                      * ligger i FileManagerLocal, men blir overrided i FileManagerBean - gå dit
                      * for å se kommunikasjonen med databasen.
                      */
-                    if (fml.updateFile(file, request)) {
+                    if (fml.updateFile(file, request) == true) {
                         String message = "Filen din er oppdatert!___Modulenummerr: " + file.getModulNr() + "___Filename: " + file.getFilename() + "___UserEmail: " + file.getUserEmailFile() + "___File ID: " + file.getId();
                         skrivUt(message, request, response);
-                    } else if (fml.saveFile(file)) {
+                    } else if (fml.updateFile(file, request) == false) {
+                        fml.saveFile(file);
                         String message = "Filen din er lastet opp!___Modulenummerr: " + file.getModulNr() + "___Filename: " + file.getFilename() + "___UserEmail: " + file.getUserEmailFile() + "___File ID: " + file.getId();
                         skrivUt(message, request, response);
                     } else {

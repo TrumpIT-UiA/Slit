@@ -51,7 +51,6 @@
         <role-name>Teacher</role-name>
     </security-role>
 
-
     <security-role>
         <role-name>AssistantTeacher</role-name>
     </security-role>

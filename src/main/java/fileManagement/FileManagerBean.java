@@ -42,9 +42,8 @@ public class FileManagerBean implements FileManagerLocal {
         HttpSession session = request.getSession();
         String emailActiveUserEmail = (String) session.getAttribute("emailActiveUser");
         String modulNummer = (String) session.getAttribute("modulNummer");
-        if (file.getUserEmailFile().equals(emailActiveUserEmail) && file.getModulNr().equals(modulNummer)) {
-
-            emFile.persist(file);
+        if (file.getUserEmailFile().equals(emailActiveUserEmail) && getFile(file.getId()).getModulNr().equals(modulNummer)) {
+            emFile.merge(file);
             emFile.flush();
         } else {
             return false;
