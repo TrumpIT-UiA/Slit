@@ -39,7 +39,7 @@ Hensikten med dette er å kunne sende parametere mellom servlets.
 Servlet1:
 ```java
 HttpSession session = request.getSession();
-exampleVar = "Dette er paramterets value";
+String exampleVar = "Dette er paramterets value";
 session.setAttribute("exampleParameter", exampleVar);
 ```
 
