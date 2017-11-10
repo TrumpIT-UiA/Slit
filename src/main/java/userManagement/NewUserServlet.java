@@ -48,7 +48,6 @@ public class NewUserServlet extends HttpServlet {
             Teacher t = new Teacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(t)) {
                 out.print("Din bruker har blitt opprettet!  ");
-                //response.sendRedirect("/Slit/Login.jsp");
             } else if (!manager.saveUser(t)) {
                 out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
             }
@@ -57,15 +56,14 @@ public class NewUserServlet extends HttpServlet {
             AssistantTeacher at = new AssistantTeacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(at)) {
                 out.print("Din bruker har blitt opprettet!  ");
-                //response.sendRedirect("/Slit/Login.jsp");
             } else if (!manager.saveUser(at)) {
                 out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
             }
+
         } else if (usertype.equals("Admin")) {
             Admin a = new Admin(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(a)) {
                 out.print("Din bruker har blitt opprettet!  ");
-                //response.sendRedirect("/Slit/Login.jsp");
             } else if (!manager.saveUser(a)) {
                 out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
             }

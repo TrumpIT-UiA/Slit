@@ -26,6 +26,7 @@ public class NewStudentServlet extends HttpServlet {
     UserManagerLocal manager;
 
     /**
+     * @author Marius
      * Lager en ny student og lagrer den i databasen dersom alt går bra.
      * @param request Ett HTTP request objekt
      * @param response Ett HTTP response objekt
@@ -51,6 +52,7 @@ public class NewStudentServlet extends HttpServlet {
     }
 
     /**
+     * @author Marius
      * Standard Java metode for HTTP GET
      * @param request Et HTTP Request objekt
      * @param response Et HTTP Response objekt
@@ -64,6 +66,7 @@ public class NewStudentServlet extends HttpServlet {
     }
 
     /**
+     * @author Marius
      * Standard Java metode for HTTP Post
      * @param request Et HTTP Request objekt
      * @param response Et HTTP Response objekt
