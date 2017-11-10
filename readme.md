@@ -23,13 +23,13 @@ Følgende må legges til i Wildfly sin standalone.xml, om ikke det er gjort alle
 Skriv følgende i en servlet:
 ```java
     String message = "Testing, testing... Dette vil ble skrevet i gitt jsp.";
-    request.getSession().setAttribute("message", message);
+    request.getSession().setAttribute("messageJSP", message);
     response.sendRedirect("FilenDuVilSendeParameteret.jsp");  
 ```
 Skriv så følgende i jsp:
 ```html
-   <p>${message}</p>
-   <c:remove var="message" scope="session"/>
+   <p>${messageJSP}</p>
+   <c:remove var="messageJSP" scope="session"/>
 ```
 
 #### For å legge ut et parameter i session
