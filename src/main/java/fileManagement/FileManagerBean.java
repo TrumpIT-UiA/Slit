@@ -19,7 +19,9 @@ public class FileManagerBean implements FileManagerLocal {
     }
 
     @Override
-    public File getFile(int id) { return emFile.find(File.class, id); }
+    public File getFile(int id) {
+        return emFile.find(File.class, id);
+    }
 
     @Override
     public boolean saveFile(File file) {
@@ -33,10 +35,13 @@ public class FileManagerBean implements FileManagerLocal {
         return true;
     }
 
-    public boolean updateFile(File file) {
+    @Override
+    public boolean updateFile(File file, int modulNummerInt, String userEmailFile) {
         File existing = getFile(file.getId());
         if (existing != null) {
+            emFile.remove(file);
             emFile.persist(file);
+            emFile.flush();
         } else {
             return false;
         }

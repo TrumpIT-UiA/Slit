@@ -2,12 +2,14 @@ package authentication;
 
 import userManagement.UserManagerLocal;
 import users.User;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -22,7 +24,8 @@ public class LoginServlet extends HttpServlet {
 
     /**
      * Metode for å logge inn en bruker
-     * @param request Et HTTP Request objekt
+     *
+     * @param request  Et HTTP Request objekt
      * @param response Et HTTP Response objekt
      * @throws IOException Standard java exception
      */
@@ -33,17 +36,19 @@ public class LoginServlet extends HttpServlet {
         String fornavn = request.getParameter("firstName");
         String etternavn = request.getParameter("lastName");
 
-        request.getAuthType();
-
         try {
             User u = manager.getUser(email.toLowerCase());
             if (u.getPassword().equals(password)) {
+
+                HttpSession session = request.getSession();
+                session.setAttribute("emailActiveUser", email);
+
                 response.sendRedirect("/Slit/welcome.jsp");
+                request.getAuthType();
             } else {
                 response.sendRedirect("/Slit/LoginFailed.jsp");
             }
-        }
-        catch (NullPointerException nullp){
+        } catch (NullPointerException nullp) {
             System.err.println("NullPointerException: " + nullp.getMessage());
             response.sendRedirect("/Slit/LoginFailed.jsp");
         }
@@ -51,10 +56,11 @@ public class LoginServlet extends HttpServlet {
 
     /**
      * Standard Java metode for HTTP GET
-     * @param request Et HTTP Request objekt
+     *
+     * @param request  Et HTTP Request objekt
      * @param response Et HTTP Response objekt
      * @throws ServletException Standard java exception
-     * @throws IOException Standard java exception
+     * @throws IOException      Standard java exception
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -64,14 +70,15 @@ public class LoginServlet extends HttpServlet {
 
     /**
      * Standard Java metode for HTTP Post
-     * @param request Et HTTP Request objekt
+     *
+     * @param request  Et HTTP Request objekt
      * @param response Et HTTP Response objekt
      * @throws ServletException Standard java exception
-     * @throws IOException Standard java exception
+     * @throws IOException      Standard java exception
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         login(request, response);
     }
 }

@@ -25,8 +25,8 @@ public class ModuleManagerBean implements ModuleManagerLocal {
 
 
     /**
-     * @param
-     * @return
+     * @param module
+     * @return boolean
      */
     @Override
     public boolean saveModule(Module module) {

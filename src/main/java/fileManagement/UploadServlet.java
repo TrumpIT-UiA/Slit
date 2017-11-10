@@ -1,25 +1,24 @@
 package fileManagement;
 
 //Servlet-importer
-
-import moduleManagement.ViewModule;
-
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.Part;
+import javax.servlet.http.HttpSession;
+
+//EJB for kommunikasjon med databasen
+import javax.ejb.EJB;
 
 //IO-Stream
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
-//Logger - fra Object for å føre feil.
+//Logger - fra Object for å føre feil
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,16 +26,11 @@ import java.util.logging.Logger;
  * @author Emil-Ruud
  */
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
-@HttpConstraint(rolesAllowed = {"Teacher", "Admin", "Student", "AssistantTeacher"})
 @MultipartConfig(maxFileSize = 15728640) //16Mib
 
 public class UploadServlet extends HttpServlet {
     private final static Logger LOGGER =
             Logger.getLogger(UploadServlet.class.getCanonicalName());
-
-    // Globale variabler
-    ViewModule vm = new ViewModule();
-    private String modulNummer = vm.getModulNummer();
 
     @EJB
     FileManagerLocal fml;
@@ -49,45 +43,59 @@ public class UploadServlet extends HttpServlet {
 
         //Lager en inputstream som skal "holde" på strømmen av bits ("Parts" som til sammen er filen)
         InputStream filePartInputStream;
+
         try {
             final String fileName = getFileName(filePart);
             filePartInputStream = filePart.getInputStream();
             if (fileName.endsWith(".zip")) { //Sjekker om fil-endelsen er .zip
                 if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
+                    HttpSession session = request.getSession();
+
+                    String modulNummer = (String) session.getAttribute("modulNummer");
+                    int modulNummerInt = Integer.parseInt(modulNummer);
+
+                    String userEmailFile = (String) session.getAttribute("emailActiveUser");
                     byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
-                    File file = new File(modulNummer, fileName, fileContent);
+                    File file = new File(userEmailFile, modulNummerInt, fileName, fileContent);
 
                     /**
                      * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
                      * ligger i FileManagerLocal, men blir overrided i FileManagerBean - gå dit
                      * for å se kommunikasjonen med databasen.
                      */
-
-                    if (fml.saveFile(file)) {
-                        String message = "Hurra! Filen er lastet opp! MNr: " + file.getModulNr();
-                        request.getSession().setAttribute("message", message);
-                        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+                    if (fml.updateFile(file, modulNummerInt, userEmailFile)) {
+                        String message = "Filen din er oppdatert!___Modulenummerr: " + file.getModulNr() + "___Filename: " + file.getFilename() + "___UserEmail: " + file.getUserEmailFile() + "___File ID: " + file.getId();
+                        skrivUt(message, request, response);
+                    } else if (fml.saveFile(file)) {
+                        fml.saveFile(file);
+                        String message = "Filen din er lastet opp!___Modulenummerr: " + file.getModulNr() + "___Filename: " + file.getFilename() + "___UserEmail: " + file.getUserEmailFile() + "___File ID: " + file.getId();
+                        skrivUt(message, request, response);
                     } else {
                         String message = "Får ikke lastet filen opp til databasen.";
-                        request.getSession().setAttribute("message", message);
-                        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+                        skrivUt(message, request, response);
                     }
+                    // Filen er for stor
                 } else {
                     String message = "Filen kan ikke være større enn 10Mib (10 485 760 bytes).";
-                    request.getSession().setAttribute("message", message);
-                    response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+                    skrivUt(message, request, response);
                 }
+                // Filen er ikke zip
             } else {
                 String message = "Filen må være av typen .zip (en helt vanlig zip-fil).";
-                request.getSession().setAttribute("message", message);
-                response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+                skrivUt(message, request, response);
             }
         } catch (IOException ioe)
 
         {
             throw new ServletException();
         }
+
+    }
+
+    private void skrivUt(String message, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().setAttribute("message", message);
+        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
     }
 
     /**
@@ -133,19 +141,3 @@ public class UploadServlet extends HttpServlet {
         upload(request, response);
     }
 }
-
-///////////////////////////////////////////////////////
-/**
- * Kode for å sjekke tiden, skal brukes senere for deadline og lukke innlevering.
- * Date date = new Date() ;
- * SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm") ;
- * dateFormat.format(date);
- * System.out.println(dateFormat.format(date));
- * <p>
- * if(dateFormat.parse(dateFormat.format(date)).after(dateFormat.parse("12:07")))
- * {
- * System.out.println("Current time is greater than 12.07");
- * }else{
- * System.out.println("Current time is less than 12.07");
- * }
- */

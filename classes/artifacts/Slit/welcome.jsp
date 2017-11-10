@@ -2,24 +2,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Slit</title>
+<title>Slit</title>
 </head>
 <body>
-Her kan du laste opp din innlevering!
+Velkommen til Slit!
 
-Filen du laster opp må være en zip-fil og kan ikke være større enn 15Mib.
+Hva ønsker du å gjøre her?
 
-<<<<<<< HEAD
-<form action="/Slit/Login.jsp">
-    <input type="submit" value="Levere modul" />
-=======
 <form method="POST" action="Upload" enctype="multipart/form-data" >
     File:
     <input type="file" name="file" id="file" /> <br/>
-    <input type="submit" value="Upload" name="upload" id="upload" />
+    <input type="submit" value="Upload" name="upload" id="Upload" />
     <p>${message}</p>
     <c:remove var="message" scope="session" />
 </form>
->>>>>>> 41f0f3c8b28322bdf2579bf9992edaaf78314b9e
 </body>
 </html>

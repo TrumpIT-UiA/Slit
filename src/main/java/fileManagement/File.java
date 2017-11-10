@@ -12,30 +12,33 @@ public class File implements Serializable {
     @Id
     @Column
     @GeneratedValue
-    private int id;
+    private int fileID;
     @Column
-    private String modulNr;
+    private int modulNr;
+    @Column
+    private String userEmailFile;
     @Column
     private String filename;
     @Column
     private byte[] fileContent;
 
-    public File(String modulNr, String filename, byte[] fileContent) {
+    public File(String userEmailFile, int modulNr, String filename, byte[] fileContent) {
+        this.userEmailFile = userEmailFile;
+        this.modulNr = modulNr;
         this.filename = filename;
         this.fileContent = fileContent;
-        this.modulNr = modulNr;
     }
     public File(){
         //Denne "constructoren" skal være tom...
     }
 
     // Getter og setter for fil-id
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() { return fileID; }
+    public void setId(int fileID) { this.fileID = fileID; }
 
     // Getter og setter for nr på modul
-    public String getModulNr() { return modulNr; }
-    public void setModulNr(String modulNr) { this.modulNr = modulNr; }
+    public int getModulNr() { return modulNr; }
+    public void setModulNr(int modulNr) { this.modulNr = modulNr; }
 
     // Getter og setter for filnavn
     public String getFilename() { return filename; }
@@ -46,4 +49,7 @@ public class File implements Serializable {
     // Getter for innhold i fil
     public byte[] getFileContent() { return fileContent; }
     public void setFileContent(byte[] fileContent) { this.fileContent = fileContent; }
+
+    public String getUserEmailFile() { return userEmailFile; }
+    public void setUserEmailFile(String userEmailFile) { this.userEmailFile = userEmailFile; }
 }

@@ -19,9 +19,6 @@ import java.io.PrintWriter;
  * Servlet for å håndtere opprettelse av nye brukere
  */
 @WebServlet(name = "NewUserServlet", urlPatterns = {"/NewUser"})
-@ServletSecurity(
-        @HttpConstraint(rolesAllowed = {"Admin"})
-)
 public class NewUserServlet extends HttpServlet {
 
     @EJB

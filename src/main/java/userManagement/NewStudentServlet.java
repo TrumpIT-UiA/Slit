@@ -17,9 +17,6 @@ package userManagement;
  * Servlet for å håndtere opprettelse av nye brukere
  */
 @WebServlet(name = "NewStudentServlet", urlPatterns = {"/NewStudent"})
-@ServletSecurity(
-        @HttpConstraint(rolesAllowed = {"Teacher", "Admin"})
-)
 public class NewStudentServlet extends HttpServlet {
 
     @EJB

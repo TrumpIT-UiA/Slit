@@ -51,7 +51,7 @@
 </form>
 <h2>Her kan du laste opp din innlevering!</h2>
 <p>NB! Filen du laster opp må være en zip-fil og kan ikke være større enn 10Mib.</p>
-<form method="POST" action="Upload" enctype="multipart/form-data">
+<form method="POST" action="/Slit/Upload" enctype="multipart/form-data">
     Last opp din fil her:
     <input type="file" name="file" id="file"/> <br/>
     <input type="submit" value="Upload" name="upload" id="upload"/>
