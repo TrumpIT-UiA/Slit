@@ -36,7 +36,7 @@ public class UserManagerBean implements UserManagerLocal {
      */
     @Override
     public boolean saveUser(User UserYouWantToSave){
-        User TheUserToBeSaved = getUser(UserYouWantToSave.getEmail();
+        User TheUserToBeSaved = getUser(UserYouWantToSave.getEmail());
         if  (TheUserToBeSaved == null){
             em.persist(TheUserToBeSaved);
         } else {
