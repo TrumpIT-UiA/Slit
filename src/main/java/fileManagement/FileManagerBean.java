@@ -38,13 +38,21 @@ public class FileManagerBean implements FileManagerLocal {
     @Override
     public boolean updateFile(File file, int modulNummerInt, String userEmailFile) {
         File existing = getFile(file.getId());
-        if (existing != null) {
-            emFile.remove(file);
-            emFile.persist(file);
-            emFile.flush();
-        } else {
-            return false;
+        int i;
+        for (i = 0; i < 0; i++) {
+            if (existing.getModulNr() == (modulNummerInt)) {
+                if (existing.getUserEmailFile().equals(userEmailFile)) {
+                    emFile.remove(file);
+                    emFile.persist(file);
+                    emFile.flush();
+                } else {
+                }
+
+            } else {
+                return false;
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 }

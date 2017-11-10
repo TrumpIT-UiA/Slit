@@ -17,7 +17,7 @@ Følgende må legges til i Wildfly sin standalone.xml, om ikke det er gjort alle
   </authentication>
 </security-domain>
 ```
-<br></br>
+
 ## Cheatsheet (triks i Ludo)
 #### For å sende et parameter til jsp:
 Skriv følgende i en servlet:

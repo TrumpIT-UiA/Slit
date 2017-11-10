@@ -1,7 +1,6 @@
 package fileManagement;
 
 import javax.ejb.Local;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author Emil-Ruud
