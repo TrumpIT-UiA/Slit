@@ -33,7 +33,7 @@ Skriv så følgende i jsp:
 ```
 
 #### For å legge ut et parameter i session
-Hensikten med dette er å kunne sende parametere mellom servlets.
+Hensikten med dette er å kunne sende parametere mellom servlets (f.eks. hente emailen til den som er logget inn i UploadServlet).
 <br>NB! Kan ligge flere verdier i session, så vær påpasselig med navnet på attributten.
 
 Servlet1:
