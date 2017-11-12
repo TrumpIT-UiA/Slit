@@ -19,6 +19,7 @@ public class PreDownloadServlet extends HttpServlet {
     private void pds(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        /*
         out.println("<!DOCTYPE html>");
         out.println("<html");
         out.println("<title>Tittel</title>");
@@ -29,12 +30,21 @@ public class PreDownloadServlet extends HttpServlet {
 
         for (FileEntity fileEntity : fileEntityList) {
             out.println("<form action=\"/Slit/PDS-" + fileEntity.getId() + "\" method=\"post\">");
-            out.println("<input type=\"submit\" value=\"" + fileEntity.getFilename() + "\"> Lastet opp av: "); // Legg til hvem som har levert.
+            out.println("<input type=\"submit\" name=\"" + fileEntity.getId() + "\" value=\""
+                    + fileEntity.getFilename() + "\">"); // Lastet opp av: ); // Legg til hvem som har levert.
             out.println("</form>");
-            // out.println(fileEntity.getFilename());
         }
         out.println("</body>");
         out.println("</html>");
+
+
+        String gi = request.getParameter("hdnbt");
+        out.println("button value" +gi);
+        */
+
+        List<FileEntity> fileEntityList = fml.getListFromQuery("SELECT * FROM fileentity", FileEntity.class);
+
+
 
     }
 

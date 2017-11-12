@@ -13,7 +13,7 @@ public class FileEntity implements Serializable {
     private int modulNr;
     @Column
     private String filename;
-    @Column
+    @Column // ??? Her skal det være en @Lob annotation.
     private byte[] fileContent;
 
     public FileEntity(String filename, byte[] fileContent) {
