@@ -26,8 +26,7 @@ public class NewModuleServlet extends HttpServlet {
             String errorMessage = "NB! Du må velge modulnummer!";
             request.getSession().setAttribute("errorMessage", errorMessage);
             response.sendRedirect("newModule.jsp");
-        }
-        else if (request.getParameter("module").equals("1")) {
+        } else if (request.getParameter("module").equals("1")) {
             int moduleID = 1;
             getParameters(moduleID, request, response);
         } else if (request.getParameter("module").equals("2")) {
@@ -73,19 +72,21 @@ public class NewModuleServlet extends HttpServlet {
     ModuleManagerLocal manager;
 
     /**
-     *
      * @param m
      * @param response
      * @throws ServletException
-     * @throws IOException
-     * Lagrer modulen i databasen
+     * @throws IOException      Lagrer modulen i databasen
      */
 
     private void saveToDB(Module m, HttpServletResponse response) throws ServletException, IOException {
         if (manager.saveModule(m)) {
             response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
         } else {
-            response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
+            if (manager.updateModule(m)) {
+                response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
+            } else {
+                response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
+            }
         }
     }
 

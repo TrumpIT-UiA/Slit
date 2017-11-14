@@ -113,13 +113,13 @@ public class ViewModule extends HttpServlet {
     }
 
     private void skrivNullTilJSP(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String error = "Denne modulen har ikke blitt lastet opp ennå";
+        String error = "- Denne modulen har ikke blitt lastet opp ennå";
         request.getSession().setAttribute("mNr", error);
-        request.getSession().setAttribute("goals", error);
-        request.getSession().setAttribute("resources", error);
-        request.getSession().setAttribute("deadline", error);
-        request.getSession().setAttribute("approvalCriterias", error);
-        request.getSession().setAttribute("tasks", error);
+        request.getSession().setAttribute("goals", "");
+        request.getSession().setAttribute("resources", "");
+        request.getSession().setAttribute("deadline", "");
+        request.getSession().setAttribute("approvalCriterias", "");
+        request.getSession().setAttribute("tasks", "");
         response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
     }
 

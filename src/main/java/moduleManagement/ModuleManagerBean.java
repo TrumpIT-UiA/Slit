@@ -42,7 +42,10 @@ public class ModuleManagerBean implements ModuleManagerLocal {
     public boolean updateModule(Module module) {
         Module existing = getModule(module.getModuleID());
         if (existing != null) {
-            em.merge(module);
+            em.remove(existing);
+            em.persist(module);
+            em.flush();
+
         } else {
             return false;
         }
