@@ -8,6 +8,8 @@
 <body>
 
 <h1>Vennligst oppgi informasjon til modulen i feltene under</h1>
+<h4>Dersom modulen allerede finnes vil kun de feltene du fyller ut bli med i den nye modulenbeskrivelsen.</h4>
+<h4>Eksempel: Hvis du endrer alle feltene bortsett fra "Learning goals" vil ikke "Learning goals" bli oppdatert i systemet og derfor vil den tidligere verdien vil bli vist.</h4>
 <form action="/Slit/newModule" method="post" id="newM">
     <input type="radio" name="module" value="1"> Modul 1<br>
     <input type="radio" name="module" value="2"> Modul 2<br>

@@ -130,8 +130,9 @@ public class UploadServlet extends HttpServlet {
     /**
      * @param filePartInputStream
      * @return fileOutPutStream som en array av bytes.
-     * @throws IOException Skriver InputStream-en til en ByteArrayOutputStream ved hjelp av en while-løkke
-     *                     som blir returner i form av en array av bytes.
+     * @throws IOException
+     * Skriver InputStream-en til en ByteArrayOutputStream ved hjelp av en while-løkke
+     * som blir returner i form av en array av bytes.
      */
     private byte[] convertToByteArray(InputStream filePartInputStream) throws IOException {
         int bytesRead;
