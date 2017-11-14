@@ -1,8 +1,16 @@
 package fileManagement;
 
+import users.User;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @Author Emil-Ruud
@@ -19,13 +27,32 @@ public class FileManagerBean implements FileManagerLocal {
     }
 
     @Override
-    public File getFile(int id) {
-        return emFile.find(File.class, id);
+    public File getFile(String mergedNrEmail) {
+        return emFile.find(File.class, mergedNrEmail);
+    }
+
+    @Override
+    public List getListFromQuery(String query, Class<File> fileClass) {
+        if (emFile.isOpen()) {
+            return emFile.createNativeQuery(query, fileClass).getResultList();
+
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public Query createQuery(String query) {
+        if (emFile.isOpen()) {
+            return emFile.createQuery(query);
+        } else {
+            return null;
+        }
     }
 
     @Override
     public boolean saveFile(File file) {
-        File existing = getFile(file.getId());
+        File existing = getFile(file.getMergedNrEmail());
         if (existing == null) {
             emFile.persist(file);
             emFile.flush();
@@ -36,23 +63,15 @@ public class FileManagerBean implements FileManagerLocal {
     }
 
     @Override
-    public boolean updateFile(File file, int modulNummerInt, String userEmailFile) {
-        File existing = getFile(file.getId());
-        int i;
-        for (i = 0; i < 0; i++) {
-            if (existing.getModulNr() == (modulNummerInt)) {
-                if (existing.getUserEmailFile().equals(userEmailFile)) {
-                    emFile.remove(file);
-                    emFile.persist(file);
-                    emFile.flush();
-                } else {
-                }
-
+    public boolean updateFile(File file, HttpServletRequest request, HttpServletResponse response) throws NullPointerException {
+        File existing = getFile(file.getMergedNrEmail());
+            if (existing != null) {
+                emFile.merge(file);
+                emFile.flush();
             } else {
                 return false;
             }
             return true;
-        }
-        return false;
     }
+
 }

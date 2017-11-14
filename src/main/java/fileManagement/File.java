@@ -1,6 +1,7 @@
 package fileManagement;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,20 +10,22 @@ import java.io.Serializable;
 
 @Entity
 public class File implements Serializable {
+
     @Id
     @Column
-    @GeneratedValue
-    private int fileID;
+    private String mergedNrEmail;
     @Column
-    private int modulNr;
+    private String modulNr;
     @Column
+    @NotNull
     private String userEmailFile;
     @Column
     private String filename;
     @Column
     private byte[] fileContent;
 
-    public File(String userEmailFile, int modulNr, String filename, byte[] fileContent) {
+    public File(String mergedNrEmail, String userEmailFile, String modulNr, String filename, byte[] fileContent) {
+        this.mergedNrEmail = mergedNrEmail;
         this.userEmailFile = userEmailFile;
         this.modulNr = modulNr;
         this.filename = filename;
@@ -32,13 +35,12 @@ public class File implements Serializable {
         //Denne "constructoren" skal være tom...
     }
 
-    // Getter og setter for fil-id
-    public int getId() { return fileID; }
-    public void setId(int fileID) { this.fileID = fileID; }
+    public String getMergedNrEmail() { return mergedNrEmail; }
+    public void setFileID(String mergedNrEmail) { this.mergedNrEmail = mergedNrEmail; }
 
     // Getter og setter for nr på modul
-    public int getModulNr() { return modulNr; }
-    public void setModulNr(int modulNr) { this.modulNr = modulNr; }
+    public String getModulNr() { return modulNr; }
+    public void setModulNr(String modulNr) { this.modulNr = modulNr; }
 
     // Getter og setter for filnavn
     public String getFilename() { return filename; }

@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
             if (u.getPassword().equals(password)) {
 
                 HttpSession session = request.getSession();
-                session.setAttribute("emailActiveUser", email);
+                session.setAttribute("loggedInUser", u);
 
                 response.sendRedirect("/Slit/welcome.jsp");
                 request.getAuthType();

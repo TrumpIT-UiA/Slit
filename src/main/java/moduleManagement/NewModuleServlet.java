@@ -60,7 +60,7 @@ public class NewModuleServlet extends HttpServlet {
 
         Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadline);
         try {
-            lastOppTilDB(m, response);
+            saveToDB(m, response);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {
@@ -81,11 +81,10 @@ public class NewModuleServlet extends HttpServlet {
      * Lagrer modulen i databasen
      */
 
-    private void lastOppTilDB(Module m, HttpServletResponse response) throws ServletException, IOException {
-        if (manager.saveModule(m) == true) {
+    private void saveToDB(Module m, HttpServletResponse response) throws ServletException, IOException {
+        if (manager.saveModule(m)) {
             response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
         } else {
-            manager.updateModule(m);
             response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
         }
     }

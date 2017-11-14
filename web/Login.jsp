@@ -17,5 +17,9 @@
 
     <input type="submit" value="Logg inn">
 </form>
+
+<form action="/Slit/Download" method="post">
+    <input type="submit" value="Last ned">
+</form>
 </body>
 </html>

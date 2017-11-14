@@ -1,6 +1,9 @@
 package fileManagement;
 
 //Servlet-importer
+
+import users.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +28,7 @@ import java.util.logging.Logger;
 /**
  * @author Emil-Ruud
  */
+
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
 @MultipartConfig(maxFileSize = 15728640) //16Mib
 
@@ -53,29 +57,33 @@ public class UploadServlet extends HttpServlet {
                     HttpSession session = request.getSession();
 
                     String modulNummer = (String) session.getAttribute("modulNummer");
-                    int modulNummerInt = Integer.parseInt(modulNummer);
-
-                    String userEmailFile = (String) session.getAttribute("emailActiveUser");
+                    User loggedInUser = (User) session.getAttribute("loggedInUser");
+                    String currentUserEmail = loggedInUser.getEmail();
+                    String mergedNrEmail = currentUserEmail + modulNummer;
                     byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
-                    File file = new File(userEmailFile, modulNummerInt, fileName, fileContent);
+
+
+                    File file = new File(mergedNrEmail, loggedInUser.getEmail(), modulNummer, fileName, fileContent);
 
                     /**
                      * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
                      * ligger i FileManagerLocal, men blir overrided i FileManagerBean - gå dit
                      * for å se kommunikasjonen med databasen.
                      */
-                    if (fml.updateFile(file, modulNummerInt, userEmailFile)) {
-                        String message = "Filen din er oppdatert!___Modulenummerr: " + file.getModulNr() + "___Filename: " + file.getFilename() + "___UserEmail: " + file.getUserEmailFile() + "___File ID: " + file.getId();
-                        skrivUt(message, request, response);
-                    } else if (fml.saveFile(file)) {
-                        fml.saveFile(file);
-                        String message = "Filen din er lastet opp!___Modulenummerr: " + file.getModulNr() + "___Filename: " + file.getFilename() + "___UserEmail: " + file.getUserEmailFile() + "___File ID: " + file.getId();
+
+                    if (fml.updateFile(file, request, response)) {
+                        String message = "Filen din har blitt oppdatert.\nInfo om ny modul: \nFilnavn: " + file.getFilename();
                         skrivUt(message, request, response);
                     } else {
-                        String message = "Får ikke lastet filen opp til databasen.";
-                        skrivUt(message, request, response);
+                        if (fml.saveFile(file)) {
+                            String message = "Filen din har blitt lastet opp.";
+                            skrivUt(message, request, response);
+                        } else {
+                            String message = "Filen din kunne ikke bli lastet opp";
+                            skrivUt(message, request, response);
+                        }
                     }
-                    // Filen er for stor
+                    //fml.updateFile(file, request, response);
                 } else {
                     String message = "Filen kan ikke være større enn 10Mib (10 485 760 bytes).";
                     skrivUt(message, request, response);
@@ -85,7 +93,8 @@ public class UploadServlet extends HttpServlet {
                 String message = "Filen må være av typen .zip (en helt vanlig zip-fil).";
                 skrivUt(message, request, response);
             }
-        } catch (IOException ioe)
+        } catch (
+                IOException ioe)
 
         {
             throw new ServletException();
@@ -93,7 +102,7 @@ public class UploadServlet extends HttpServlet {
 
     }
 
-    private void skrivUt(String message, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    void skrivUt(String message, HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().setAttribute("message", message);
         response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
     }
