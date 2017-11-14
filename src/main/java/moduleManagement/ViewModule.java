@@ -61,21 +61,25 @@ public class ViewModule extends HttpServlet {
      * @param response
      */
 
-    private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) {
+    private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) throws IOException {
         Module module = em.getModule(knappTrykketInt);
-        String modulNummer = Integer.toString(knappTrykketInt);
-        String goals = module.getLearningGoals();
-        String resources = module.getResources();
-        String deadline = module.getDeadline();
-        String approvalCriterias = module.getApprovalCriteria();
-        String tasks = module.getTasks();
+        if (module != null) {
+            String modulNummer = Integer.toString(knappTrykketInt);
+            String goals = module.getLearningGoals();
+            String resources = module.getResources();
+            String deadline = module.getDeadline();
+            String approvalCriterias = module.getApprovalCriteria();
+            String tasks = module.getTasks();
 
-        try {
-            skrivModulTilJSP(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
+            try {
+                skrivModulTilJSP(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
+        } else {
+            skrivNullTilJSP(request, response);
         }
     }
 
@@ -106,6 +110,17 @@ public class ViewModule extends HttpServlet {
         //slik at andre servlets kan hente inn verdien.
         HttpSession session = request.getSession();
         session.setAttribute("modulNummer", modulNummer);
+    }
+
+    private void skrivNullTilJSP(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String error = "Denne modulen har ikke blitt lastet opp ennå";
+        request.getSession().setAttribute("mNr", error);
+        request.getSession().setAttribute("goals", error);
+        request.getSession().setAttribute("resources", error);
+        request.getSession().setAttribute("deadline", error);
+        request.getSession().setAttribute("approvalCriterias", error);
+        request.getSession().setAttribute("tasks", error);
+        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
     }
 
     @Override
