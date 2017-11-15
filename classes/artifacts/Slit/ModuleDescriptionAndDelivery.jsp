@@ -26,9 +26,9 @@
         <div class="moduleButtons">
             <a href="Upload.jsp" target="modulVindu"><input type="button" name="module1" value="Modul 1"/></a>
             <a href="NewStudent.jsp" target="modulVindu"><input type="button" name="module2" value="Modul 2"/></a>
-            <input type="button" name="module3" value="Modul 3" href="https://www.w3schools.com" target="modulVindu"/>
-            <input type="button" name="module4" value="Modul 4" href="https://www.w3schools.com" target="modulVindu"/>
-            <input type="button" name="module5" value="Modul 5" href="https://www.w3schools.com" target="modulVindu"/>
+            <input type="button" name="module3" value="Modul 3"/>
+            <input type="button" name="module4" value="Modul 4"/>
+            <input type="button" name="module5" value="Modul 5"/>
         </div>
     </form>
 <iframe height="300px" width="100%" src="Login.jsp" name="modulVindu"></iframe>

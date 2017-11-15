@@ -1,3 +1,8 @@
+<!--
+*Author: Nicolay Leknes
+*Sist Oppdatert 11.10.2017
+--->
+
 <%@ page import="users.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% User user = (User) session.getAttribute("user");%>
@@ -9,7 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/Slit/Templates/CSS/MainPageTemplate.css">
+    <link rel="stylesheet" type="text/css" href="/Slit/MyPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -24,7 +29,6 @@
             </button>
             <a class="navbar-brand" href="/Slit/welcome.jsp">Slit</a>
         </div>
-
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/Slit/welcome.jsp">Home</a></li>
@@ -33,8 +37,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <!-- Skal jeg denne føre deg til logout eller login -->
-                <li><a href="Logout">Logout<span class="glyphicon glyphicon-log-in"></span></a></li>
+                <li><a href="/Slit/Logout"><span class="glyphicon glyphicon-log-in"></span> Logg ut</a></li>
             </ul>
         </div>
     </div>
@@ -46,12 +49,17 @@
             <p><a href="#">Link</a></p>
         </div>
 
-        <div class="col-sm-8 text-left">
-            <h1>Velkommen til slit!</h1>
-            <p>Her kan du levere dine moduler!</p>
-            <hr>
-            <h3>Modul 1</h3>
-            <p>Hei, jeg har kols</p>
+        <div class="col-sm-8 text-left" id="mamma">
+            <h1>Velkommen til Min Side</h1>
+            <form class="knappstil" action="/Slit/MyPage" method="post">
+                <h5><input type="submit" name="Varslinger" value="Varslinger"></h5>
+                <h5><input type="submit" name="Filer" value="Filer"></h5>
+            </form>
+
+            <form class="knappstil" action="/Slit/MyPage" method="post">
+                <input type ="submit" name="Innstillinger" value="Innstillinger">
+
+            </form>
         </div>
 
         <div class="col-sm-2 sidenav">
@@ -60,3 +68,9 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+

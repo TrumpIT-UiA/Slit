@@ -1,6 +1,6 @@
-package fileManager;
+/* package fileManager;
 
-
+/*
 import userManagement.UserManagerLocal;
 import users.User;
 
@@ -32,6 +32,11 @@ public class PreDownloadServlet extends HttpServlet {
         List<FileEntity> fileList = emDL.createQuery("select * from fileentity").getResultList();
         response.sendRedirect("Download.jsp");
 
+        String password = request.getParameter("password");
+        String name = request.getParameter("loginid");
+
+        printWriter.print(password);
+        printWriter.print(name);
 
 
         printWriter.println(fml.getFile(1));
@@ -49,3 +54,4 @@ public class PreDownloadServlet extends HttpServlet {
         pds(request, response);
     }
 }
+*/

@@ -10,7 +10,7 @@
 
     <!-- Definerer navnene på sikkerhetsrollene, disse er samme som brukertypene.
     Disse blir via standalone.xml referert til slik at eks alle objekter som er instanceof Admin er i Admin security-rollen.
-   -->
+
     <security-role>
         <role-name>Admin</role-name>
     </security-role>
@@ -27,9 +27,9 @@
         <role-name>Student</role-name>
     </security-role>
 
-    <!-- Definerer hva slags autentiseringstype man vil bruke (FORM i dette tilfellet)
-    Og også hvilke sider man vil vise når det kreves innlogging/innloggingen feilet
-    -->
+    <!Definerer hva slags autentiseringstype man vil bruke (FORM i dette tilfellet)
+    Og også hvilke sider man vil vise når det kreves innlogging/innloggingen feilet -->
+
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
@@ -54,7 +54,7 @@
         </cookie-config>
     </session-config>
 
-    <!-- Definerer hvilke roller som har tilgang til hvilke mapper -->
+    <!-- Definerer hvilke roller som har tilgang til hvilke mapper
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin only</web-resource-name>
@@ -78,5 +78,5 @@
            <role-name>Admin</role-name>
            <role-name>Teacher</role-name>
        </auth-constraint>
-   </security-constraint>
+   </security-constraint>     -->
 </web-app>
