@@ -27,8 +27,8 @@
         <role-name>Student</role-name>
     </security-role>
 
-    <!Definerer hva slags autentiseringstype man vil bruke (FORM i dette tilfellet)
-    Og også hvilke sider man vil vise når det kreves innlogging/innloggingen feilet -->
+    Definerer hva slags autentiseringstype man vil bruke (FORM i dette tilfellet)
+    Og også hvilke sider man vil vise når det kreves innlogging/innloggingen feilet
 
     <login-config>
         <auth-method>FORM</auth-method>
@@ -54,7 +54,7 @@
         </cookie-config>
     </session-config>
 
-    <!-- Definerer hvilke roller som har tilgang til hvilke mapper
+   Definerer hvilke roller som har tilgang til hvilke mapper
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin only</web-resource-name>

@@ -36,14 +36,14 @@ private String message;
     private void sessionAccept(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
-        User loggedInUser = (User) request.getSession().getAttribute("TheLoggedInUser");
+        User loggedInUser = (User) session.getAttribute("TheLoggedInUser");
 
         String fnavn = loggedInUser.getfName();
         String enavn = loggedInUser.getlName();
         String epost = loggedInUser.getEmail();
 
 
-        request.getSession().setAttribute("messageJSP", "Velkommen" + epost);
+        session.setAttribute("messageJSP", "Velkommen" + "epost");
         response.sendRedirect("Innstillinger.jsp");
 
     }
