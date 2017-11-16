@@ -1,5 +1,6 @@
 package authentication;
 
+import netscape.security.Principal;
 import userManagement.UserManagerLocal;
 import users.User;
 import javax.ejb.EJB;
@@ -30,8 +31,8 @@ public class LoginServlet extends HttpServlet {
     private void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
 
-        String emailFromForm = request.getParameter("email").toLowerCase();
-        String passwordFromForm = request.getParameter("passWord");
+        String emailFromForm = request.getParameter("j_username").toLowerCase();
+        String passwordFromForm = request.getParameter("j_password");
 
         try {
             User userThatLogsIn = manager.getUser(emailFromForm);

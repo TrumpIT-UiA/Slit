@@ -17,8 +17,8 @@ public class Student extends User implements Serializable{
      * @param fName Fornavnet til den nye Studenten
      * @param lName Etternavnet til den nye Studenten
      */
-    public Student(String email, String password, String fName, String lName){
-        super(email, password, fName, lName);
+    public Student(String email, String password, String fName, String lName, String Role){
+        super(email, password, fName, lName, Role);
     }
 
     public Student(){

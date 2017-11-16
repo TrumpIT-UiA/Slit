@@ -18,6 +18,8 @@ public abstract class User implements Serializable{
     private String lName;
     @Column
     private String password;
+    @Column
+    private String Role;
 
     /**
      *
@@ -26,11 +28,12 @@ public abstract class User implements Serializable{
      * @param fName Fornavnet til en bruker
      * @param lName Etternavnet til en bruker
      */
-    public User(String email, String password, String fName, String lName) {
+    public User(String email, String password, String fName, String lName, String Role) {
         this.email = email;
         this.password = password;
         this.fName = fName;
         this.lName = lName;
+        this.Role = Role;
     }
 
     protected User(){

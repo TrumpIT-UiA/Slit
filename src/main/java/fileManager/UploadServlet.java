@@ -1,7 +1,6 @@
 package fileManager;
 
 //Servlet-importer
-
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
