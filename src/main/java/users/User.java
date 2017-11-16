@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Klasse for å holde informasjon om brukere
+ * @author Marius
+ * Klasse for å definere brukerobjekter
  */
 @Entity
 public abstract class User implements Serializable{
@@ -17,13 +18,22 @@ public abstract class User implements Serializable{
     private String lName;
     @Column
     private String password;
+    @Column
+    private String Role;
 
-
-    public User(String email, String password, String fName, String lName) {
+    /**
+     *
+     * @param email E-posten til en bruker
+     * @param password Passordet til en bruker
+     * @param fName Fornavnet til en bruker
+     * @param lName Etternavnet til en bruker
+     */
+    public User(String email, String password, String fName, String lName, String Role) {
         this.email = email;
         this.password = password;
         this.fName = fName;
         this.lName = lName;
+        this.Role = Role;
     }
 
     protected User(){

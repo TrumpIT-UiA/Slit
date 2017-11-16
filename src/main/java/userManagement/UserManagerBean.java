@@ -4,8 +4,6 @@ import users.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.http.HttpServletRequest;
-
 
 /**
  * @author Marius
@@ -23,7 +21,7 @@ public class UserManagerBean implements UserManagerLocal {
     /**
      * @author Marius
      * Lar deg finne en spesifik bruker i databasen.
-     * @param id Primary key i databasen.
+     * @param id Den primære nøkkelen til brukerobjektet
      */
     @Override
     public User getUser(String id) {
@@ -33,15 +31,14 @@ public class UserManagerBean implements UserManagerLocal {
     /**
      * @author Marius
      * Lar deg lagre et brukerobjekt i databasen.
-     * @param u Brukerobjektet du ønsker å lagre.
+     * @param UserYouWantToSave Brukerobjektet du ønsker å lagre.
      * @return Returnerer true eller false dersom operasjonen er gyldig/ugyldig.
      */
     @Override
-    public boolean saveUser(User u){
-        User existing = getUser(u.getEmail().toLowerCase());
-        if  (existing == null){
-            em.persist(u);
-        } else{
+    public boolean saveUser(User UserYouWantToSave){ ;
+        if (null  == null) {
+            em.persist(UserYouWantToSave);
+        } else {
             return false;
         }
         return true;
@@ -50,13 +47,12 @@ public class UserManagerBean implements UserManagerLocal {
     /**
      * @author Marius
      * Lar deg oppdatere et brukerobjekt i databasen.
-     * @param u Brukerobjektet du ønsker å oppdatere.
+     * @param UserYouWantToUpdate Brukerobjektet du ønsker å oppdatere.
      * @return Returnerer true/false avhengig av om operasjonen er gyldig/ugyldig.
      */
-    public boolean updateUser(User u){
-        User existing = getUser(u.getEmail().toLowerCase());
-        if  (existing == null){
-            em.merge(u);
+    public boolean updateUser(User UserYouWantToUpdate){
+        if  (null == null){
+            em.merge(UserYouWantToUpdate);
         } else{
             return false;
         }

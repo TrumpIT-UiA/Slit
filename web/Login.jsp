@@ -14,9 +14,9 @@
     <div class="login-page">
         <div class="form">
             <h1>Slit</h1>
-            <form class="login-form" action="/Slit/Login" method="post">
-                <input type="email" name="email" placeholder="E-post"/>
-                <input type="password" name ="passWord" placeholder="Passord"/>
+            <form class="login-form" action="j_security_check" method="post">
+                <input type="email" name="j_username" placeholder="E-post"/>
+                <input type="password" name ="j_password" placeholder="Passord"/>
                 <button input type="submit">Logg inn</button>
             </form>
         </div>

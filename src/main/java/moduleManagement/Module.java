@@ -33,7 +33,7 @@ public class Module implements Serializable {
         this.deadline = deadline;
 
     }
-    public Module(){
+    protected Module(){
 
     }
 

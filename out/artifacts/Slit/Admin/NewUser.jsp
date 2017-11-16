@@ -1,6 +1,4 @@
-<%@ page import="users.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% User user = (User) session.getAttribute("user");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +19,6 @@
     <option value="Teacher">Lærer</option>
     <option value="AssistantTeacher">Hjelpelærer</option>
     </select> <br>
-    <input name = "userType" type="text"> <br>
     <input type="submit" value="Lagre"> <br>
 </form>
 </body>

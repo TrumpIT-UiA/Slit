@@ -49,7 +49,7 @@
             <p>Her kan du levere dine moduler!</p>
             <hr>
             <h3>Modul 1</h3>
-            <p>Hei, jeg har kols</p>
+            <p>Hei</p>
         </div>
 
         <div class="col-sm-2 sidenav">
