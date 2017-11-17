@@ -1,4 +1,4 @@
-package fileManager;
+package fileManagement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,22 +10,22 @@ import java.io.IOException;
 @WebServlet(name = "SetModuleNumberServlet", urlPatterns = {"/SetModuleNumber"})
 public class SetModuleNumberServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FileEntity fileEntity = new FileEntity();
+        File file = new File();
 
         if (request.getParameter("module1") != null) {
-            fileEntity.setModulNr(1);
+            file.setModulNr(1);
             response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
         } else if (request.getParameter("module2") != null) {
-            fileEntity.setModulNr(2);
+            file.setModulNr(2);
             response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
         } else if (request.getParameter("module3") != null) {
-            fileEntity.setModulNr(3);
+            file.setModulNr(3);
             response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
         } else if (request.getParameter("module4") != null) {
-            fileEntity.setModulNr(4);
+            file.setModulNr(4);
             response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
         } else if (request.getParameter("module5") != null) {
-            fileEntity.setModulNr(5);
+            file.setModulNr(5);
             response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
         }
     }

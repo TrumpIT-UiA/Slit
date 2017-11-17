@@ -1,4 +1,4 @@
-package fileManager;
+package fileManagement;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -19,16 +19,19 @@ public class PreDownloadServlet extends HttpServlet {
     private void pds(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        /*
+
+        // Dette er veldig rotete og bør gjøres om til en .jsp istedenfor.
+        // Sende parametere
+
         out.println("<!DOCTYPE html>");
         out.println("<html");
         out.println("<title>Tittel</title>");
         out.println("</head>");
         out.println("<body>");
 
-        List<FileEntity> fileEntityList = fml.getFromQuery("SELECT * FROM fileentity", FileEntity.class);
+        List<File> fileList = fml.getListFromQuery("SELECT * FROM `file`", File.class);
 
-        for (FileEntity fileEntity : fileEntityList) {
+        for (File fileEntity : fileList) {
             out.println("<form action=\"/Slit/PDS-" + fileEntity.getId() + "\" method=\"post\">");
             out.println("<input type=\"submit\" name=\"" + fileEntity.getId() + "\" value=\""
                     + fileEntity.getFilename() + "\">"); // Lastet opp av: ); // Legg til hvem som har levert.
@@ -37,13 +40,13 @@ public class PreDownloadServlet extends HttpServlet {
         out.println("</body>");
         out.println("</html>");
 
-
+/*
         String gi = request.getParameter("hdnbt");
         out.println("button value" +gi);
-        */
 
-        List<FileEntity> fileEntityList = fml.getListFromQuery("SELECT * FROM fileentity", FileEntity.class);
 
+        List<File> fileList = fml.getListFromQuery("SELECT * FROM fileentity", File.class);
+*/
 
 
     }

@@ -1,10 +1,10 @@
-package fileManager;
+package fileManagement;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class FileEntity implements Serializable {
+public class File implements Serializable {
     @Id
     @Column
     @GeneratedValue
@@ -16,11 +16,11 @@ public class FileEntity implements Serializable {
     @Column // ??? Her skal det være en @Lob annotation.
     private byte[] fileContent;
 
-    public FileEntity(String filename, byte[] fileContent) {
+    public File(String filename, byte[] fileContent) {
         this.filename = filename;
         this.fileContent = fileContent;
     }
-    protected FileEntity(){
+    protected File(){
         //Denne "constructoren" skal være tom...
     }
 

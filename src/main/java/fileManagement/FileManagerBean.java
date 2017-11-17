@@ -1,4 +1,4 @@
-package fileManager;
+package fileManagement;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,24 +17,24 @@ public class FileManagerBean implements FileManagerLocal {
     }
 
     @Override
-    public FileEntity getFile(int id) { return emFile.find(FileEntity.class, id); }
+    public File getFile(int id) { return emFile.find(File.class, id); }
 
     // Returns a list containing FileEntity objects.
     @Override
-    public List getListFromQuery(String query, Class<FileEntity> fileEntityClass){
-        return emFile.createNativeQuery(query, fileEntityClass).getResultList();
+    public List getListFromQuery(String query, Class<File> fileClass){
+        return emFile.createNativeQuery(query, fileClass).getResultList();
     }
 
     @Override
-    public Query createQuery(String query) {
+    public Query createQuery(String query, Class<File> fileClass) {
         return emFile.createQuery(query);
     }
 
     @Override
-    public boolean saveFile(FileEntity fileEntity) {
-        FileEntity existing = getFile(fileEntity.getId());
+    public boolean saveFile(File file) {
+        File existing = getFile(file.getId());
         if (existing == null) {
-            emFile.persist(fileEntity);
+            emFile.persist(file);
             emFile.flush();
         } else {
             return false;
@@ -42,10 +42,10 @@ public class FileManagerBean implements FileManagerLocal {
         return true;
     }
 
-    public boolean updateFile(FileEntity fileEntity) {
-        FileEntity existing = getFile(fileEntity.getId());
+    public boolean updateFile(File file) {
+        File existing = getFile(file.getId());
         if (existing != null) {
-            emFile.persist(fileEntity);
+            emFile.persist(file);
         } else {
             return false;
         }
