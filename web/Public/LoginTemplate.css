@@ -91,7 +91,7 @@
 
 body {
     background: #A9A9A9; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #A9A9A9, #A9A9A9;
+    background: -webkit-linear-gradient(right, #A9A9A9, #A9A9A9);
     background: -moz-linear-gradient(right, #A9A9A9, #A9A9A9);
     background: -o-linear-gradient(right, #A9A9A9, #A9A9A9);
     background: linear-gradient(to left, #A9A9A9, #A9A9A9);
