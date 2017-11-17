@@ -3,6 +3,7 @@ package depreceated.authentication;
 import userManagement.UserManagerLocal;
 import users.User;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +28,7 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException Kastes når man får feil v/ Input/Output
      * Metode for å logge inn en bruker i systemet
      */
-    private void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
         String emailFromForm = request.getParameter("j_username").toLowerCase();
@@ -38,7 +39,6 @@ public class LoginServlet extends HttpServlet {
             String passwordFromDB = userThatLogsIn.getPassword();
 
             if (passwordFromDB.equals(passwordFromForm)) {
-                request.getSession().setAttribute("TheLoggedInUser", userThatLogsIn);
                 response.sendRedirect("/Slit/welcome.jsp");
             } else {
                 request.setAttribute("error", "Unknown login, try again");

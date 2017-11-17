@@ -25,6 +25,7 @@
             <a class="navbar-brand" href="/Slit/welcome.jsp">Slit</a>
         </div>
 
+
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/Slit/welcome.jsp">Home</a></li>
@@ -44,10 +45,11 @@
             <p><a href="#">Link</a></p>
         </div>
 
+        <form name="Info" method="post" action="VelkommenServlet.java"/>
+        <input type="text" name="hey" value="eee"/>
+        </form>
         <div class="col-sm-8 text-left">
             <h1>Velkommen til slit!</h1>
-            <p>Her kan du levere dine moduler!</p>
-            <hr>
             <h3>Modul 1</h3>
             <p>Hei</p>
         </div>

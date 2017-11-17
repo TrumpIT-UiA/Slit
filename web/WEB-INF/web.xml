@@ -48,7 +48,7 @@
         <role-name>Student</role-name>
     </security-role>
 
-    <!-- Definerer hvilke roller som har tilgang til hvilke mapper -->
+ <!-- Definerer hvilke roller som har tilgang til hvilke mapper -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin sider</web-resource-name>
