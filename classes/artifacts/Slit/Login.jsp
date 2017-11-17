@@ -1,28 +1,25 @@
+<!--Pulling Awesome Font -->
+<!--Hentet fra: https://codepen.io/colorlib/pen/rxddKy -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/Slit/Templates/CSS/LoginTemplate.css">
+    </head>
+    <body>
     <title>Slit</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-<<<<<<< HEAD
-<h1>Velkommen til Slit, vennligst logg inn</h1>
-=======
-<h1>Velkommen til Slit</h1>
->>>>>>> 41f0f3c8b28322bdf2579bf9992edaaf78314b9e
-<form action="/Slit/Login" method="post">
-    Brukernavn: <input name="email" type="text"><br>
-
-    Passord: <input name="passWord" type="password"><br>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 41f0f3c8b28322bdf2579bf9992edaaf78314b9e
-    <input type="submit" value="Logg inn">
-</form>
-</body>
+    <div class="login-page">
+        <div class="form">
+            <h1>Slit</h1>
+            <form class="login-form" method="post" action="j_security_check"/>
+                <input type="text" name="j_username" placeholder="E-post"/>
+                <input type="password" name ="j_password" placeholder="Passord"/>
+                <button input type="submit">Logg inn</button>
+            </form>
+        </div>
+    </div>
+    </body>
 </html>

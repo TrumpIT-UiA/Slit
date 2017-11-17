@@ -17,8 +17,8 @@ public class Admin extends User implements Serializable{
      * @param fName Fornavnet til den nye Administratoren
      * @param lName Etternavnet til den nye Administratoren
      */
-    public Admin(String email, String password, String fName, String lName, String Role){
-        super(email, password, fName, lName, Role);
+    public Admin(String email, String password, String fName, String lName){
+        super(email, password, fName, lName);
     }
 
     protected Admin(){
