@@ -11,23 +11,23 @@ import java.io.Serializable;
 public abstract class User implements Serializable{
     @Id
     @Column
-    private String email;
+    private String username;
+    @Column
+    private String password;
     @Column
     private String fName;
     @Column
     private String lName;
-    @Column
-    private String password;
 
     /**
      *
-     * @param email E-posten til en bruker
+     * @param username Brukernavnet til en bruker
      * @param password Passordet til en bruker
      * @param fName Fornavnet til en bruker
      * @param lName Etternavnet til en bruker
      */
-    public User(String email, String password, String fName, String lName) {
-        this.email = email;
+    public User(String username, String password, String fName, String lName) {
+        this.username = username;
         this.password = password;
         this.fName = fName;
         this.lName = lName;
@@ -41,7 +41,7 @@ public abstract class User implements Serializable{
      * @return Brukerens e-post
      */
     public String getEmail() {
-        return email;
+        return this.username;
     }
 
     /**
@@ -97,6 +97,6 @@ public abstract class User implements Serializable{
      * @param email Brukerens e-post
      */
     public void setEmail(String email) {
-        this.email = email;
+        this.username = email;
     }
 }

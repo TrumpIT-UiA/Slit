@@ -35,10 +35,9 @@ public class UserManagerBean implements UserManagerLocal {
      * @return Returnerer true eller false dersom operasjonen er gyldig/ugyldig.
      */
     @Override
-    public boolean saveUser(User UserYouWantToSave){
-        User TheUserToBeSaved = getUser(UserYouWantToSave.getEmail());
-        if  (TheUserToBeSaved == null){
-            em.persist(TheUserToBeSaved);
+    public boolean saveUser(User UserYouWantToSave){ ;
+        if (null  == null) {
+            em.persist(UserYouWantToSave);
         } else {
             return false;
         }
@@ -52,9 +51,8 @@ public class UserManagerBean implements UserManagerLocal {
      * @return Returnerer true/false avhengig av om operasjonen er gyldig/ugyldig.
      */
     public boolean updateUser(User UserYouWantToUpdate){
-        User UserToBeUpdated = getUser(UserYouWantToUpdate.getEmail().toLowerCase());
-        if  (UserToBeUpdated == null){
-            em.merge(UserToBeUpdated);
+        if  (null == null){
+            em.merge(UserYouWantToUpdate);
         } else{
             return false;
         }

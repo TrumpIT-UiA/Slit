@@ -2,6 +2,7 @@ package userManagement;
 
         import users.Student;
         import javax.ejb.EJB;
+        import javax.management.relation.Role;
         import javax.servlet.ServletException;
         import javax.servlet.annotation.HttpConstraint;
         import javax.servlet.annotation.ServletSecurity;
@@ -40,8 +41,9 @@ public class NewStudentServlet extends HttpServlet {
         String password = request.getParameter("passWord");
         String firstname = request.getParameter("firstName");
         String lastname = request.getParameter("lastName");
+        String Role = "Student";
 
-        Student s = new Student(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
+        Student s = new Student(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase(), Role);
         if(manager.saveUser(s) == true){
             out.print("Din bruker har blitt opprettet!  ");
             out.print("Du vil nå bli videresendt til innloggingen   ");
