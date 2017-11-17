@@ -36,8 +36,8 @@
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
+    -webkit-transition: all 0.3s ease, background-position 1ms;
+    transition: all 0.3s ease, background-position 1ms;
     cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
@@ -88,9 +88,10 @@
 .container .info span .fa {
     color: #EF3B3A;
 }
+
 body {
     background: #A9A9A9; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #A9A9A9,##A9A9A9;
+    background: -webkit-linear-gradient(right, #A9A9A9, #A9A9A9;
     background: -moz-linear-gradient(right, #A9A9A9, #A9A9A9);
     background: -o-linear-gradient(right, #A9A9A9, #A9A9A9);
     background: linear-gradient(to left, #A9A9A9, #A9A9A9);

@@ -1,6 +1,5 @@
-package authentication;
+package depreceated.authentication;
 
-import netscape.security.Principal;
 import userManagement.UserManagerLocal;
 import users.User;
 import javax.ejb.EJB;

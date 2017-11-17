@@ -47,7 +47,7 @@ public class NewUserServlet extends HttpServlet {
 
         if (usertype.equals("Teacher")) {
             String Role = "Teacher";
-            Teacher t = new Teacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase(), Role);
+            Teacher t = new Teacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(t)) {
                 out.print("Din bruker har blitt opprettet!  ");
             } else if (!manager.saveUser(t)) {
@@ -56,7 +56,7 @@ public class NewUserServlet extends HttpServlet {
 
         } else if (usertype.equals("AssistantTeacher")) {
             String Role ="AssistantTeacher";
-            AssistantTeacher at = new AssistantTeacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase(), Role);
+            AssistantTeacher at = new AssistantTeacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(at)) {
                 out.print("Din bruker har blitt opprettet!  ");
             } else if (!manager.saveUser(at)) {
@@ -65,7 +65,7 @@ public class NewUserServlet extends HttpServlet {
 
         } else if (usertype.equals("Admin")) {
             String Role = "Admin";
-            Admin a = new Admin(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase(), Role);
+            Admin a = new Admin(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(a)) {
                 out.print("Din bruker har blitt opprettet!  ");
             } else if (!manager.saveUser(a)) {

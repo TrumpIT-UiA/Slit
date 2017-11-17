@@ -11,7 +11,7 @@
     <title>Slit</title>
 </head>
 <body>
-Opps, her har det skjedd noe feil!
-General error
+<h1>Opps, her har det skjedd noe feil!</h1>
+Uspesifisert error :(
 </body>
 </html>
