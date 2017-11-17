@@ -1,6 +1,8 @@
 <%@ page import="users.User" %>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% User user = (User) session.getAttribute("user");%>
+<% User user = (User) session.getAttribute("TheLoggedInUser");
+    String fornavn = user.getfName(); %>
 <!-- Hentet fra https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_webpage&stacked=h -->
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +27,6 @@
             <a class="navbar-brand" href="/Slit/welcome.jsp">Slit</a>
         </div>
 
-
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/Slit/welcome.jsp">Home</a></li>
@@ -45,11 +46,8 @@
             <p><a href="#">Link</a></p>
         </div>
 
-        <form name="Info" method="post" action="VelkommenServlet.java"/>
-        <input type="text" name="hey" value="eee"/>
-        </form>
         <div class="col-sm-8 text-left">
-            <h1>Velkommen til slit!</h1>
+            <h1>Velkommen til slit,<%=fornavn%> </h1>
             <h3>Modul 1</h3>
             <p>Hei</p>
         </div>
