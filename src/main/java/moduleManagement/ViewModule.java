@@ -1,6 +1,7 @@
 package moduleManagement;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,7 +62,7 @@ public class ViewModule extends HttpServlet {
      * @param response
      */
 
-    private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Module module = em.getModule(knappTrykketInt);
         if (module != null) {
             String modulNummer = Integer.toString(knappTrykketInt);
@@ -104,15 +105,17 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("deadline", deadline);
         request.getSession().setAttribute("approvalCriterias", approvalCriterias);
         request.getSession().setAttribute("tasks", tasks);
-        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+        //response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
 
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ModuleDescriptionAndDelivery.jsp");
+        requestDispatcher.forward(request, response);
         //Dette sender en varibelverdi som et parameter til session -
         //slik at andre servlets kan hente inn verdien.
         HttpSession session = request.getSession();
         session.setAttribute("modulNummer", modulNummer);
     }
 
-    private void skrivNullTilJSP(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void skrivNullTilJSP(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String error = "- Denne modulen har ikke blitt lastet opp ennå";
         request.getSession().setAttribute("mNr", error);
         request.getSession().setAttribute("goals", "");
@@ -120,7 +123,9 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("deadline", "");
         request.getSession().setAttribute("approvalCriterias", "");
         request.getSession().setAttribute("tasks", "");
-        response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ModuleDescriptionAndDelivery.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     @Override

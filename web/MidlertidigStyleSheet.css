@@ -64,7 +64,7 @@ input[type=submit] {
     border: 3px;
     border-radius: 2px;
     cursor: pointer;
-    display: inline;
+    display: inline-block;
     position: relative;
     width: 10%;
 }

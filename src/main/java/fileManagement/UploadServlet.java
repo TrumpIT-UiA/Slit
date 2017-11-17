@@ -1,7 +1,6 @@
 package fileManagement;
 
 //Servlet-importer
-
 import users.User;
 
 import javax.servlet.ServletException;
@@ -30,7 +29,7 @@ import java.util.logging.Logger;
  */
 
 @WebServlet(name = "UploadServlet", urlPatterns = {"/Upload"})
-@MultipartConfig(maxFileSize = 15728640) //16Mib
+@MultipartConfig(maxFileSize = 10485760) //15Mib
 
 public class UploadServlet extends HttpServlet {
     private final static Logger LOGGER =
@@ -44,16 +43,15 @@ public class UploadServlet extends HttpServlet {
 
         //Lokale variabler
         final Part filePart = request.getPart("file");
-
         //Lager en inputstream som skal "holde" på strømmen av bits ("Parts" som til sammen er filen)
         InputStream filePartInputStream;
 
         try {
             final String fileName = getFileName(filePart);
-            filePartInputStream = filePart.getInputStream();
             if (fileName.endsWith(".zip")) { //Sjekker om fil-endelsen er .zip
                 if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
+                    filePartInputStream = filePart.getInputStream();
                     HttpSession session = request.getSession();
 
                     String modulNummer = (String) session.getAttribute("modulNummer");
@@ -129,7 +127,7 @@ public class UploadServlet extends HttpServlet {
 
     /**
      * @param filePartInputStream
-     * @return fileOutPutStream som en array av bytes.
+     * @return fileOutPutStream as byte[]
      * @throws IOException
      * Skriver InputStream-en til en ByteArrayOutputStream ved hjelp av en while-løkke
      * som blir returner i form av en array av bytes.

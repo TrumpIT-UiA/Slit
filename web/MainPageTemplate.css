@@ -1,0 +1,93 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+
+/* Updated version temp
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.rowContent {
+    height: 100%;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    position: fixed;
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+
+    .rowContent {
+        height: auto;
+    }
+}
+
+input[type=submit] {
+    background-color: rgba(37, 37, 37, 0.67);
+    color: #fffbf7;
+    padding: 10px 10px;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 10%;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+input[type=submit]:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+.uploadContent {
+    position: absolute;
+    margin-left: auto;
+    margin-right: 100px;
+    left: 260px;
+    right: 0;
+    top: 70px;
+}
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    overflow: inherit;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 500;
+
+}
+.navbar a:hover{ /* Forandrer bakgrunnsfargen til alle a-attributter (Home, Admin, etc.) ved hovring*/
+    background-color: black;
+    cursor: pointer;
+}
+
+.navbar a { /* Styling */
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 20px 16px;
+
+}
+
+.main {
+    margin-top: 62px;
+}
