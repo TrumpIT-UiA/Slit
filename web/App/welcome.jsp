@@ -27,7 +27,6 @@
             <a class="navbar-brand" href="/Slit/welcome.jsp">Slit</a>
         </div>
 
-
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/Slit/welcome.jsp">Home</a></li>
@@ -35,7 +34,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/Slit/Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Logg ut</a></li>
+                <li><a href="/Slit/Logout"><span class="glyphicon glyphicon-log-in"></span> Logg ut</a></li>
             </ul>
         </div>
     </div>
