@@ -4,15 +4,27 @@
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .rowContent {
     height: 100%;
+    float: left;
 }
+
+/*
+-------------------------------------------------
+    CSS for sidemenyen
+-------------------------------------------------
+*/
 
 /* Set gray background color and 100% height */
 .sidenav {
     position: fixed;
+    float: left;
     padding-top: 20px;
-    background-color: #f1f1f1;
+    background-color: #aeaeae;
     height: 100%;
-
+    padding-right: 50px;
+}
+.sidenavContent {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* Set black background color, white text and some padding */
@@ -33,7 +45,11 @@ footer {
         height: auto;
     }
 }
-
+/*
+-------------------------------------------------
+    CSS for submit-knappene
+-------------------------------------------------
+*/
 input[type=submit] {
     background-color: rgba(37, 37, 37, 0.67);
     color: #fffbf7;
@@ -55,6 +71,11 @@ input[type=submit]:not(:last-child) {
     border-bottom: none; /* Prevent double borders */
 }
 
+/*
+-------------------------------------------------
+    CSS for seksjonen med beskrivelse og upload
+-------------------------------------------------
+*/
 .uploadContent {
     position: absolute;
     margin-left: auto;
@@ -63,6 +84,13 @@ input[type=submit]:not(:last-child) {
     right: 0;
     top: 70px;
 }
+
+/*
+-------------------------------------------------
+    CSS for top menu bar
+-------------------------------------------------
+*/
+
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
     margin-bottom: 0;
@@ -72,7 +100,7 @@ input[type=submit]:not(:last-child) {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
-    z-index: 500;
+    z-index: 1; /* z-akse */
 
 }
 .navbar a:hover{ /* Forandrer bakgrunnsfargen til alle a-attributter (Home, Admin, etc.) ved hovring*/
@@ -87,6 +115,11 @@ input[type=submit]:not(:last-child) {
     padding: 20px 16px;
 
 }
+/*
+-------------------------------------------------
+    Main er alt bortsett fra sidebar og navbar
+-------------------------------------------------
+*/
 
 .main {
     margin-top: 62px;

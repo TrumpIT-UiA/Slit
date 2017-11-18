@@ -105,7 +105,6 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("deadline", deadline);
         request.getSession().setAttribute("approvalCriterias", approvalCriterias);
         request.getSession().setAttribute("tasks", tasks);
-        //response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("ModuleDescriptionAndDelivery.jsp");
         requestDispatcher.forward(request, response);
