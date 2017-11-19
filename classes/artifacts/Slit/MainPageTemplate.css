@@ -50,8 +50,9 @@ footer {
     CSS for submit-knappene
 -------------------------------------------------
 */
+
 input[type=submit] {
-    background-color: rgba(37, 37, 37, 0.67);
+    background-color: #474747;
     color: #fffbf7;
     padding: 10px 10px;
     border: 0px;

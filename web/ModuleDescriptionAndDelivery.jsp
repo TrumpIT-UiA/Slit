@@ -12,15 +12,6 @@
     <link rel="stylesheet" type="text/css" href="/Slit/MainPageTemplate.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <%
-        String active1 = (String) request.getAttribute("active1");
-        String active2 = (String) request.getAttribute("active2");
-        String active3 = (String) request.getAttribute("active3");
-        String active4 = (String) request.getAttribute("active4");
-        String active5 = (String) request.getAttribute("active5");
-    %>
-
 </head>
 <body>
 <div class="navbar">
@@ -30,6 +21,15 @@
 
     <a style="float:right" href="Logout">Logout</a>
     <a style="float:right" href="/Slit/MyPage">MyPage</a>
+</div>
+<div class="sidenav">
+    <div class="sidenavContent">
+        <p>Her kan feedback og progresjonsplanen ligge</p>
+        <form action="ReadFeedback" method="post" name="feedbackForm">
+            <input type="hidden" name="hdnbt" />
+            <input type="button" value="Feedback" name="feedback" onclick="{document.feedbackForm.hdnbt.value=this.value;document.feedbackForm.submit();}">
+        </form>
+    </div>
 </div>
 <main class="main">
     <div class="uploadContent">
@@ -75,14 +75,6 @@
             <p>${message}</p>
             <c:remove var="message" scope="session"/>
         </form>
-    </div>
-    <div class="sidenav">
-        <div class="sidenavContent">
-            <p>ExampleText in side bar</p>
-        </div>
-    </div>
-    </div>
-
     </div>
 </main>
 

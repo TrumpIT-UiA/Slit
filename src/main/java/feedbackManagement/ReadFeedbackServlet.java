@@ -1,11 +1,14 @@
 package feedbackManagement;
 
+import users.User;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ReadFeedbackServlet", urlPatterns = "/ReadFeedback")
@@ -15,6 +18,10 @@ public class ReadFeedbackServlet extends HttpServlet {
     private FeedbackManagerLocal fbml;
 
     private void getFromDB(HttpServletRequest req, HttpServletResponse res) {
+        HttpSession session = req.getSession();
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        String currentUser = loggedInUser.getEmail();
+
         Feedback fb = fbml.getFeedback(1);
         String feedbackcontent = fb.getFeedback();
         int score = fb.getScore();

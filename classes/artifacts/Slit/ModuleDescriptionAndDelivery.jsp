@@ -31,6 +31,11 @@
     <a style="float:right" href="Logout">Logout</a>
     <a style="float:right" href="/Slit/MyPage">MyPage</a>
 </div>
+<div class="sidenav">
+    <div class="sidenavContent">
+        <p>ExampleText in side bar</p>
+    </div>
+</div>
 <main class="main">
     <div class="uploadContent">
         <form action="/Slit/ViewModule" method="post" id="getModule">
@@ -75,14 +80,6 @@
             <p>${message}</p>
             <c:remove var="message" scope="session"/>
         </form>
-    </div>
-    <div class="sidenav">
-        <div class="sidenavContent">
-            <p>ExampleText in side bar</p>
-        </div>
-    </div>
-    </div>
-
     </div>
 </main>
 
