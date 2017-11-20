@@ -21,6 +21,9 @@ import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
 //Logger - fra Object for å føre feil
+import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,7 +50,7 @@ public class UploadServlet extends HttpServlet {
         InputStream filePartInputStream;
 
         try {
-            final String fileName = getFileName(filePart);
+            String fileName = getFileName(filePart);
             if (fileName.endsWith(".zip")) { //Sjekker om fil-endelsen er .zip
                 if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
@@ -105,14 +108,6 @@ public class UploadServlet extends HttpServlet {
         response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
     }
 
-    /**
-     * @param part
-     * @return filnavnet
-     * Felt for å hente ut filnavnet - ferdiglagd metode fra Oracle sine sider:
-     * https://docs.oracle.com/javaee/6/tutorial/doc/glraq.html#gmhbq
-     * Feltet returnerer filnavnet eller null.
-     */
-
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
         LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
@@ -124,6 +119,14 @@ public class UploadServlet extends HttpServlet {
         }
         return null;
     }
+
+    /**
+     * @param part
+     * @return filnavnet
+     * Felt for å hente ut filnavnet - ferdiglagd metode fra Oracle sine sider:
+     * https://docs.oracle.com/javaee/6/tutorial/doc/glraq.html#gmhbq
+     * Feltet returnerer filnavnet eller null.
+     */
 
     /**
      * @param filePartInputStream

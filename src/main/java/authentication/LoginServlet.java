@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("loggedInUser", u);
 
-                response.sendRedirect("/Slit/welcome.jsp");
+                response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
                 request.getAuthType();
             } else {
                 response.sendRedirect("/Slit/LoginFailed.jsp");

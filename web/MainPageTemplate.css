@@ -66,10 +66,11 @@ input[type=submit] {
     font-size: medium;
     font-family: 'Times New Roman';
     top: 11px;
+    transition: all 0.3s ease 0s;
 }
 
 input[type=file] {
-   display: none;
+  display: none;
 }
 .custom-file-upload:hover {
     background-color: rgb(0, 0, 0);
@@ -89,6 +90,7 @@ input[type=file] {
     width: 90px;
     font-size: medium;
     font-family: 'Times New Roman';
+    transition: all 0.3s ease 0s;
 }
 /* When moving the mouse over the submit button, add a darker green color */
 input[type=submit]:hover {
@@ -153,4 +155,28 @@ input[type=submit]:not(:last-child) {
 .knapperHoyre {
     float: right;
     margin-right: 7px;
+}
+
+
+#goToTop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #474747; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px; /* Rounded corners */
+    font-size: medium; /* Medium font size*/
+    font-family: "Times New Roman"; /* Decides font-family*/
+    transition: all 0.3s ease 0s;
+}
+
+#goToTop:hover {
+    background-color: #1f1f20; /* Add a dark-grey background on hover */
+    box-shadow: 2px 3px 5px #474747;
 }
