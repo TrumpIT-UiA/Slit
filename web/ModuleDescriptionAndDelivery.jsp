@@ -32,7 +32,7 @@
 <main class="main">
     <h1>Moduler</h1>
     <form action="/Slit/ViewModule" method="post" id="getModule">
-        <a href="ModuleDescriptionAndDelivery.jsp">
+        <a style="display: inline;" href="ModuleDescriptionAndDelivery.jsp">
             <input type="submit" name="module1" value="Modul 1"/>
             <input type="submit" name="module2" value="Modul 2"/>
             <input type="submit" name="module3" value="Modul 3"/>
