@@ -53,7 +53,7 @@
         Resources: <br>
         <textarea name="tasks" form="newM" onfocus="this.value=''">Skriv om resources her</textarea> <br>
         Approval criteria: <br>
-        <textarea name="approvalCriteria" form="newM" onfocus="this.value=''">Skriv om approcal criterias her</textarea>
+        <textarea name="approvalCriteria" form="newM" onfocus="this.value=''">Skriv om approval criterias her</textarea>
         <br>
         Deadline: <br>
         <input type="date" name="deadline" form="newM"><br>
