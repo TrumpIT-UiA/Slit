@@ -48,3 +48,11 @@ Servlet2:
 HttpSession session = request.getSession();
 String modulNummer = (String) session.getAttribute("exampleParameter");
 ```
+
+#### For å legge til 'Go to top'-knapp
+Nesten all kode ligger i MainPageTemplate.css og functions.js. 
+Trenger kun én linje med html i jsp-en (legg nederst rett før </body>)
+
+```html
+<button onclick="topFunction()" id="goToTop" title="Go to top">Gå til toppen</button>
+```
