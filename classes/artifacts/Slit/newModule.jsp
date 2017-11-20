@@ -35,11 +35,11 @@
     <h3>Eksempel: Hvis du endrer alle feltene bortsett fra "Learning goals" vil ikke "Learning goals" bli oppdatert i
         systemet og derfor vil den tidligere verdien vil bli vist.</h3>
     <form action="/Slit/newModule" method="post" id="newM">
-        <input type="radio" name="module" value="1"> Modul 1<br>
-        <input type="radio" name="module" value="2"> Modul 2<br>
-        <input type="radio" name="module" value="3"> Modul 3<br>
-        <input type="radio" name="module" value="4"> Modul 4<br>
-        <input type="radio" name="module" value="5"> Modul 5<br>
+        <label><input type="radio" name="module" value="1"> Modul 1</label><br>
+        <label><input type="radio" name="module" value="2"> Modul 2</label><br>
+        <label><input type="radio" name="module" value="3"> Modul 3</label><br>
+        <label><input type="radio" name="module" value="4"> Modul 4</label><br>
+        <label><input type="radio" name="module" value="5"> Modul 5</label><br>
 
         <p>${errorMessage}</p>
         <c:remove var="errorMessage" scope="session"/>
@@ -53,7 +53,8 @@
         Resources: <br>
         <textarea name="tasks" form="newM" onfocus="this.value=''">Skriv om resources her</textarea> <br>
         Approval criteria: <br>
-        <textarea name="approvalCriteria" form="newM" onfocus="this.value=''">Skriv om approcal criterias her</textarea> <br>
+        <textarea name="approvalCriteria" form="newM" onfocus="this.value=''">Skriv om approcal criterias her</textarea>
+        <br>
         Deadline: <br>
         <input type="date" name="deadline" form="newM"><br>
         <input type="submit" value="Last opp" form="newM" style="margin-bottom: 1cm">
