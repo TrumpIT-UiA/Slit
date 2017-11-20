@@ -53,15 +53,14 @@ footer {
 */
 
 input[type=submit] {
+    display: inline-block;
     background-color: #474747;
     color: #fffbf7;
     padding: 10px 10px 10px 10px;
     border: 5px white;
-    text-decoration: white;
     border-radius: 5px;
     cursor: pointer;
     position: relative;
-    display: inline-block;
     width: 90px;
     font-size: medium;
     font-family: 'Times New Roman';
@@ -118,11 +117,14 @@ input[type=submit]:not(:last-child) {
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
     z-index: 1; /* z-akse */
+    text-decoration: none;
+
 
 }
 .navbar a:hover{ /* Forandrer bakgrunnsfargen til alle a-attributter (Home, Admin, etc.) ved hovring*/
     background-color: black;
     cursor: pointer;
+    transition: all 0.3s ease 0s;
 }
 
 .navbar a { /* Styling */
@@ -162,7 +164,7 @@ input[type=submit]:not(:last-child) {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
     bottom: 20px; /* Place the button at the bottom of the page */
-    right: 30px; /* Place the button 30px from the right */
+    right: 10px; /* Place the button 10px from the right */
     z-index: 99; /* Make sure it does not overlap */
     border: none; /* Remove borders */
     outline: none; /* Remove outline */
