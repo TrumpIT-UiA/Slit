@@ -80,7 +80,8 @@ Dette __må__ brukes i forbindelse med TextArea <br>
 Brukes kun når du skal **skrive** til jsp (ikke hente parameteret fra jsp)
 
 ```java 
-//"Diverse" er pakke jeg har selv har fikset. 
+// "Diverse" er en pakke jeg har selv har fikset
+// Tanken var en pakke for mer generiske metoder og felter 
 
 Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
 request.getSession().setAttribute("learningGoals", stringLinebreak.LineBreak(learningGoals));
