@@ -39,7 +39,8 @@
 </div>
 <main class="main" style="margin-left: 40px">
     <h1>Feedback</h1>
-    <h2 >Trykk på en knapp for å vise feedback til din leverte modul</h2>
+    <h2 >Trykk p&aring; en knapp for &aring; vise feedback til din leverte modul</h2>
+    <h3>${error}</h3>
     <form action="/Slit/ReadFeedback" method="post">
         <a href="ReadFeedback.jsp">
             <input type="submit" name="module1" value="Modul 1"/>

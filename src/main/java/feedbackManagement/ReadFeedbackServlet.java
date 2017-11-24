@@ -14,7 +14,9 @@ import java.io.IOException;
 @WebServlet(name = "ReadFeedbackServlet", urlPatterns = "/ReadFeedback")
 public class ReadFeedbackServlet extends HttpServlet {
 
-    private void checkButtonValue(HttpServletRequest request, HttpServletResponse response) {
+    Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+
+    private void checkButtonValue(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getParameter("module1") != null) {
             int knappTrykketInt = 1;
             getFromDB(knappTrykketInt, request, response);
@@ -40,7 +42,7 @@ public class ReadFeedbackServlet extends HttpServlet {
     @EJB
     private FeedbackManagerLocal fbml;
 
-    private void getFromDB(int knappTrykketInt, HttpServletRequest req, HttpServletResponse res) {
+    private void getFromDB(int knappTrykketInt, HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         String knappTrykketString = Integer.toString(knappTrykketInt);
 
@@ -51,25 +53,38 @@ public class ReadFeedbackServlet extends HttpServlet {
         String primaryChunk = currentUser + knappTrykketString + "fb";
 
         Feedback fb = fbml.getFeedback(primaryChunk);
-        String feedbackcontent = fb.getFeedbackContent();
-        int score = fb.getScore();
-        String timeWritten = fb.getTimeWritten();
+        if (fb == null) {
+            writeNullToJSP(req, res, knappTrykketString);
+        } else {
+            String feedbackcontent = fb.getFeedbackContent();
+            int score = fb.getScore();
+            String timeWritten = fb.getTimeWritten();
 
-        try {
-            writeToJSP(req, res, knappTrykketString, feedbackcontent, score, timeWritten);
-        } catch (ServletException se) {
-            se.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+            try {
+                writeToJSP(req, res, knappTrykketString, feedbackcontent, score, timeWritten);
+            } catch (ServletException se) {
+                se.printStackTrace();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
     }
 
     private void writeToJSP(HttpServletRequest req, HttpServletResponse res, String knappTrykketString, String feedbackcontent, int score, String timeWritten) throws ServletException, IOException {
-        Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+        req.getSession().setAttribute("error", null);
         req.getSession().setAttribute("modulnr", knappTrykketString);
         req.getSession().setAttribute("feedbackContent", stringLinebreak.LineBreak(feedbackcontent));
         req.getSession().setAttribute("score", score);
         req.getSession().setAttribute("timewritten", timeWritten);
+        res.sendRedirect("ReadFeedback.jsp");
+    }
+    private void writeNullToJSP(HttpServletRequest req, HttpServletResponse res, String knappTrykketString) throws IOException {
+        String error = "Det skjedde en feil :(<BR>Vi fant dessverre ingenting i databasen.<BR>Tips: Spør læreren om han/hun har lagt ut feedback til din modul nr. " + knappTrykketString + ".";
+        req.getSession().setAttribute("error", error);
+        req.getSession().setAttribute("modulnr", null);
+        req.getSession().setAttribute("feedbackContent", null);
+        req.getSession().setAttribute("score", null);
+        req.getSession().setAttribute("timewritten", null);
         res.sendRedirect("ReadFeedback.jsp");
     }
 

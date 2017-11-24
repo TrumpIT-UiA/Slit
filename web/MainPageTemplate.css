@@ -38,6 +38,7 @@
     color: #000000;
     background-color: #d6d6d6;
     text-shadow: #1f1f20;
+    transition: all 0.3s ease 0s;
 }
 
 .sidebarFeedback[type=submit] {
