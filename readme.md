@@ -19,6 +19,10 @@ Følgende må legges til i Wildfly sin standalone.xml, om ikke det er gjort alle
 ```
 
 ## Cheatsheet (triks i Ludo)
+
+#### Cheat sheet for Mastering Markup lang:
+[Orker ikke skrive om det, så trykk på denne linken](https://guides.github.com/features/mastering-markdown/)
+
 #### For å sende et parameter til jsp:
 Skriv følgende i en servlet:
 ```java
@@ -69,5 +73,16 @@ For å få knappen til å fungere må du linke til scriptet i \<head>:
 
 ```java
 String learningGoals = new String( request.getParameter( "learningGoals").getBytes( "ISO-8859-1" ), "UTF-8" ); 
+```
+
+#### Ny pakke for å fikse line break
+##### Dette må brukes i forbindelse med TextArea
+Brukes kun når du skal **skrive** til jsp (ikke hente parameteret fra jsp)
+
+```java 
+//"Diverse" er pakke jeg har selv har fikset. 
+
+Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+request.getSession().setAttribute("learningGoals", stringLinebreak.LineBreak(learningGoals));
 ```
 
