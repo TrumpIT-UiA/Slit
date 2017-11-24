@@ -29,7 +29,7 @@
         </form>
     </div>
 </div>
-<main class="main">
+<main class="main" style="margin-left: 40px">
     <h1>Vennligst oppgi informasjon til modulen i feltene under</h1>
     <h4>Dersom modulen allerede finnes vil kun de feltene du fyller ut bli med i den nye modulenbeskrivelsen.</h4>
     <h3>Eksempel: Hvis du endrer alle feltene bortsett fra "Learning goals" vil ikke "Learning goals" bli oppdatert i
@@ -45,18 +45,18 @@
         <c:remove var="errorMessage" scope="session"/>
     </form>
     <div>
-        Learning goals: <br>
-        <textarea name="learningGoals" form="newM" onfocus="this.value=''">Skriv om læringsmål her</textarea>
+        Læringsmål: <br>
+        <textarea name="learningGoals" form="newM" placeholder="Skriv om læringsmål her"></textarea>
         <br>
-        Tasks: <br>
-        <textarea name="resoures" form="newM" onfocus="this.value=''">Skriv om tasks her</textarea> <br>
-        Resources: <br>
-        <textarea name="tasks" form="newM" onfocus="this.value=''">Skriv om resources her</textarea> <br>
+        Oppgavebeskrivelse: <br>
+        <textarea name="tasks" form="newM" placeholder="Skriv selve oppgavebeskrivelsen her"></textarea> <br>
+        Hjelpemidler: <br>
+        <textarea name="resources" form="newM" placeholder="List opp hjelpemidler her"></textarea> <br>
         Approval criteria: <br>
-        <textarea name="approvalCriteria" form="newM" onfocus="this.value=''">Skriv om approval criterias her</textarea>
+        <textarea name="approvalCriteria" form="newM" placeholder="Skriv om approval criterias her"></textarea>
         <br>
         Deadline: <br>
-        <input type="date" name="deadline" form="newM"><br>
+        <input type="date" name="deadline" form="newM"><p> NB! Datoen vil bli skrevet ut i følgende format: yyyy-mm-dd</p><br>
         <input type="submit" value="Last opp" form="newM" style="margin-bottom: 1cm">
         <input type="reset" value="Reset" form="newM" style="margin-bottom: 1cm">
     </div>

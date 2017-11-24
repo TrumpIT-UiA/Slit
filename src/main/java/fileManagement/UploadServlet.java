@@ -1,6 +1,7 @@
 package fileManagement;
 
 //Servlet-importer
+
 import users.User;
 
 import javax.servlet.ServletException;
@@ -21,9 +22,9 @@ import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
 //Logger - fra Object for å føre feil
-import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.LinkedList;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +42,7 @@ public class UploadServlet extends HttpServlet {
     @EJB
     FileManagerLocal fml;
 
-    private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         request.setCharacterEncoding("UTF-8");
 
         //Lokale variabler
@@ -49,50 +50,69 @@ public class UploadServlet extends HttpServlet {
         //Lager en inputstream som skal "holde" på strømmen av bits ("Parts" som til sammen er filen)
         InputStream filePartInputStream;
 
+        HttpSession session = request.getSession();
+        LocalDate localDateDeadline = (LocalDate) session.getAttribute("deadline");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        String textDate = formatter.format(LocalDate.now());
+        LocalDate parsedToday = LocalDate.parse(textDate, formatter);
+
+
         try {
-            String fileName = getFileName(filePart);
-            if (fileName.endsWith(".zip")) { //Sjekker om fil-endelsen er .zip
-                if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
+            if (parsedToday.isAfter(localDateDeadline)) {
+                String message = "Fristen har dessverre gått ut...";
+                skrivUt(message, request, response);
+            } else {
+                String fileName = getFileNameOracle(filePart);
+                if (fileName.endsWith(".zip")) { //Sjekker om fil-endelsen er .zip
+                    if (filePart.getSize() <= 10485760) { //Sjekker at filen IKKE er større enn 10Mib
 
-                    filePartInputStream = filePart.getInputStream();
-                    HttpSession session = request.getSession();
-
-                    String modulNummer = (String) session.getAttribute("modulNummer");
-                    User loggedInUser = (User) session.getAttribute("loggedInUser");
-                    String currentUserEmail = loggedInUser.getEmail();
-                    String mergedNrEmail = currentUserEmail + modulNummer;
-                    byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
+                        filePartInputStream = filePart.getInputStream();
 
 
-                    File file = new File(mergedNrEmail, loggedInUser.getEmail(), modulNummer, fileName, fileContent);
+                        /**
+                         * Sjekker deadline mot nåtid
+                         */
 
-                    /**
-                     * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
-                     * ligger i FileManagerLocal, men blir overrided i FileManagerBean - gå dit
-                     * for å se kommunikasjonen med databasen.
-                     */
 
-                    if (fml.updateFile(file, request, response)) {
-                        String message = "Filen din har blitt oppdatert.\nInfo om ny modul: \nFilnavn: " + file.getFilename();
-                        skrivUt(message, request, response);
-                    } else {
-                        if (fml.saveFile(file)) {
-                            String message = "Filen din har blitt lastet opp.";
+                        String modulNummer = (String) session.getAttribute("modulNummer");
+                        User loggedInUser = (User) session.getAttribute("loggedInUser");
+                        String currentUserEmail = loggedInUser.getEmail();
+                        String mergedNrEmail = currentUserEmail + modulNummer;
+                        byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
+                        long deliveredTimeMillis = System.currentTimeMillis();
+                        boolean feedback = false;
+
+                        File file = new File(mergedNrEmail, loggedInUser.getEmail(), modulNummer, fileName, deliveredTimeMillis, fileContent, feedback);
+
+                        /**
+                         * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
+                         * ligger i FileManagerLocal, men blir overrided i FileManagerBean - gå dit
+                         * for å se kommunikasjonen med databasen.
+                         */
+                        if (fml.updateFile(file, request, response)) {
+                            String message = "Filen din har blitt oppdatert.\nInfo om ny modul: \nFilnavn: " + file.getFilename();
                             skrivUt(message, request, response);
                         } else {
-                            String message = "Filen din kunne ikke bli lastet opp";
-                            skrivUt(message, request, response);
+                            if (fml.saveFile(file)) {
+                                String message = "Filen din har blitt lastet opp.";
+                                skrivUt(message, request, response);
+                            } else {
+                                String message = "Filen din kunne ikke bli lastet opp";
+                                skrivUt(message, request, response);
+                            }
                         }
+                        //fml.updateFile(file, request, response);
+                    } else {
+                        String message = "Filen kan ikke være større enn 10Mib (10 485 760 bytes).";
+                        skrivUt(message, request, response);
                     }
-                    //fml.updateFile(file, request, response);
+                    // Filen er ikke zip
                 } else {
-                    String message = "Filen kan ikke være større enn 10Mib (10 485 760 bytes).";
+                    String message = "Filen må være av typen .zip (en helt vanlig zip-fil).";
                     skrivUt(message, request, response);
                 }
-                // Filen er ikke zip
-            } else {
-                String message = "Filen må være av typen .zip (en helt vanlig zip-fil).";
-                skrivUt(message, request, response);
             }
         } catch (
                 IOException ioe)
@@ -101,6 +121,7 @@ public class UploadServlet extends HttpServlet {
             throw new ServletException();
         }
 
+
     }
 
     void skrivUt(String message, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -108,7 +129,7 @@ public class UploadServlet extends HttpServlet {
         response.sendRedirect("ModuleDescriptionAndDelivery.jsp");
     }
 
-    private String getFileName(final Part part) {
+    private String getFileNameOracle(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
         LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
         for (String content : part.getHeader("content-disposition").split(";")) {
@@ -131,9 +152,8 @@ public class UploadServlet extends HttpServlet {
     /**
      * @param filePartInputStream
      * @return fileOutPutStream as byte[]
-     * @throws IOException
-     * Skriver InputStream-en til en ByteArrayOutputStream ved hjelp av en while-løkke
-     * som blir returner i form av en array av bytes.
+     * @throws IOException Skriver InputStream-en til en ByteArrayOutputStream ved hjelp av en while-løkke
+     *                     som blir returner i form av en array av bytes.
      */
     private byte[] convertToByteArray(InputStream filePartInputStream) throws IOException {
         int bytesRead;
@@ -149,6 +169,10 @@ public class UploadServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        upload(request, response);
+        try {
+            upload(request, response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

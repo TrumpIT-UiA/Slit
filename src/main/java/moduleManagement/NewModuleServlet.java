@@ -7,6 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * @Author Vebjørn
@@ -21,7 +28,7 @@ public class NewModuleServlet extends HttpServlet {
      * og skriver informasjonen til et nytt objekt: Module.
      */
 
-    private void newModule(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void newModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
         if (request.getParameter("module") == null) {
             String errorMessage = "NB! Du må velge modulnummer!";
             request.getSession().setAttribute("errorMessage", errorMessage);
@@ -50,20 +57,29 @@ public class NewModuleServlet extends HttpServlet {
      * @param request
      * @param response
      */
-    private void getParameters(int moduleID, HttpServletRequest request, HttpServletResponse response) {
+    private void getParameters(int moduleID, HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
         String learningGoals = request.getParameter("learningGoals");
         String resources = request.getParameter("resources");
         String tasks = request.getParameter("tasks");
         String approvalCriteria = request.getParameter("approvalCriteria");
-        String deadline = request.getParameter("deadline");
+        String deadlineJSP = request.getParameter("deadline");
 
-        Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadline);
-        try {
-            saveToDB(m, response);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
+        
+        if (deadlineJSP.isEmpty()) {
+            String errorMessage = "ERROR: du må velge en dato for dead line!";
+            request.getSession().setAttribute("errorMessage", errorMessage);
+            response.sendRedirect("newModule.jsp");
+        } else {
+            Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadlineJSP);
+            try {
+                saveToDB(m, response);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
+
+
         }
     }
 
@@ -79,10 +95,10 @@ public class NewModuleServlet extends HttpServlet {
      */
 
     private void saveToDB(Module m, HttpServletResponse response) throws ServletException, IOException {
-        if (manager.saveModule(m)) {
+        if (manager.updateModule(m)) {
             response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
         } else {
-            if (manager.updateModule(m)) {
+            if (manager.saveModule(m)) {
                 response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
             } else {
                 response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
@@ -101,7 +117,11 @@ public class NewModuleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        newModule(request, response);
+        try {
+            newModule(request, response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -115,7 +135,11 @@ public class NewModuleServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        newModule(request, response);
+        try {
+            newModule(request, response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
 

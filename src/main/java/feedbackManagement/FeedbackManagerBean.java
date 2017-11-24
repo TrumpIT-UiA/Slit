@@ -19,11 +19,11 @@ public class FeedbackManagerBean implements FeedbackManagerLocal {
     }
 
     @Override
-    public Feedback getFeedback(int feedbackID) { return emFeedback.find(Feedback.class, feedbackID); }
+    public Feedback getFeedback(String primaryChunk) { return emFeedback.find(Feedback.class, primaryChunk); }
 
     @Override
     public boolean saveFeedback(Feedback f) {
-        Feedback existing = getFeedback(f.getFeedbackID());
+        Feedback existing = getFeedback(f.getPrimaryChunk());
         if (existing == null) {
             emFeedback.persist(f);
             emFeedback.flush();
@@ -35,10 +35,9 @@ public class FeedbackManagerBean implements FeedbackManagerLocal {
 
     @Override
     public boolean updateFeedback(Feedback f) {
-        Feedback existing = getFeedback(f.getFeedbackID());
+        Feedback existing = getFeedback(f.getPrimaryChunk());
         if (existing != null) {
-            emFeedback.remove(existing);
-            emFeedback.persist(f);
+            emFeedback.merge(f);
             emFeedback.flush();
         } else {
             return false;

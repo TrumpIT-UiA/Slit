@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * @Author Vebjørn
@@ -27,12 +34,11 @@ public class ViewModule extends HttpServlet {
      * @param request
      * @param response
      * @throws IOException
-     * @throws ServletException
-     * Sjekker hvilken av modulknappene som har blitt trykket i
-     * ModuleDescriptionAndDelivery
+     * @throws ServletException Sjekker hvilken av modulknappene som har blitt trykket i
+     *                          ModuleDescriptionAndDelivery
      */
 
-    private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ParseException {
 
         if (request.getParameter("module1") != null) {
             int knappTrykketInt = 1;
@@ -62,7 +68,7 @@ public class ViewModule extends HttpServlet {
      * @param response
      */
 
-    private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ParseException {
         Module module = em.getModule(knappTrykketInt);
         if (module != null) {
             String modulNummer = Integer.toString(knappTrykketInt);
@@ -72,17 +78,22 @@ public class ViewModule extends HttpServlet {
             String approvalCriterias = module.getApprovalCriteria();
             String tasks = module.getTasks();
 
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDateDeadline = LocalDate.parse(deadline, formatter);
+
             try {
-                skrivModulTilJSP(request, response, modulNummer, goals, resources, deadline, approvalCriterias, tasks);
+                skrivModulTilJSP(request, response, modulNummer, goals, resources, approvalCriterias, tasks, localDateDeadline);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ServletException e) {
                 e.printStackTrace();
             }
+
         } else {
             skrivNullTilJSP(request, response);
         }
     }
+
 
     /**
      * @param request
@@ -90,19 +101,19 @@ public class ViewModule extends HttpServlet {
      * @param modulNummer
      * @param goals
      * @param resources
-     * @param deadline
+     * @param localDateDeadLine
      * @param approvalCriterias
      * @param tasks
      * @throws IOException
      * @throws ServletException
      */
 
-    private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String deadline, String approvalCriterias, String tasks) throws IOException, ServletException {
+    private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String approvalCriterias, String tasks, LocalDate localDateDeadLine) throws IOException, ServletException {
 
         request.getSession().setAttribute("mNr", modulNummer);
         request.getSession().setAttribute("goals", goals);
         request.getSession().setAttribute("resources", resources);
-        request.getSession().setAttribute("deadline", deadline);
+        request.getSession().setAttribute("deadline", localDateDeadLine);
         request.getSession().setAttribute("approvalCriterias", approvalCriterias);
         request.getSession().setAttribute("tasks", tasks);
 
@@ -112,6 +123,7 @@ public class ViewModule extends HttpServlet {
         //slik at andre servlets kan hente inn verdien.
         HttpSession session = request.getSession();
         session.setAttribute("modulNummer", modulNummer);
+        session.setAttribute("deadline", localDateDeadLine);
     }
 
     private void skrivNullTilJSP(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -130,7 +142,11 @@ public class ViewModule extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        viewModule(request, response);
+        try {
+            viewModule(request, response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -144,7 +160,11 @@ public class ViewModule extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        viewModule(request, response);
+        try {
+            viewModule(request, response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
 
