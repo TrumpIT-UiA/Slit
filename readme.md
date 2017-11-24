@@ -76,7 +76,7 @@ String learningGoals = new String( request.getParameter( "learningGoals").getByt
 ```
 
 #### Ny pakke for å fikse line break:
-##### Dette __**må**__ brukes i forbindelse med TextArea
+Dette __**må**__ brukes i forbindelse med TextArea
 Brukes kun når du skal **skrive** til jsp (ikke hente parameteret fra jsp)
 
 ```java 
