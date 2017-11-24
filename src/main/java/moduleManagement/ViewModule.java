@@ -110,12 +110,13 @@ public class ViewModule extends HttpServlet {
 
     private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String approvalCriterias, String tasks, LocalDate localDateDeadLine) throws IOException, ServletException {
 
-        request.getSession().setAttribute("mNr", modulNummer);
-        request.getSession().setAttribute("goals", goals);
-        request.getSession().setAttribute("resources", resources);
+        Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+        request.getSession().setAttribute("mNr", stringLinebreak.LineBreak(modulNummer));
+        request.getSession().setAttribute("goals", stringLinebreak.LineBreak(goals));
+        request.getSession().setAttribute("resources", stringLinebreak.LineBreak(resources));
         request.getSession().setAttribute("deadline", localDateDeadLine);
-        request.getSession().setAttribute("approvalCriterias", approvalCriterias);
-        request.getSession().setAttribute("tasks", tasks);
+        request.getSession().setAttribute("approvalCriterias", stringLinebreak.LineBreak(approvalCriterias));
+        request.getSession().setAttribute("tasks", stringLinebreak.LineBreak(tasks));
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("ModuleDescriptionAndDelivery.jsp");
         requestDispatcher.forward(request, response);

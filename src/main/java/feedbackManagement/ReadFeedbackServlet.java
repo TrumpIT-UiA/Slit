@@ -65,8 +65,9 @@ public class ReadFeedbackServlet extends HttpServlet {
     }
 
     private void writeToJSP(HttpServletRequest req, HttpServletResponse res, String knappTrykketString, String feedbackcontent, int score, String timeWritten) throws ServletException, IOException {
+        Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
         req.getSession().setAttribute("modulnr", knappTrykketString);
-        req.getSession().setAttribute("feedbackContent", feedbackcontent);
+        req.getSession().setAttribute("feedbackContent", stringLinebreak.LineBreak(feedbackcontent));
         req.getSession().setAttribute("score", score);
         req.getSession().setAttribute("timewritten", timeWritten);
         res.sendRedirect("ReadFeedback.jsp");

@@ -58,20 +58,11 @@ public class NewModuleServlet extends HttpServlet {
         String approvalCriterias = new String( request.getParameter( "approvalCriterias").getBytes( "ISO-8859-1" ), "UTF-8" );
         String deadlineJSP = request.getParameter("deadline");
 
-        
         if (deadlineJSP.isEmpty()) {
             String errorMessage = "ERROR: du må velge en dato for dead line!";
             request.getSession().setAttribute("errorMessage", errorMessage);
             response.sendRedirect("newModule.jsp");
         } else {
-            /*
-            Diverse.ConvertTextToHR converter = new Diverse.ConvertTextToHR();
-            String rLearningGoals = converter.Replace(learningGoals);
-            String rResources = converter.Replace(resources);
-            String rTasks = converter.Replace(tasks);
-            String rApprovalCriterias = converter.Replace(approvalCriteria);
-            */
-
 
             Module m = new Module(moduleID, learningGoals,resources, tasks, approvalCriterias, deadlineJSP);
             try {

@@ -1,13 +1,12 @@
 <%@ page import="users.User" %>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ page language="java" %>
 <% User user = (User) session.getAttribute("user");%>
 <!-- Hentet fra https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_webpage&stacked=h -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <title>Feedback Til Moduler</title>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/Slit/MainPageTemplate.css">
     <script src="functions.js"></script>

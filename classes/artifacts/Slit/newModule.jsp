@@ -53,7 +53,7 @@
         Hjelpemidler: <br>
         <textarea name="resources" form="newM" placeholder="List opp hjelpemidler her"></textarea> <br>
         Approval criteria: <br>
-        <textarea name="approvalCriteria" form="newM" placeholder="Skriv om approval criterias her"></textarea>
+        <textarea name="approvalCriterias" form="newM" placeholder="Skriv om approval criterias her"></textarea>
         <br>
         Deadline: <br>
         <input type="date" name="deadline" form="newM"><p> NB! Datoen vil bli skrevet ut i følgende format: yyyy-mm-dd</p><br>
