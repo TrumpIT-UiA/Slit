@@ -36,7 +36,7 @@ Skriv så følgende i jsp:
    <c:remove var="messageJSP" scope="session"/>
 ```
 
-#### For å legge ut et parameter i session
+#### For å legge ut et parameter i session, samt hente fra session:
 Hensikten med dette er å kunne sende parametere mellom servlets.
 <br>NB! Kan ligge flere verdier i session, så vær påpasselig med navnet på attributten.
 
@@ -53,7 +53,7 @@ HttpSession session = request.getSession();
 String modulNummer = (String) session.getAttribute("exampleParameter");
 ```
 
-#### For å legge til 'Go to top'-knapp
+#### For å legge til 'Go to top'-knapp:
 Nesten all kode ligger i MainPageTemplate.css og functions.js. 
 Trenger kun én linje for å legge til knappen i jsp-en (legg nederst rett før \</body>\)
 
@@ -75,8 +75,8 @@ For å få knappen til å fungere må du linke til scriptet i \<head>:
 String learningGoals = new String( request.getParameter( "learningGoals").getBytes( "ISO-8859-1" ), "UTF-8" ); 
 ```
 
-#### Ny pakke for å fikse line break
-##### Dette må brukes i forbindelse med TextArea
+#### Ny pakke for å fikse line break:
+##### Dette __**må**__ brukes i forbindelse med TextArea
 Brukes kun når du skal **skrive** til jsp (ikke hente parameteret fra jsp)
 
 ```java 
