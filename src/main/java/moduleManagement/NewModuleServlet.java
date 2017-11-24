@@ -8,12 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * @Author Vebjørn
@@ -58,10 +52,10 @@ public class NewModuleServlet extends HttpServlet {
      * @param response
      */
     private void getParameters(int moduleID, HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
-        String learningGoals = request.getParameter("learningGoals");
-        String resources = request.getParameter("resources");
-        String tasks = request.getParameter("tasks");
-        String approvalCriteria = request.getParameter("approvalCriteria");
+        String learningGoals = new String( request.getParameter( "learningGoals").getBytes( "ISO-8859-1" ), "UTF-8" );
+        String resources = new String( request.getParameter( "resources").getBytes( "ISO-8859-1" ), "UTF-8" );
+        String tasks = new String( request.getParameter( "tasks").getBytes( "ISO-8859-1" ), "UTF-8" );
+        String approvalCriterias = new String( request.getParameter( "approvalCriterias").getBytes( "ISO-8859-1" ), "UTF-8" );
         String deadlineJSP = request.getParameter("deadline");
 
         
@@ -70,8 +64,18 @@ public class NewModuleServlet extends HttpServlet {
             request.getSession().setAttribute("errorMessage", errorMessage);
             response.sendRedirect("newModule.jsp");
         } else {
-            Module m = new Module(moduleID, learningGoals, resources, tasks, approvalCriteria, deadlineJSP);
+            /*
+            Diverse.ConvertTextToHR converter = new Diverse.ConvertTextToHR();
+            String rLearningGoals = converter.Replace(learningGoals);
+            String rResources = converter.Replace(resources);
+            String rTasks = converter.Replace(tasks);
+            String rApprovalCriterias = converter.Replace(approvalCriteria);
+            */
+
+
+            Module m = new Module(moduleID, learningGoals,resources, tasks, approvalCriterias, deadlineJSP);
             try {
+
                 saveToDB(m, response);
             } catch (IOException e) {
                 e.printStackTrace();

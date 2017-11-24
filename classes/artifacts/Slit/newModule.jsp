@@ -3,7 +3,7 @@
 <% User user = (User) session.getAttribute("user");%>
 <!-- Hentet fra https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_webpage&stacked=h -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <title>Modulbeskrivelse & Innlevering</title>
     <meta charset="utf-8">
@@ -34,7 +34,7 @@
     <h4>Dersom modulen allerede finnes vil kun de feltene du fyller ut bli med i den nye modulenbeskrivelsen.</h4>
     <h3>Eksempel: Hvis du endrer alle feltene bortsett fra "Learning goals" vil ikke "Learning goals" bli oppdatert i
         systemet og derfor vil den tidligere verdien vil bli vist.</h3>
-    <form action="/Slit/newModule" method="post" id="newM">
+    <form action="/Slit/newModule" method="post" id="newM" accept-charset="UTF-8">
         <label><input type="radio" name="module" value="1"> Modul 1</label><br>
         <label><input type="radio" name="module" value="2"> Modul 2</label><br>
         <label><input type="radio" name="module" value="3"> Modul 3</label><br>

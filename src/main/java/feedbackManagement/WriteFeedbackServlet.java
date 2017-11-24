@@ -31,14 +31,10 @@ public class WriteFeedbackServlet extends HttpServlet {
         } else if (req.getParameter("module").equals("3")) {
             String modulNr = "3";
             getParametersJSP(modulNr, req, res);
-        } else if (req.getParameter("module").equals("4"))
-
-        {
+        } else if (req.getParameter("module").equals("4")) {
             String modulNr = "4";
             getParametersJSP(modulNr, req, res);
-        } else if (req.getParameter("module").equals("5"))
-
-        {
+        } else if (req.getParameter("module").equals("5")) {
             String modulNr = "5";
             getParametersJSP(modulNr, req, res);
         }

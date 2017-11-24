@@ -3,10 +3,10 @@
 <% User user = (User) session.getAttribute("user");%>
 <!-- Hentet fra https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_webpage&stacked=h -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <title>Modulbeskrivelse & Innlevering</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/Slit/MainPageTemplate.css">
     <script src="functions.js"></script>
@@ -61,6 +61,7 @@
 
             <h3>Deadline:</h3>
             <p>${deadline}</p>
+            <p>Denne fristen byter at det er mulig å lære fram til 23:59:59 denne datoen</p>
             <c:remove var="deadline" scope="session"/>
 
             <h3>Approval Criterias: </h3>

@@ -64,4 +64,10 @@ For å få knappen til å fungere må du linke til scriptet i \<head>:
 ```
 
 #### Skive javakode direkte i jsp (Marius hadde et godt eksempel på dette):
- 
+
+#### Sørge for at dataene fra formen har UTF-8 encoding:
+
+```java
+String learningGoals = new String( request.getParameter( "learningGoals").getBytes( "ISO-8859-1" ), "UTF-8" ); 
+```
+

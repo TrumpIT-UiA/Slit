@@ -1,5 +1,6 @@
 <%@ page import="users.User" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%@ page language="java" %>
 <% User user = (User) session.getAttribute("user");%>
 <!-- Hentet fra https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_webpage&stacked=h -->
 <!DOCTYPE html>
