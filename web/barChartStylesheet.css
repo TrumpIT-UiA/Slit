@@ -5,12 +5,12 @@
     width: 3cm;
     height: 50px;
     z-index: 100;
-    padding: 30px 30px 30px 30px;
     display: inline-block;
 }
 
 #bar1 {
     background-color: #55ff00;
+    padding: 30px 30px 30px 30px;
 }
 
 #bar2 {
