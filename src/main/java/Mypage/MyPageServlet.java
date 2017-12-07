@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 /**
  * @author Nicolay
  * Opprettet 11.13.2017
- * Sist oppdatert av:      dato:
+ * Sist oppdatert av: Nicolay Leknes dato: 07/12/2017
  *Servlet for å håndtere mypage
  */
 @WebServlet(name = "MyPageServlet", urlPatterns = {"/MyPage"})
