@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="navbar">
-    <a href="/Slit/ModuleDescriptionAndDelivery.jsp">Slit</a>
+    <a href="/Slit/ModuleDescriptionAndDelivery.jsp">&Sopf;&Lopf;&Iopf;&Topf;</a>
     <a href="/Slit/Admin/opprettAdmin.jsp">Admin</a>
     <a class="active" href="/Slit/ModuleDescriptionAndDelivery.jsp">Moduler</a>
     <div class="knapperHoyre">
@@ -33,14 +33,14 @@
     <form action="ReadFeedback.jsp">
         <input type="submit" id="sidebarFeedback" class="sidebarFeedback">
     </form>
-    <form action="Progresjonsplan">
+    <form action="/Slit/ProgressionPlan">
         <input type="submit" id="sidebarProgPlan" class="sidebarProgPlan">
     </form>
 </div>
 <main class="main" style="margin-left: 40px">
     <h1>Feedback</h1>
     <h2 >Trykk p&aring; en knapp for &aring; vise feedback til din leverte modul</h2>
-    <h3>${error}</h3>
+    <h3>${feedbackError}</h3>
     <form action="/Slit/ReadFeedback" method="post">
         <a href="ReadFeedback.jsp">
             <input type="submit" name="module1" value="Modul 1"/>
@@ -58,7 +58,7 @@
 
         <h4>Feedback:</h4>
         <p>${feedbackContent}</p>
-        <c: remove var="feedbackContent" scope="session"/>
+        <c: remove var="comment" scope="session"/>
 
         <h4>Tidspunkt feedback ble lastet opp: </h4><p>${timewritten}</p>
         <c: remove var="timewritten" scope="session"/>

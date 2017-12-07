@@ -80,11 +80,26 @@ Dette __må__ brukes i forbindelse med TextArea <br>
 Brukes kun når du skal **skrive** til jsp (ikke hente parameteret fra jsp)
 
 ```java 
-// "Diverse" er en pakke jeg har selv har fikset
+// Diverse" er en pakke jeg har selv har fikset
 // Tanken var en pakke for mer generiske metoder og felter 
-
 Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
 request.getSession().setAttribute("learningGoals", stringLinebreak.LineBreak(learningGoals));
+
 ```
+
+#### Hvordan skrive spesielle symboler i HTML:
+
+>`&` (ampersand) becomes `&amp`.<br>
+`"` (double quote) becomes `&quot` when ENT_NOQUOTES is not set.<br>
+`'` (single quote) becomes `&#039` only when ENT_QUOTES is set.<br>
+`<` (less than) becomes `&lt`.<br>
+>`>` (greater than) becomes `&gt`.
+
+#### For å gjøre endringer midt i en linje:
+
+```html
+<span style="font-family: Wingdings">&#255;</span> + D | show/hide desktop<br>
+```
+
 
 

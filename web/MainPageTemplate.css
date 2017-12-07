@@ -20,7 +20,7 @@
     width: 220px;
     background-color: #aeaeae;
     height: 100%;
-    top: 40px;
+    top: 50px;
     z-index: 50;
 }
 .sidenavContent {
@@ -195,6 +195,7 @@ input[type=date] {
 .knapperHoyre {
     float: right;
     margin-right: 7px;
+    margin-top: 3px;
 }
 
 
@@ -262,6 +263,60 @@ textarea {
     border-style: double solid double solid;
     border-color: #1f1f20;
     width: 78%;
-
 }
 
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline;
+    padding: 6px 10px 6px 10px;
+    border-radius: 5px;
+    margin-right: 2px;
+    border-style: double; /* If you want dots under the hoverable text */
+    border-color: #1f1f20;
+    background-color: #3f3f3f;
+    color: white;
+    width: 120px;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    padding: 5px 5px 5px 5px;
+    border-radius: 6px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -70px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 1s;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.tooltip:hover {
+    background-color: #555555;
+    cursor: help;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}

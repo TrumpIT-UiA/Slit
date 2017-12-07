@@ -1,5 +1,6 @@
 package feedbackManagement;
 
+import Diverse.DataRelated;
 import users.User;
 
 import javax.ejb.EJB;
@@ -42,7 +43,8 @@ public class WriteFeedbackServlet extends HttpServlet {
 
     private void getParametersJSP(String modulNr, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String feedback = req.getParameter("feedback");
+        String comment = new String( req.getParameter( "comment").getBytes( "ISO-8859-1" ), "UTF-8" );
+        String hiddenComment = new String( req.getParameter("hiddenComment").getBytes("ISO-8859-1"),"UTF-8");
         String score = req.getParameter("score");
         int scoreInt = Integer.parseInt(score);
 
@@ -51,11 +53,10 @@ public class WriteFeedbackServlet extends HttpServlet {
         String currentUserEmail = loggedInUser.getEmail();
         String primaryChunk = currentUserEmail + modulNr + "fb";
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-        Date dateobj = new Date();
-        String timeWritten = df.format(dateobj);
+        DataRelated dr = new DataRelated();
+        String timeWritten = dr.getCurrentTimeString();
 
-        Feedback f = new Feedback(primaryChunk, feedback, scoreInt, timeWritten);
+        Feedback f = new Feedback(primaryChunk, comment, hiddenComment, scoreInt, timeWritten);
         try {
             saveToDB(f, req, res);
         } catch (IOException ioe) {
@@ -70,13 +71,13 @@ public class WriteFeedbackServlet extends HttpServlet {
 
     private void saveToDB(Feedback f, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         if (feedbackml.updateFeedback(f)) {
-            req.getSession().setAttribute("feedbackContent", f.getFeedbackContent());
+            req.getSession().setAttribute("comment", f.getFeedbackContent());
             req.getSession().setAttribute("score", f.getScore());
             req.getSession().setAttribute("timeWritten", f.getTimeWritten());
             res.sendRedirect("/Slit/ReadFeedback.jsp");
         } else {
             feedbackml.saveFeedback(f);
-                req.getSession().setAttribute("feedbackContent", f.getFeedbackContent());
+                req.getSession().setAttribute("comment", f.getFeedbackContent());
                 req.getSession().setAttribute("score", f.getScore());
                 req.getSession().setAttribute("timeWritten", f.getTimeWritten());
                 res.sendRedirect("/Slit/ReadFeedback.jsp");

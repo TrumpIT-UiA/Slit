@@ -71,18 +71,18 @@ public class ReadFeedbackServlet extends HttpServlet {
     }
 
     private void writeToJSP(HttpServletRequest req, HttpServletResponse res, String knappTrykketString, String feedbackcontent, int score, String timeWritten) throws ServletException, IOException {
-        req.getSession().setAttribute("error", null);
+        req.getSession().setAttribute("feedbackError", null);
         req.getSession().setAttribute("modulnr", knappTrykketString);
-        req.getSession().setAttribute("feedbackContent", stringLinebreak.LineBreak(feedbackcontent));
+        req.getSession().setAttribute("comment", stringLinebreak.LineBreak(feedbackcontent));
         req.getSession().setAttribute("score", score);
         req.getSession().setAttribute("timewritten", timeWritten);
         res.sendRedirect("ReadFeedback.jsp");
     }
     private void writeNullToJSP(HttpServletRequest req, HttpServletResponse res, String knappTrykketString) throws IOException {
-        String error = "Det skjedde en feil :(<BR>Vi fant dessverre ingenting i databasen.<BR>Tips: Spør læreren om han/hun har lagt ut feedback til din modul nr. " + knappTrykketString + ".";
-        req.getSession().setAttribute("error", error);
+        String feedbackError = "Det skjedde en feil ¯\\_(&#x30C4;)_/¯<BR>Vi fant dessverre ingenting i databasen.<BR>Tips: Spør læreren om han/hun har lagt ut feedback til din modul nr. " + knappTrykketString + ".";
+        req.getSession().setAttribute("feedbackError", feedbackError);
         req.getSession().setAttribute("modulnr", null);
-        req.getSession().setAttribute("feedbackContent", null);
+        req.getSession().setAttribute("comment", null);
         req.getSession().setAttribute("score", null);
         req.getSession().setAttribute("timewritten", null);
         res.sendRedirect("ReadFeedback.jsp");

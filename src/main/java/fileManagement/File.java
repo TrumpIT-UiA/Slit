@@ -27,17 +27,21 @@ public class File implements Serializable {
     @Column
     private String filename;
     @Column
-    private long deliveredTimeMillis;
+    private String comment;
+    @Column
+    private String deliveredTime;
     @Column
     private byte[] fileContent;
 
-    public File(String mergedNrEmail,String userEmailFile, String modulNr, String filename, long deliveredTimeMillis, byte[] fileContent, boolean feedback) {
+    public File(String mergedNrEmail,String userEmailFile, String modulNr, String filename, String deliveredTime, byte[] fileContent, String comment) {
         this.mergedNrEmail = mergedNrEmail;
         this.userEmailFile = userEmailFile;
         this.modulNr = modulNr;
         this.filename = filename;
-        this.deliveredTimeMillis = deliveredTimeMillis;
+        this.deliveredTime = deliveredTime;
+        this.comment = comment;
         this.fileContent = fileContent;
+
     }
     public File(){
         //Denne "constructoren" skal være tom...
@@ -61,10 +65,14 @@ public class File implements Serializable {
         this.filename = filename;
     }
 
-    public long getDeliveredTimeMillis() { return deliveredTimeMillis;
+    public String getDeliveredTime() { return deliveredTime;
     }
 
     // Getter for innhold i fil
     public byte[] getFileContent() { return fileContent; }
     public void setFileContent(byte[] fileContent) { this.fileContent = fileContent; }
+
+    public String getComment() { return comment; }
+
+    public void setComment(String comment) { this.comment = comment; }
 }

@@ -15,15 +15,17 @@ public class Feedback {
     @Column
     private int feedbackIndex;
     @Column
-    private String feedbackContent;
+    private String comment;
+    @Column
+    private String hiddenComment;
     @Column
     private int score;
     @Column
     private String timeWritten;
 
-    public Feedback(String primaryChunk, String feedbackContent, int score, String timeWritten) {
+    public Feedback(String primaryChunk, String comment, String hiddenComment, int score, String timeWritten) {
         this.primaryChunk = primaryChunk;
-        this.feedbackContent = feedbackContent;
+        this.comment = comment;
         this.score = score;
         this.timeWritten = timeWritten;
 
@@ -36,13 +38,17 @@ public class Feedback {
 
     public int getFeedbackIndex() { return feedbackIndex; }
 
-    public String getFeedbackContent() { return feedbackContent; }
+    public String getFeedbackContent() { return comment; }
 
-    public void setFeedbackContent(String feedbackContent) { this.feedbackContent = feedbackContent; }
+    public void setFeedbackContent(String feedbackContent) { this.comment = comment; }
 
     public int getScore() { return score; }
 
     public void setScore(int score) { this.score = score; }
 
     public String getTimeWritten() { return timeWritten; }
+
+    public String getHiddenComment() { return hiddenComment; }
+
+    public void setHiddenComment(String hiddenComment) { this.hiddenComment = hiddenComment; }
 }

@@ -2,6 +2,7 @@ package fileManagement;
 
 //Servlet-importer
 
+import Diverse.DataRelated;
 import users.User;
 
 import javax.servlet.ServletException;
@@ -70,21 +71,16 @@ public class UploadServlet extends HttpServlet {
 
                         filePartInputStream = filePart.getInputStream();
 
-
-                        /**
-                         * Sjekker deadline mot nåtid
-                         */
-
-
                         String modulNummer = (String) session.getAttribute("modulNummer");
                         User loggedInUser = (User) session.getAttribute("loggedInUser");
+                        String comment = request.getParameter("studComment");
                         String currentUserEmail = loggedInUser.getEmail();
                         String mergedNrEmail = currentUserEmail + modulNummer;
                         byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
-                        long deliveredTimeMillis = System.currentTimeMillis();
-                        boolean feedback = false;
+                        DataRelated dr = new DataRelated();
+                        String deliveredTime = dr.getCurrentTimeString();
 
-                        File file = new File(mergedNrEmail, loggedInUser.getEmail(), modulNummer, fileName, deliveredTimeMillis, fileContent, feedback);
+                        File file = new File(mergedNrEmail, loggedInUser.getEmail(), modulNummer, fileName, deliveredTime, fileContent, comment);
 
                         /**
                          * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile
@@ -92,7 +88,7 @@ public class UploadServlet extends HttpServlet {
                          * for å se kommunikasjonen med databasen.
                          */
                         if (fml.updateFile(file, request, response)) {
-                            String message = "Filen din har blitt oppdatert.\nInfo om ny modul: \nFilnavn: " + file.getFilename();
+                            String message = "Filen din har blitt oppdatert.<BR>Info om ny innlevering:<BR>Filnavn: " + file.getFilename() + "<BR>Filstørrelse: " + filePart.getSize() + " bytes" + "<BR>Levert: " + dr.getCurrentTimeString() + "<BR>Kommentar: " + comment;
                             skrivUt(message, request, response);
                         } else {
                             if (fml.saveFile(file)) {

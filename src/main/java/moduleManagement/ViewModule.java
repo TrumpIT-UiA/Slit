@@ -111,10 +111,12 @@ public class ViewModule extends HttpServlet {
     private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String approvalCriterias, String tasks, LocalDate localDateDeadLine) throws IOException, ServletException {
 
         Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+        request.getSession().setAttribute("message", null);
+        request.getSession().setAttribute("moduleError",null);
         request.getSession().setAttribute("mNr", stringLinebreak.LineBreak(modulNummer));
         request.getSession().setAttribute("goals", stringLinebreak.LineBreak(goals));
         request.getSession().setAttribute("resources", stringLinebreak.LineBreak(resources));
-        request.getSession().setAttribute("deadline", localDateDeadLine);
+        request.getSession().setAttribute("deadline", "23:59 " + localDateDeadLine);
         request.getSession().setAttribute("approvalCriterias", stringLinebreak.LineBreak(approvalCriterias));
         request.getSession().setAttribute("tasks", stringLinebreak.LineBreak(tasks));
 
@@ -128,8 +130,9 @@ public class ViewModule extends HttpServlet {
     }
 
     private void skrivNullTilJSP(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String error = "- Denne modulen har ikke blitt lastet opp ennå";
-        request.getSession().setAttribute("mNr", error);
+        String moduleError = "&#9731;";
+        request.getSession().setAttribute("moduleError", "Denne modulen har ikke blitt lastet opp ennå &#9978; &#9975;");
+        request.getSession().setAttribute("mNr", moduleError);
         request.getSession().setAttribute("goals", "");
         request.getSession().setAttribute("resources", "");
         request.getSession().setAttribute("deadline", "");
