@@ -1,0 +1,3 @@
+<jboss-web>
+    <security-domain>Slit</security-domain>
+</jboss-web>
