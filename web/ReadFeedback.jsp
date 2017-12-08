@@ -57,7 +57,7 @@
         <c: remove var="score" scope="session"/>
 
         <h4>Feedback:</h4>
-        <p>${feedbackContent}</p>
+        <p>${comment}</p>
         <c: remove var="comment" scope="session"/>
 
         <h4>Tidspunkt feedback ble lastet opp: </h4><p>${timewritten}</p>

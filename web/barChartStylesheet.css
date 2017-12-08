@@ -1,38 +1,44 @@
-.bars {
+.diagramWindow {
     position: absolute;
-    left: 200px;
+    left: 400px;
     top: 200px;
-    width: 3cm;
-    height: 50px;
     z-index: 100;
-    display: inline-block;
+}
+
+.bars {
+    width: 1cm;
 }
 
 #bar1 {
     background-color: #55ff00;
-    padding: 30px 30px 30px 30px;
+    float: left;
 }
 
 #bar2 {
 
     background-color: #af0015;
     left: 50px;
+    float: right;
+    padding: 0;
 
 }
 
 #bar3 {
     background-color: #00bfdd;
     left: 100px;
+    float: right;
 
 }
 
 #bar4 {
     background-color: #ff01e6;
     left: 150px;
+    float: right;
 
 }
 
 #bar5 {
     background-color: #1203ff;
     left: 200px;
+    float: right;
 }

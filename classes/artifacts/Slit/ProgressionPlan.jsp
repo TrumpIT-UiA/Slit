@@ -1,6 +1,7 @@
 <%@ page import="users.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% User user = (User) session.getAttribute("user");%>
+<% int p1 = (Integer) session.getAttribute("progression1"); %>
 
 <!-- Hentet fra https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_webpage&stacked=h -->
 <!DOCTYPE html>
@@ -35,17 +36,17 @@
     <form action="ReadFeedback.jsp">
         <input type="submit" id="sidebarFeedback" class="sidebarFeedback">
     </form>
-    <form action="/Slit/ProgressionPlan" method="post">
+    <form action="ProgressionPlan.jsp" method="post">
         <input type="submit" id="sidebarProgPlan" class="sidebarProgPlan">
     </form>
 </div>
 <main style="margin-top: 200px; margin-left: 500px;">
-    <div class="bars">
-        <div id="bar1">Modul 1</div>
-        <div id="bar2">Modul 2</div>
-        <div id="bar3">Modul 3</div>
-        <div id="bar4">Modul 4</div>
-        <div id="bar5">Modul 5</div>
+    <div class="diagramWindow">
+        <div id="bar1" class="bars" style="height: <%int p11 = p1;%>cm">Modul 1</div>
+        <div id="bar2" class="bars">Modul 2</div>
+        <div id="bar3" class="bars">Modul 3</div>
+        <div id="bar4" class="bars">Modul 4</div>
+        <div id="bar5" class="bars">Modul 5</div>
     </div>
 </main>
 <button onclick="topFunction()" id="goToTop" title="Go to top">Gå til toppen</button>

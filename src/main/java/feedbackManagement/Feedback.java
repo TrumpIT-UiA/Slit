@@ -26,6 +26,7 @@ public class Feedback {
     public Feedback(String primaryChunk, String comment, String hiddenComment, int score, String timeWritten) {
         this.primaryChunk = primaryChunk;
         this.comment = comment;
+        this.hiddenComment = hiddenComment;
         this.score = score;
         this.timeWritten = timeWritten;
 
