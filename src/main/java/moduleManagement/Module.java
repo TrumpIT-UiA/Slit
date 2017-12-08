@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Klasse som skal brukes av ModuleManagerBean for å behandle modulobjekter.
@@ -33,7 +35,7 @@ public class Module implements Serializable {
         this.deadline = deadline;
 
     }
-    protected Module(){
+    public Module(){
 
     }
 
