@@ -1,45 +1,100 @@
-<%@ page import="users.User" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% User user = (User) session.getAttribute("user");%>
-<!-- Hentet fra https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_webpage&stacked=h -->
 <!DOCTYPE html>
-<html lang="no">
+<!--
+Interphase by TEMPLATED
+templated.co @templatedco
+Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html lang="en">
 <head>
-    <title>Modulbeskrivelse & Innlevering</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/Slit/Templates/CSS/MainPageTemplate.css">
-    <script src="Templates/Javascript/goToTop.js"></script>
+    <title>Slit</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+
+    <noscript>
+        <link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-xlarge.css" />
+    </noscript>
 </head>
-<body>
-<div class="navbar">
-    <a href="/SlitModuleDescriptionAndDelivery.jsp">&Sopf;&Lopf;&Iopf;&Topf;</a>
-    <a href="Admin/opprettAdmin.jsp">Admin</a>
-    <a class="active" href="/Slit/ModuleDescriptionAndDelivery.jsp">Moduler</a>
-    <div class="knapperHoyre">
-        <a href="MyPage">Min side</a>
-        <a href="Logout">Logout</a>
+
+<body class="landing">
+
+<!-- Header -->
+<header id="header">
+    <h1><a href="/Slit/App/welcome.jsp">Slit</a></h1>
+    <nav id="nav">
+        <ul>
+            <li><a href=#>Moduler</a></li>
+            <li><a href="/Slit/Admin/AdminPage.jsp">Admin</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<!-- Banner -->
+<section id="banner">
+    <h2>Velkommen til Slit</h2>
+    <p>Plassen for alt modulrelatert</p>
+</section>
+
+<!-- Two, De vanlige bildene nederst -->
+<section id="two" class="wrapper style2 align-center">
+    <div class="container">
+        <header>
+            <h2>Hva ønsker du å gjøre i dag?</h2>
+            <p>Her kan du levere eller ser dine leverte moduler</p>
+        </header>
+
+        <div class="row">
+            <section class="feature 6u 12u$(small)">
+                <img class="image fit" src="images/Open24.jpg" alt="" />
+                <h3 class="title">Levere modul, vi er alltid åpne ;)</h3>
+                <p></p>
+            </section>
+
+            <section class="feature 6u 12u$(small)">
+                <img class="image fit" src="images/Feedback.jpg" alt="" />
+                <h3 class="title">Tilbakemelding</h3>
+                <p></p>
+            </section>
+
+            <section class="feature 6u 12u$(small)">
+                <img class="image fit" src="images/Road.jpg" alt="" />
+                <h3 class="title">Veien Videre</h3>
+                <p></p>
+            </section>
+        </div>
     </div>
-</div>
-<div class="sidenav">
-    <label for="sidebarFeedback" class="sidenavContent">
-        Feedback
-    </label>
-    <br>
-    <label for="sidebarProgPlan" class="sidenavContent" style="margin-bottom: 20px;">
-        Din progresjon
-    </label>
-    <form action="/Slit/ReadFeedback.jsp">
-        <input type="submit" id="sidebarFeedback" class="sidebarFeedback">
-    </form>
-    <form action="/Slit/ProgressionPlan" method="post">
-        <input type="submit" id="sidebarProgPlan" class="sidebarProgPlan">
-    </form>
-</div>
-<main class="main">
-    <a>
-        <button onclick="topFunction()" id="goToTop" title="Go to top">Gå til toppen</button>
-    </a>
-</main>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <section class="4u 6u(medium) 12u$(small)">
+                <h3>Hei der</h3>
+                <p>Vi håper du er fornøyd med systemet vårt ;)</p>
+            </section>
+            <section class="4u$ 12u$(medium) 12u$(small)">
+                <h3>Kontakt oss</h3>
+                <ul class="icons">
+                    <li><a href="https://github.com/TrumpIT-UiA/Slit" class="icon rounded fa-github"><span class="label">LinkedIn</span></a></li>
+                </ul>
+            </section>
+        </div>
+
+        <ul class="copyright">
+            <li>Design: <a href="http://templated.co">Templated</a></li>
+            <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>
