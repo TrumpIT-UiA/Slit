@@ -25,7 +25,7 @@ hs_err_pid*
 .idea/*
 
 #Out folder
-out/*
+/out/*
 
 #IML file
 *.iml
