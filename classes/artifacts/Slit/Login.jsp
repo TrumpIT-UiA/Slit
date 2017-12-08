@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -9,13 +8,18 @@
 </head>
 <body>
 
-<h1>Vennligst oppgi din brukerinformasjon</h1>
-<form action="/Slit/NewStudent" method="post">
-    E-post: <input name="email" type="text"><br>
+<h1>Velkommen til Slit, vennligst logg inn</h1>
+<form action="/Slit/Login" method="post">
+    Email: <input name="email" type="text"><br>
+
     Passord: <input name="passWord" type="password"><br>
-    Fornavn: <input name="firstName" type="text"><br>
-    Etternavn: <input name="lastName" type="text"><br>
-    <input type="submit" value="Lagre">
+
+
+    <input type="submit" value="Logg inn">
+</form>
+
+<form action="/Slit/Download" method="post">
+    <input type="submit" value="Last ned">
 </form>
 </body>
 </html>
