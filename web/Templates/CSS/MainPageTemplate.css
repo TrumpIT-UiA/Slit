@@ -1,17 +1,51 @@
- /* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
+/* Remove the navbar's default margin-bottom and rounded borders */
+
+/* Updated version temp
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.rowContent {
+    height: 100%;
+    float: left;
 }
 
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 900px}
+/*
+-------------------------------------------------
+    CSS for sidemenyen
+-------------------------------------------------
+*/
 
 /* Set gray background color and 100% height */
 .sidenav {
+    position: fixed;
     padding-top: 20px;
-    background-color: #f1f1f1;
+    width: 220px;
+    background-color: #aeaeae;
     height: 100%;
+    top: 50px;
+    z-index: 50;
+}
+.sidenavContent {
+    width: 94%;
+    z-index: 51;
+    padding: 20px 4px 20px 0;
+    color: #f1f1f1;
+    background-color: #252525;
+    border-style: groove;
+    border-color: #fffbf7;
+    display: block;
+    text-align: center;
+}
+.sidenavContent:hover {
+    color: #000000;
+    background-color: #d6d6d6;
+    text-shadow: #1f1f20;
+    transition: all 0.3s ease 0s;
+}
+
+.sidebarFeedback[type=submit] {
+    display: none;
+}
+.sidebarProgPlan[type=submit] {
+    display: none;
 }
 
 /* Set black background color, white text and some padding */
@@ -22,10 +56,267 @@ footer {
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
+
 @media screen and (max-width: 767px) {
     .sidenav {
         height: auto;
         padding: 15px;
     }
-    .row.content {height:auto;}
+
+    .rowContent {
+        height: auto;
+    }
+}
+
+/*
+-------------------------------------------------
+    CSS for submit-knappene
+-------------------------------------------------
+*/
+
+input[type=submit] {
+    background-color: #474747;
+    color: #fffbf7;
+    padding: 10px 10px 10px 10px;
+    border: 5px white;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    width: 90px;
+    font-size: medium;
+    font-family: 'Times New Roman';
+    top: 11px;
+    transition: all 0.3s ease 0s;
+    z-index: 49;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 2px 3px 5px #474747;
+}
+
+input[type=submit]:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+input[type=reset] {
+    background-color: #474747;
+    color: #fffbf7;
+    padding: 10px 10px 10px 10px;
+    border: 5px white;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    width: 90px;
+    font-size: medium;
+    font-family: 'Times New Roman';
+    top: 11px;
+    transition: all 0.3s ease 0s;
+}
+input[type=reset]:hover {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 2px 3px 5px #474747;
+}
+
+input[type=file] {
+    display: none;
+}
+input[type=date] {
+    font-family: "Times New Roman";
+    font-size: medium;
+}
+/*
+-------------------------------------------------
+    custom-file-upload for "choose file"-knappen
+-------------------------------------------------
+
+*/
+.custom-file-upload:hover {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 2px 3px 5px #474747;
+}
+
+.custom-file-upload {
+    background-color: #474747;
+    color: #fffbf7;
+    padding: 12px 12px 12px 12px;
+    border: 2px;
+    top: 15px;
+    border-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    width: 90px;
+    font-size: medium;
+    font-family: 'Times New Roman';
+    transition: all 0.3s ease 0s;
+}
+
+/*
+-------------------------------------------------
+    CSS for top menu bar
+-------------------------------------------------
+*/
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    overflow: inherit;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 100; /* z-akse */
+    text-decoration: none;
+
+
+}
+.navbar a:hover{ /* Forandrer bakgrunnsfargen til alle a-attributter (Home, Admin, etc.) ved hovring*/
+    background-color: black;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.navbar a { /* Styling */
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 20px 16px;
+
+}
+
+/*
+-------------------------------------------------
+    Position to right buttons in navbar
+-------------------------------------------------
+*/
+.knapperHoyre {
+    float: right;
+    margin-right: 7px;
+    margin-top: 3px;
+}
+
+
+#goToTop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 10px; /* Place the button 10px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #474747; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px; /* Rounded corners */
+    font-size: medium; /* Medium font size*/
+    font-family: "Times New Roman"; /* Decides font-family*/
+    transition: all 0.3s ease 0s;
+}
+
+#goToTop:hover {
+    background-color: #1f1f20; /* Add a dark-grey background on hover */
+    box-shadow: 2px 3px 5px #474747;
+}
+
+textarea {
+    width: 500px;
+    height: 100px;
+    font-size: medium;
+    font-family: "Times New Roman";
+}
+#comment {
+    width: 500px;
+    height: 25px;
+    font-size: medium;
+    font-family: "Times New Roman";
+    margin-bottom: 20px;
+}
+/*
+-------------------------------------------------
+    Main er alt bortsett fra sidebar og navbar
+-------------------------------------------------
+*/
+
+.main {
+    position: relative;
+    margin-left: auto;
+    margin-bottom: auto;
+    left: 220px;
+    top: 60px;
+    font-size: medium;
+    font-family: "Times New Roman";
+}
+.modulInfo {
+    margin-left: 40px;
+    margin-right: 120px;
+
+}
+
+.opplastningsseksjon {
+    position: relative;
+    background-color: #d6d6d6;
+    padding: 20px 0 2px 40px;
+    border-style: double solid double solid;
+    border-color: #1f1f20;
+    width: 78%;
+}
+
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline;
+    padding: 6px 10px 6px 10px;
+    border-radius: 5px;
+    margin-right: 2px;
+    border-style: double; /* If you want dots under the hoverable text */
+    border-color: #1f1f20;
+    background-color: #3f3f3f;
+    color: white;
+    width: 120px;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    padding: 5px 5px 5px 5px;
+    border-radius: 6px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -70px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 1s;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.tooltip:hover {
+    background-color: #555555;
+    cursor: help;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
 }

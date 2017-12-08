@@ -54,7 +54,7 @@ String modulNummer = (String) session.getAttribute("exampleParameter");
 ```
 
 #### For å legge til 'Go to top'-knapp:
-Nesten all kode ligger i MainPageTemplate.css og functions.js. 
+Nesten all kode ligger i MainPageTemplate.css og goToTopgoToTop.js. 
 Trenger kun én linje for å legge til knappen i jsp-en (legg nederst rett før \</body>\)
 
 ```html
@@ -64,7 +64,7 @@ Trenger kun én linje for å legge til knappen i jsp-en (legg nederst rett før 
 For å få knappen til å fungere må du linke til scriptet i \<head>:
 
 ```html
-<script src="functions.js"></script>
+<script src="goToTopgoToTop.js"></script>
 ```
 
 #### Skive javakode direkte i jsp (Marius hadde et godt eksempel på dette):

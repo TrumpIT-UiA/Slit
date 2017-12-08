@@ -18,7 +18,7 @@
     <a href="/Slit/Admin/opprettAdmin.jsp">Admin</a>
     <a class="active" href="/Slit/ModuleDescriptionAndDelivery.jsp">Moduler</a>
     <div class="knapperHoyre">
-        <a href="/Slit/MyPage">Min side</a>
+        <a href="/Slit/MyPage">MyPage</a>
         <a href="Logout">Logout</a>
     </div>
 </div>
