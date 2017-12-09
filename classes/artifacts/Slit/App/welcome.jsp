@@ -13,12 +13,12 @@
 </head>
 <body>
 <div class="navbar">
-    <a href="/SlitModuleDescriptionAndDelivery.jsp">&Sopf;&Lopf;&Iopf;&Topf;</a>
+    <a href="/Slit/App/welcome.jsp">&Sopf;&Lopf;&Iopf;&Topf;</a>
     <a href="Admin/opprettAdmin.jsp">Admin</a>
     <a class="active" href="/Slit/ModuleDescriptionAndDelivery.jsp">Moduler</a>
     <div class="knapperHoyre">
         <a href="MyPage">Min side</a>
-        <a href="Logout">Logout</a>
+        <a href="/Slit/ProgressionPlan.jsp">Logout</a>
     </div>
 </div>
 <div class="sidenav">

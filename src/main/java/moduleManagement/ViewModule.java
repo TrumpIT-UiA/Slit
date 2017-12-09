@@ -1,5 +1,7 @@
 package moduleManagement;
 
+import Diverse.StringEditor;
+
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,13 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * @Author Vebjørn
@@ -110,7 +108,7 @@ public class ViewModule extends HttpServlet {
 
     private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String approvalCriterias, String tasks, LocalDate localDateDeadLine) throws IOException, ServletException {
 
-        Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+        StringEditor stringLinebreak = new StringEditor();
         request.getSession().setAttribute("message", null);
         request.getSession().setAttribute("moduleError",null);
         request.getSession().setAttribute("mNr", stringLinebreak.LineBreak(modulNummer));

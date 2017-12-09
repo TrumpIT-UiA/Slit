@@ -1,6 +1,6 @@
 package feedbackManagement;
 
-import users.User;
+import Diverse.StringEditor;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "ReadFeedbackServlet", urlPatterns = "/ReadFeedback")
 public class ReadFeedbackServlet extends HttpServlet {
 
-    Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+    StringEditor stringLinebreak = new StringEditor();
 
     private void checkButtonValue(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getParameter("module1") != null) {
@@ -47,8 +47,7 @@ public class ReadFeedbackServlet extends HttpServlet {
         String knappTrykketString = Integer.toString(knappTrykketInt);
 
         HttpSession session = req.getSession();
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        String currentUser = loggedInUser.getEmail();
+        String currentUser = req.getRemoteUser();
 
         String primaryChunk = currentUser + knappTrykketString + "fb";
 

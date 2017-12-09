@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="navbar">
-    <a href="/Slit/ModuleDescriptionAndDelivery.jsp">&Sopf;&Lopf;&Iopf;&Topf;</a>
+    <a href="/Slit/App/welcome.jsp">&Sopf;&Lopf;&Iopf;&Topf;</a>
     <a href="/Slit/Admin/opprettAdmin.jsp">Admin</a>
     <a class="active" href="/Slit/ModuleDescriptionAndDelivery.jsp">Moduler</a>
     <div class="knapperHoyre">

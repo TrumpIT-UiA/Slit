@@ -2,32 +2,25 @@ package fileManagement;
 
 //Servlet-importer
 
-import Diverse.DataRelated;
-import users.User;
+import Diverse.StringEditor;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.Part;
-import javax.servlet.http.HttpSession;
-
-//EJB for kommunikasjon med databasen
-import javax.ejb.EJB;
-
-//IO-Stream
+import javax.servlet.http.*;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ByteArrayOutputStream;
-
-//Logger - fra Object for å føre feil
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+//EJB for kommunikasjon med databasen
+//IO-Stream
+//Logger - fra Object for å føre feil
 
 /**
  * @author Emil-Ruud
@@ -72,15 +65,14 @@ public class UploadServlet extends HttpServlet {
                         filePartInputStream = filePart.getInputStream();
 
                         String modulNummer = (String) session.getAttribute("modulNummer");
-                        User loggedInUser = (User) session.getAttribute("loggedInUser");
                         String comment = request.getParameter("studComment");
-                        String currentUserEmail = loggedInUser.getEmail();
+                        String currentUserEmail = request.getRemoteUser();
                         String mergedNrEmail = currentUserEmail + modulNummer;
                         byte[] fileContent = convertToByteArray(filePartInputStream); //fileContent er selve filen som array av bytes
-                        DataRelated dr = new DataRelated();
+                        StringEditor dr = new StringEditor();
                         String deliveredTime = dr.getCurrentTimeString();
 
-                        File file = new File(mergedNrEmail, loggedInUser.getEmail(), modulNummer, fileName, deliveredTime, fileContent, comment);
+                        File file = new File(mergedNrEmail, currentUserEmail, modulNummer, fileName, deliveredTime, fileContent, comment);
 
                         /**
                          * Dette skal "sende" filen ved hjelp av persistence til databasen, saveFile

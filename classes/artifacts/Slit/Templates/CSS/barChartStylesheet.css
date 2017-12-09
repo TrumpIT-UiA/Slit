@@ -1,38 +1,90 @@
 .bars {
-    position: absolute;
-    left: 200px;
-    top: 200px;
-    width: 3cm;
-    height: 50px;
+    position: relative;
+    float: left;
+    top: -80px;
+    width: 11.5cm;
+    height: 10cm;
     z-index: 100;
-    padding: 30px 30px 30px 30px;
-    display: inline-block;
+    display: flex;
+    border: #474747 2px solid;
+    padding: 0.5cm 1cm 0 1cm;
+    right: 220px;
 }
 
 #bar1 {
-    background-color: #55ff00;
+    background-color: #1f1f20;
+    color: white;
+    width: 1.5cm;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomright: 2px;
 }
 
 #bar2 {
 
-    background-color: #af0015;
-    left: 50px;
+    background-color: #1f1f20;
+    color: white;
+    width: 1.5cm;
+    margin-left: 2.5cm;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomright: 2px;
 
 }
 
 #bar3 {
-    background-color: #00bfdd;
-    left: 100px;
+    background-color: #1f1f20;
+    color: white;
+    width: 1.5cm;
+    margin-left: 5cm;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomright: 2px;
 
 }
 
 #bar4 {
-    background-color: #ff01e6;
-    left: 150px;
+    background-color: #1f1f20;
+    color: white;
+    width: 1.5cm;
+    margin-left: 7.5cm;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomright: 2px;
 
 }
 
 #bar5 {
-    background-color: #1203ff;
-    left: 200px;
+    background-color: #1f1f20;
+    color: white;
+    width: 1.5cm;
+    margin-left: 10cm;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomright: 2px;
 }

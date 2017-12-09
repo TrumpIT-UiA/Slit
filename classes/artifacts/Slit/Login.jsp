@@ -4,22 +4,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="LoginTemplate.css">
-        <title>Slit</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="LoginTemplate.css">
     <title>Slit</title>
-    <div class="login-page">
-        <div class="form">
-            <form class="login-form" method="post" action="j_security_check">
-                <input type="text" name="j_username" placeholder="E-post"/>
-                <input type="password" name ="j_password" placeholder="Password"/>
-                <button input type="submit">Logg inn</button>
-            </form>
-        </div>
+</head>
+<body>
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" method="post" action="j_security_check">
+            <h1>Slit</h1>
+            <input type="email" name="j_username" placeholder="E-post"/>
+            <input type="password" name="j_password" placeholder="Password"/>
+            <button input type="submit">Logg inn</button>
+        </form>
     </div>
-    </body>
+</div>
+</body>
 </html>

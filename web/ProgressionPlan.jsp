@@ -12,11 +12,10 @@
     <link rel="stylesheet" type="text/css" href="Templates/CSS/MainPageTemplate.css">
     <link rel="stylesheet" type="text/css" href="Templates/CSS/barChartStylesheet.css">
     <script src="Templates/Javascript/goToTop.js"></script>
-
 </head>
 <body>
 <div class="navbar">
-    <a href="ModuleDescriptionAndDelivery.jsp">Slit</a>
+    <a href="/App/welcome.jsp">&Sopf;&Lopf;&Iopf;&Topf;</a>
     <a href="/Admin/opprettAdmin.jsp">Admin</a>
     <a class="active" href="/Slit/ModuleDescriptionAndDelivery.jsp">Moduler</a>
     <div class="knapperHoyre">
@@ -41,11 +40,7 @@
 </div>
 <main style="margin-top: 200px; margin-left: 500px;">
     <div class="bars">
-        <div id="bar1">Modul 1</div>
-        <div id="bar2">Modul 2</div>
-        <div id="bar3">Modul 3</div>
-        <div id="bar4">Modul 4</div>
-        <div id="bar5">Modul 5</div>
+
     </div>
 </main>
 <button onclick="topFunction()" id="goToTop" title="Go to top">Gå til toppen</button>
