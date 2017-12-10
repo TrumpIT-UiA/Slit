@@ -11,16 +11,16 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <!--[if lte IE 8]><script src="/Slit/Templates/css/ie/html5shiv.js"></script><![endif]-->
-    <script src="/Slit/Templates/js/jquery.min.js"></script>
-    <script src="/Slit/Templates/js/skel.min.js"></script>
-    <script src="/Slit/Templates/js/skel-layers.min.js"></script>
-    <script src="/Slit/Templates/js/init.js"></script>
+    <!--[if lte IE 8]><script src="/Templates/css/ie/html5shiv.js"></script><![endif]-->
+    <script src="/Templates/js/jquery.min.js"></script>
+    <script src="/Templates/js/skel.min.js"></script>
+    <script src="/Templates/js/skel-layers.min.js"></script>
+    <script src="/Templates/js/init.js"></script>
 
     <noscript>
-        <link rel="stylesheet" href="/Slit/Templates/css/skel.css" />
-        <link rel="stylesheet" href="/Slit/Templates/css/style.css" />
-        <link rel="stylesheet" href="/Slit/Templates/css/style-xlarge.css" />
+        <link rel="stylesheet" href="/Depreceated/skel.css"/>
+        <link rel="stylesheet" href="/Templates/css/style.css"/>
+        <link rel="stylesheet" href="/Templates/css/style-xlarge.css"/>
     </noscript>
 </head>
 
@@ -28,12 +28,11 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
 
 <!-- Header -->
 <header id="header">
-    <h1><a href="/Slit/App/welcome.jsp">Slit</a></h1>
+    <h1><a href="/App/welcome.jsp">Slit</a></h1>
     <nav id="nav">
         <ul>
             <li><a href=#>Moduler</a></li>
-            <li><a href="/Slit/Admin/AdminPage.jsp">Admin</a></li>
-
+            <li><a href="/Admin/AdminPage.jsp">Admin</a></li>
         </ul>
     </nav>
 </header>
@@ -54,19 +53,19 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
 
         <div class="row">
             <section class="feature 6u 12u$(small)">
-                <img class="image fit" src="/Slit/Templates/images/Open24.jpg" alt="" />
+                <img class="image fit" src="/Templates/images/Open24.jpg" alt="" />
                 <h3 class="title">Levere modul, vi er alltid åpne ;)</h3>
                 <p></p>
             </section>
 
             <section class="feature 6u 12u$(small)">
-                <img class="image fit" src="/Slit/Templates/images/Feedback.jpg" alt="" />
+                <img class="image fit" src="/Templates/images/Feedback.jpg" alt="" />
                 <h3 class="title">Dine tilbakemeldinger</h3>
                 <p></p>
             </section>
 
             <section class="feature 6u 12u$(small)">
-                <img class="image fit" src="/Slit/Templates/images/Road.jpg" alt="" />
+                <img class="image fit" src="/Templates/images/Road.jpg" alt="" />
                 <h3 class="title">Din progresjonsplan</h3>
                 <p></p>
             </section>
@@ -85,11 +84,10 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
             <section class="4u$ 12u$(medium) 12u$(small)">
                 <h3>Kontakt oss</h3>
                 <ul class="icons">
-                    <li><a href="https://github.com/TrumpIT-UiA/Slit" class="icon rounded fa-github"><span class="label">LinkedIn</span></a></li>
+                    <li><a href="https://github.com/TrumpIT-UiA/Slit" class="icon rounded fa-github"><span class="label">Github/span></a></li>
                 </ul>
             </section>
         </div>
-
         <ul class="copyright">
             <li>Design: <a href="http://templated.co">Templated</a></li>
             <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
