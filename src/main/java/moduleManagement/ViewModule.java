@@ -20,22 +20,24 @@ import java.util.Date;
 /**
  * @Author Vebjørn
  * @Author Emil-Ruud
- * Dette er en servlet som henter ut data fra en gitt modul
+ * Dette er en servlet som henter ut data fra en gitt modul.
  */
 
 @WebServlet(name = "ViewModule", urlPatterns = {"/ViewModule"})
 public class ViewModule extends HttpServlet {
 
+    /**
+     * Oppretter Entity Manager for modulobjekt
+     */
     @EJB
-    private
-    ModuleManagerLocal em;
+    private ModuleManagerLocal em;
 
     /**
-     * @param request
-     * @param response
+     * Sjekker hvilken av modulknappene som har blitt trykket i ModuleDescriptionAndDelivery
+     * @param request Et HTTP request objekt
+     * @param response Et HTTP response objekt
      * @throws IOException
-     * @throws ServletException Sjekker hvilken av modulknappene som har blitt trykket i
-     *                          ModuleDescriptionAndDelivery
+     * @throws ServletException
      */
 
     private void viewModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ParseException {
@@ -63,9 +65,10 @@ public class ViewModule extends HttpServlet {
     }
 
     /**
-     * @param knappTrykketInt
-     * @param request
-     * @param response
+     * Henter ut feltene til valgt modul
+     * @param knappTrykketInt Knapp fra ModuleDescriptionAndDelivery som brukes til å angi hvilken modul som blir hentet ut
+     * @param request Et HTTP request objekt
+     * @param response Et HTTP response objekt
      */
 
     private void getModuleData(int knappTrykketInt, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ParseException {
@@ -96,16 +99,17 @@ public class ViewModule extends HttpServlet {
 
 
     /**
-     * @param request
-     * @param response
-     * @param modulNummer
-     * @param goals
-     * @param resources
-     * @param localDateDeadLine
-     * @param approvalCriterias
-     * @param tasks
-     * @throws IOException
-     * @throws ServletException
+     * Skriver parameterne til ModuleDescriptionAndDelivery.jsp
+     * @param request Et HTTP request objekt
+     * @param response Et HTTP response objekt
+     * @param modulNummer ModulID
+     * @param goals Læringsmålene i modulen
+     * @param resources Læringsressursene i modulen
+     * @param localDateDeadLine Innleveringsfrist for modul
+     * @param approvalCriterias Kriteriene for modulen
+     * @param tasks Oppgavene i modulen
+     * @throws IOException Java exception
+     * @throws ServletException Java exception
      */
 
     private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String approvalCriterias, String tasks, LocalDate localDateDeadLine) throws IOException, ServletException {
@@ -129,6 +133,13 @@ public class ViewModule extends HttpServlet {
         session.setAttribute("deadline", localDateDeadLine);
     }
 
+    /**
+     * Skriver tomme variabler til ModuleDescriptionAndDelivery.jsp
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException
+     */
     private void skrivNullTilJSP(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String moduleError = "&#9731;";
         request.getSession().setAttribute("moduleError", "Denne modulen har ikke blitt lastet opp ennå &#9978; &#9975;");
@@ -143,6 +154,13 @@ public class ViewModule extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+    /**
+     * Standard Java metode for HTTP Get
+     * @param request Et HTTP request objekt
+     * @param response Et HTTP response objekt
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

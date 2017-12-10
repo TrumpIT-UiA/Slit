@@ -11,6 +11,7 @@ import java.text.ParseException;
 
 /**
  * @Author Vebjørn
+ * @Author Emil
  * Servlet som oppretter en modul i databasen fra parameterne som skrives inn.
  */
 
@@ -20,8 +21,11 @@ public class NewModuleServlet extends HttpServlet {
     /**
      * Sjekker hvilken "radio" ("Modul 1", "Modul 2", osv.) som er blitt merket
      * og skriver informasjonen til et nytt objekt: Module.
+     * @param request HTTP request objekt
+     * @param response HTTP response objekt
+     * @throws IOException Java exception
+     * @throws ParseException Java exception
      */
-
     private void newModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
         if (request.getParameter("module") == null) {
             String errorMessage = "NB! Du må velge modulnummer!";
@@ -47,9 +51,10 @@ public class NewModuleServlet extends HttpServlet {
     }
 
     /**
-     * @param moduleID
-     * @param request
-     * @param response
+     * I denne metoden henter man input fra text area i newModule.jsp
+     * @param moduleID ID på modulen
+     * @param request HTTP request objekt
+     * @param response HTTP response objekt
      */
     private void getParameters(int moduleID, HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
         String learningGoals = new String( request.getParameter( "learningGoals").getBytes( "ISO-8859-1" ), "UTF-8" );
@@ -78,22 +83,26 @@ public class NewModuleServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Oppretter en Entity Manager for Modul
+     */
     @EJB
     private
     ModuleManagerLocal manager;
 
     /**
-     * @param m
-     * @param response
+     * Lagrer modulen i databasen
+     * @param module Et modulobjekt som skal lagres
+     * @param response Et HTTP response objekt
      * @throws ServletException
-     * @throws IOException      Lagrer modulen i databasen
+     * @throws IOException
      */
 
-    private void saveToDB(Module m, HttpServletResponse response) throws ServletException, IOException {
-        if (manager.updateModule(m)) {
+    private void saveToDB(Module module, HttpServletResponse response) throws ServletException, IOException {
+        if (manager.updateModule(module)) {
             response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
         } else {
-            if (manager.saveModule(m)) {
+            if (manager.saveModule(module)) {
                 response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
             } else {
                 response.sendRedirect("/Slit/ModuleDescriptionAndDelivery.jsp");
