@@ -11,16 +11,16 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/skel.min.js"></script>
-    <script src="js/skel-layers.min.js"></script>
-    <script src="js/init.js"></script>
+    <!--[if lte IE 8]><script src="/Slit/Templates/css/ie/html5shiv.js"></script><![endif]-->
+    <script src="/Slit/Templates/js/jquery.min.js"></script>
+    <script src="/Slit/Templates/js/skel.min.js"></script>
+    <script src="/Slit/Templates/js/skel-layers.min.js"></script>
+    <script src="/Slit/Templates/js/init.js"></script>
 
     <noscript>
-        <link rel="stylesheet" href="css/skel.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-xlarge.css" />
+        <link rel="stylesheet" href="/Slit/Templates/css/skel.css" />
+        <link rel="stylesheet" href="/Slit/Templates/css/style.css" />
+        <link rel="stylesheet" href="/Slit/Templates/css/style-xlarge.css" />
     </noscript>
 </head>
 
@@ -49,25 +49,25 @@ Released for free under the Creative Commons Attribution 3.0 license (templated.
     <div class="container">
         <header>
             <h2>Hva ønsker du å gjøre i dag?</h2>
-            <p>Her kan du levere eller ser dine leverte moduler</p>
+            <p>Her kan du levere eller se dine leverte moduler</p>
         </header>
 
         <div class="row">
             <section class="feature 6u 12u$(small)">
-                <img class="image fit" src="images/Open24.jpg" alt="" />
+                <img class="image fit" src="/Slit/Templates/images/Open24.jpg" alt="" />
                 <h3 class="title">Levere modul, vi er alltid åpne ;)</h3>
                 <p></p>
             </section>
 
             <section class="feature 6u 12u$(small)">
-                <img class="image fit" src="images/Feedback.jpg" alt="" />
-                <h3 class="title">Tilbakemelding</h3>
+                <img class="image fit" src="/Slit/Templates/images/Feedback.jpg" alt="" />
+                <h3 class="title">Dine tilbakemeldinger</h3>
                 <p></p>
             </section>
 
             <section class="feature 6u 12u$(small)">
-                <img class="image fit" src="images/Road.jpg" alt="" />
-                <h3 class="title">Veien Videre</h3>
+                <img class="image fit" src="/Slit/Templates/images/Road.jpg" alt="" />
+                <h3 class="title">Din progresjonsplan</h3>
                 <p></p>
             </section>
         </div>
