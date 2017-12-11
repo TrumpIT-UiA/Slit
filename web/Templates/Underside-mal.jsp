@@ -20,8 +20,8 @@
 		<link rel="stylesheet" href="../Static/Styles/style.css" />
 		<link rel="stylesheet" href="../Static/Styles/style-xlarge.css" />
 	</head>
-	<body>
 
+	<body>
 		<!-- Header -->
 			<header id="header">
 				<h1><a href="../App/welcome.jsp">Slit</a></h1>

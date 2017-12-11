@@ -23,6 +23,7 @@ Modified for use in SLIT -->
 </head>
 
 <body class="landing">
+
 <!-- Header -->
 <header id="header">
     <h1><a href="../App/welcome.jsp">Slit</a></h1>
