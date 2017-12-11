@@ -76,15 +76,10 @@ Modified for use in SLIT -->
 <footer id="footer">
     <div class="container">
         <div class="row">
-            <section class="4u 6u(medium) 12u$(small)">
-                <h3>Hei der</h3>
-                <p>Vi håper du er fornøyd med systemet vårt ;)</p>
-            </section>
-
             <section class="4u$ 12u$(medium) 12u$(small)">
                 <h3>Kontakt oss</h3>
                 <ul class="icons">
-                    <li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github/span></a></li>
+                    <li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github</span></a></li>
                 </ul>
             </section>
         </div>

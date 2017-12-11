@@ -39,36 +39,32 @@
 				<div class="container">
 
 					<header class="major">
-						<h2>Overskrift</h2>
-						<p>Underoverskrift</p>
+						<h2>Velkommen</h2>
+						<p>Som administrator har du tilgang til et par ekstra funksjoner, for eksempel:</p>
 					</header>
 
-					<!-- <a href="#" class="image fit"><img src="../Static/images/pic08.jpg" alt="" /></a> -->
-					<p>Undertekst side</p>
+					<a href="/Slit/Admin/NewUser.jsp" class="image fit icon"><img src="../Static/images/NewUser.png" alt="" /></a>
+					<p>Opprette ny bruker</p>
 				</div>
 			</section>
 
 		<!-- Footer -->
-			<footer id="footer">
-				<div class="container">
-					<div class="row">
-						<section class="4u 6u(medium) 12u$(small)">
-							<h3>Hei</h3>
-						</section>
-
-						<section class="4u$ 12u$(medium) 12u$(small)">
-							<h3>Kontakt oss</h3>
-							<ul class="icons">
-								<li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github/span></a></li>
-							</ul>
-						</section>
-					</div>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li>
-						<li>Design: <a href="http://templated.co">TEMPLATED</a></li>
-						<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
-					</ul>
+		<footer id="footer">
+			<div class="container">
+				<div class="row">
+					<section class="4u$ 12u$(medium) 12u$(small)">
+						<h3>Kontakt oss</h3>
+						<ul class="icons">
+							<li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github</span></a></li>
+						</ul>
+					</section>
 				</div>
-			</footer>
+
+				<ul class="copyright">
+					<li>Design: <a href="http://templated.co">Templated</a></li>
+					<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+				</ul>
+			</div>
+		</footer>
 	</body>
 </html>

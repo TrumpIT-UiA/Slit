@@ -23,17 +23,15 @@ import java.io.PrintWriter;
 public class NewUserServlet extends HttpServlet {
 
     @EJB
-    UserManagerLocal manager;
+    private UserManagerLocal manager;
 
     /**
      * Lager en ny bruker ut ifra definert type og lagrer den i databasen dersom alt går bra.
-     *
      * @param request  Ett HTTP request objekt
      * @param response Ett HTTP response objekt
      * @throws IOException
      */
     private void newUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String email = request.getParameter("email");
@@ -46,27 +44,27 @@ public class NewUserServlet extends HttpServlet {
             String Role = "Teacher";
             Teacher t = new Teacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(t)) {
-                out.print("Din bruker har blitt opprettet!  ");
+                out.print("Din bruker har blitt opprettet!");
             } else if (!manager.saveUser(t)) {
-                out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
+                out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen");
             }
 
         } else if (usertype.equals("AssistantTeacher")) {
             String Role ="AssistantTeacher";
             AssistantTeacher at = new AssistantTeacher(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(at)) {
-                out.print("Din bruker har blitt opprettet!  ");
+                out.print("Din bruker har blitt opprettet!");
             } else if (!manager.saveUser(at)) {
-                out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
+                out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen");
             }
 
         } else if (usertype.equals("Admin")) {
             String Role = "Admin";
             Admin a = new Admin(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
             if (manager.saveUser(a)) {
-                out.print("Din bruker har blitt opprettet!  ");
+                out.print("Din bruker har blitt opprettet!");
             } else if (!manager.saveUser(a)) {
-                out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
+                out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen");
             }
         }
     }
