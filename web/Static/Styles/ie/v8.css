@@ -7,7 +7,7 @@
 /* Banner */
 
 	#banner {
-		background: url("../../images/banner.jpg");
+		background: url("../../../Templates/images/banner.jpg");
 		background-size: cover;
 		-ms-behavior: url("css/ie/backgroundsize.min.htc");
 	}
