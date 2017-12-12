@@ -21,7 +21,6 @@ public class NewModuleServlet extends HttpServlet {
      * Sjekker hvilken "radio" ("Modul 1", "Modul 2", osv.) som er blitt merket
      * og skriver informasjonen til et nytt objekt: Module.
      */
-
     private void newModule(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
         if (request.getParameter("module") == null) {
             String errorMessage = "NB! Du må velge modulnummer!";

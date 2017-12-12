@@ -33,9 +33,9 @@ Modified for use in SLIT -->
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn">Moduler</button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="../../App/Module/ReadFeedback.jsp">Feedback</a>
-                    <a href="../../App/Module/ViewModule.jsp">Moduler</a>
-                    <a href="/Slit/ProgressionPlan">Progresjonsplan</a>
+                    <a href="../App/Module/ReadFeedback.jsp">Feedback</a>
+                    <a href="../App/Module/ViewModule.jsp">Moduler</a>
+                    <a for="">Progresjonsplan</a>
                 </div>
             </div>
                 <script>

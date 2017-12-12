@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  * @author Marius
- * Håndterer lagring av objekter mot en Database
+ * Håndterer koblingen av objekter mot Databasen
  */
 @Stateless
 public class UserManagerBean implements UserManagerLocal {

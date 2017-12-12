@@ -1,5 +1,6 @@
-package userManagement;
+package Depreceated;
 
+import userManagement.UserManagerLocal;
 import users.User;
 
 import javax.ejb.EJB;

@@ -23,32 +23,30 @@ public class NewStudentServlet extends HttpServlet {
     /**
      * @author Marius
      * Lager en ny student og lagrer den i databasen dersom alt går bra.
-     * @param request Ett HTTP request objekt
-     * @param response Ett HTTP response objekt
+     * @param request Et HTTP request objekt
+     * @param response Et HTTP response objekt
      * @throws IOException
      */
     private void createNewStudent (HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+
         String email = request.getParameter("email");
         String password = request.getParameter("passWord");
         String firstname = request.getParameter("firstName");
         String lastname = request.getParameter("lastName");
-        String Role = "Student";
 
         Student s = new Student(email.toLowerCase(), password, firstname.toLowerCase(), lastname.toLowerCase());
         if(manager.saveUser(s) == true){
             out.print("Din bruker har blitt opprettet!  ");
             out.print("Du vil nå bli videresendt til innloggingen   ");
-            response.sendRedirect("/Slit/Login.jsp");
+            response.sendRedirect("/Slit/Public/Login.jsp");
         } else if (manager.saveUser(s) == false){
             out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
         }
     }
 
     /**
-     * @author Marius
      * Standard Java metode for HTTP GET
      * @param request Et HTTP Request objekt
      * @param response Et HTTP Response objekt
@@ -62,7 +60,6 @@ public class NewStudentServlet extends HttpServlet {
     }
 
     /**
-     * @author Marius
      * Standard Java metode for HTTP Post
      * @param request Et HTTP Request objekt
      * @param response Et HTTP Response objekt

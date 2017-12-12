@@ -5,7 +5,7 @@ import javax.ejb.Local;
 
 /**
  * @author Marius
- * Interface for bruk av UserManagerBean
+ * Interface for bruk av UserManagerBean, passer på at alle metodene finnes
  */
 @Local
 public interface UserManagerLocal {
