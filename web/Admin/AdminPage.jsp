@@ -30,6 +30,7 @@
 						<li><a href="../App/welcome.jsp">Home</a></li>
 						<li><a href=#>Moduler</a></li>
 						<li><a href="../Admin/AdminPage.jsp">Admin</a></li>
+						<li><a href="../App/Teacher/TeacherMenu.jsp">Lærermeny</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -43,7 +44,7 @@
 						<p>Som administrator har du tilgang til et par ekstra funksjoner, for eksempel:</p>
 					</header>
 
-					<a href="/Slit/Admin/NewUser.jsp" class="image fit icon"><img src="../Static/images/NewUser.png" alt="" /></a>
+					<a href="..//Admin/NewUser.jsp" class="image fit icon"><img src="../Static/images/NewUser.png" alt="" /></a>
 					<p>Opprette ny bruker</p>
 				</div>
 			</section>

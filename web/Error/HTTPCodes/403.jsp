@@ -43,7 +43,7 @@ Modified for use in SLIT -->
             <p>Her har du desverre ikke tilgang :(</p>
         </header>
 
-        <a href="/Slit/App/welcome.jsp" class="image fit"> <img src="images/403.png" alt=""/></a>
+        <a href="../../App/welcome.jsp" class="image fit"> <img src="images/403.png" alt=""/></a>
     </div>
 </section>
 

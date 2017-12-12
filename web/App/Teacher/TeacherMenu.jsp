@@ -30,6 +30,8 @@ Modified for use in SLIT -->
             <li><a href="../welcome.jsp">Home</a></li>
             <li><a href=#>Moduler</a></li>
             <li><a href="../../Admin/AdminPage.jsp">Admin</a></li>
+            <li><a href="TeacherMenu.jsp">Lærermeny</a></li>
+
         </ul>
     </nav>
 </header>
@@ -37,19 +39,14 @@ Modified for use in SLIT -->
 <!-- Main -->
 <section id="main" class="wrapper">
     <div class="container">
+
         <header class="major">
-            <h2>Hei</h2>
-            <p>Her kan du som lærer opprette nye studentbrukere</p>
+            <h2>Velkommen</h2>
+            <p>Som lærer har du tilgang til flere funksjoner enn vanlige brukere, for eksempel:</p>
         </header>
 
-        <h1>Vennligst oppgi brukerinformasjonen :)</h1>
-        <form action="/Slit/NewStudent" method="post">
-            E-post: <input name="email" type="text"><br>
-            Passord: <input name="passWord" type="password"><br>
-            Fornavn: <input name="firstName" type="text"><br>
-            Etternavn: <input name="lastName" type="text"><br>
-            <input type="submit" value="Lagre">
-        </form>
+        <a href="../Registration/NewStudent.jsp" class="image fit icon"><img src="../../Static/images/NewUser.png" alt="" /></a>
+        <p>Opprette nye studenter</p>
     </div>
 </section>
 

@@ -9,7 +9,7 @@
     </welcome-file-list>
 
     <!-- Definerer hva slags autentiseringstype man vil bruke (FORM i dette tilfellet)
-    Og også hvilke sider man vil vise når det kreves innlogging/innloggingen feilet -->
+    Og også hvilke sider man vil vise når det kreves innlogging eller innloggingen feilet -->
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>Slit</realm-name>
@@ -30,7 +30,6 @@
 
     <!-- Definerer navnene på sikkerhetsrollene, disse er samme som brukertypene.
        Disse blir via standalone.xml referert til slik at eks alle objekter som er instanceof Admin er i Admin security-rollen. -->
-
     <security-role>
         <role-name>Admin</role-name>
     </security-role>
@@ -47,7 +46,7 @@
         <role-name>Student</role-name>
     </security-role>
 
-    <!-- Definerer hvilke roller som har tilgang til hvilke mapper -->
+    <!-- Definerer hvilke roller som har tilgang til hvilke mapper og filer -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin sider</web-resource-name>
@@ -55,8 +54,6 @@
             <http-method>DELETE</http-method>
             <http-method>PUT</http-method>
             <http-method>HEAD</http-method>
-            <http-method>OPTIONS</http-method>
-            <http-method>TRACE</http-method>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -68,9 +65,7 @@
    <security-constraint>
        <web-resource-collection>
            <web-resource-name>Registrering av nye brukere</web-resource-name>
-           <url-pattern>/Registration/*</url-pattern>
-           <http-method>DELETE</http-method>
-           <http-method>PUT</http-method>
+           <url-pattern>/App/Registration/*</url-pattern>
            <http-method>HEAD</http-method>
            <http-method>OPTIONS</http-method>
            <http-method>TRACE</http-method>
@@ -90,8 +85,6 @@
             <http-method>DELETE</http-method>
             <http-method>PUT</http-method>
             <http-method>HEAD</http-method>
-            <http-method>OPTIONS</http-method>
-            <http-method>TRACE</http-method>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -103,14 +96,12 @@
         </auth-constraint>
     </security-constraint>
 
-    <!--
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>Slit App</web-resource-name>
-            <url-pattern>/Templates/*</url-pattern>
+            <web-resource-name>CSS-Filer</web-resource-name>
+            <url-pattern>/Static/*</url-pattern>
             <http-method>HEAD</http-method>
             <http-method>OPTIONS</http-method>
-            <http-method>TRACE</http-method>
             <http-method>GET</http-method>
         </web-resource-collection>
         <auth-constraint>
@@ -120,5 +111,21 @@
             <role-name>Student</role-name>
         </auth-constraint>
     </security-constraint>
-    -->
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Moduler</web-resource-name>
+            <url-pattern>/App/Module/*</url-pattern>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
+            <role-name>AssistantTeacher</role-name>
+            <role-name>Student</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>
