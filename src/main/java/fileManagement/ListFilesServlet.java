@@ -1,25 +1,36 @@
 package fileManagement;
 
+import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
-@WebServlet(name = "DownloadServlet", urlPatterns = {"/Download"})
-public class DownloadServlet {
+@WebServlet(name = "ListFilesServlet", urlPatterns = {"/ListFiles"})
+public class ListFilesServlet extends HttpServlet {
 
 @EJB
-private
 FileManagerLocal FileManager;
 
     private void Download (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
-        ArrayList<File> modulListe = (ArrayList<File>) FileManager.getListFromQuery("SELECT * FROM 'file", File.class);
-        request.setAttribute("ModulListe", modulListe);
-        request.getRequestDispatcher("/Slit/Download").forward(request, response);
+
+        try {
+            Collection<Object> modulListe = FileManager.returnAllFilesFromDB();
+            HttpSession session = request.getSession();
+            session.setAttribute("ModulListe", modulListe);
+            response.sendRedirect("/Slit/App/Module/ListModules.jsp");
+        }
+
+        catch (NullPointerException nullp){
+            PrintWriter out = response.getWriter();
+            out.print("Nullpointer error");
+        }
     }
 
 

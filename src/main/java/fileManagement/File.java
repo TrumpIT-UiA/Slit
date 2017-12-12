@@ -62,6 +62,7 @@ public class File implements Serializable {
 
     // Getter for innhold i fil
     public byte[] getFileContent() { return fileContent; }
+
     public void setFileContent(byte[] fileContent) { this.fileContent = fileContent; }
 
     public String getComment() { return comment; }

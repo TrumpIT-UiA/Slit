@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -60,6 +61,12 @@ public class FileManagerBean implements FileManagerLocal {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Collection<Object> returnAllFilesFromDB() {
+        Query query = emFile.createQuery("SELECT e FROM File e");
+        return (Collection<Object>) query.getResultList();
     }
 
     @Override

@@ -44,7 +44,7 @@
 						<p>Som administrator har du tilgang til et par ekstra funksjoner, for eksempel:</p>
 					</header>
 
-					<a href="..//Admin/NewUser.jsp" class="image fit icon"><img src="../Static/images/NewUser.png" alt="" /></a>
+					<a href="NewUser.jsp" class="image fit icon"><img src="../Static/images/NewUser.png" alt="" /></a>
 					<p>Opprette ny bruker</p>
 				</div>
 			</section>
