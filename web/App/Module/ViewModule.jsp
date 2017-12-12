@@ -65,11 +65,11 @@ Modified for use in SLIT -->
             <p>${goals}</p>
             <c:remove var="goals" scope="session"/>
 
-            <h3>Approval Criterias: </h3>
+            <h3>Akseptansekriterier: </h3>
             <p>${approvalCriterias}</p>
             <c:remove var="approvalCriterias" scope="session"/>
 
-            <h3>Tasks:</h3>
+            <h3>Oppgaver:</h3>
             <p>${tasks}</p>
             <c:remove var="tasks" scope="session"/>
 
@@ -77,7 +77,7 @@ Modified for use in SLIT -->
             <p>${resources}</p>
             <c:remove var="resources" scope="session"/>
 
-            <h3>Deadline:</h3>
+            <h3>Innleveringsfrist:</h3>
             <p>${deadline}</p>
             <c:remove var="deadline" scope="session"/>
             <br>
