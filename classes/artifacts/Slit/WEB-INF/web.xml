@@ -103,6 +103,7 @@
         </auth-constraint>
     </security-constraint>
 
+    <!--
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Slit App</web-resource-name>
@@ -119,4 +120,5 @@
             <role-name>Student</role-name>
         </auth-constraint>
     </security-constraint>
+    -->
 </web-app>

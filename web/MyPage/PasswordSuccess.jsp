@@ -10,7 +10,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-
+		<META http-equiv="refresh" content="4;/Slit/MyPage/MyPage.jsp">
 		<script src="../Static/js/jquery.min.js"></script>
 		<script src="../Static/js/skel.min.js"></script>
 		<script src="../Static/js/skel-layers.min.js"></script>
@@ -29,11 +29,7 @@
 					<ul>
 						<li><a href="../App/welcome.jsp">Home</a></li>
 						<li><a href=#>Moduler</a></li>
-						<li><a style="" href="../Admin/AdminPage.jsp">Admin</a></li>
-						</div>
-
-
-						<Li><a href="../MyPage/MyPage.jsp">Min Side</a></Li>
+						<li><a href="../Admin/AdminPage.jsp">Admin</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -43,12 +39,11 @@
 				<div class="container">
 
 					<header class="major">
-						<h2>Overskrift</h2>
-						<p>Underoverskrift</p>
+                        <h2>Passordet ditt har nå blitt endret<span style="color:green">&#10003</span></h2>
+						<p>Du returneres nå til Min side</p>
 					</header>
 
 					<!-- <a href="#" class="image fit"><img src="../Static/images/pic08.jpg" alt="" /></a> -->
-					<p>Undertekst side</p>
 				</div>
 			</section>
 

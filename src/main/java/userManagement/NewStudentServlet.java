@@ -42,7 +42,7 @@ public class NewStudentServlet extends HttpServlet {
             out.print("Din bruker har blitt opprettet!  ");
             out.print("Du vil nå bli videresendt til innloggingen   ");
             response.sendRedirect("/Slit/Login.jsp");
-        } else if (manager.saveUser(s) == false){
+        } else if (!manager.saveUser(s)){
             out.print("Din bruker kunne ikke bli opprettet, vennligst prøv igjen ");
         }
     }

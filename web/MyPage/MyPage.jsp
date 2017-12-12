@@ -29,11 +29,7 @@
 					<ul>
 						<li><a href="../App/welcome.jsp">Home</a></li>
 						<li><a href=#>Moduler</a></li>
-						<li><a style="" href="../Admin/AdminPage.jsp">Admin</a></li>
-						</div>
-
-
-						<Li><a href="../MyPage/MyPage.jsp">Min Side</a></Li>
+						<li><a href="../Admin/AdminPage.jsp">Admin</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -43,8 +39,19 @@
 				<div class="container">
 
 					<header class="major">
-						<h2>Overskrift</h2>
-						<p>Underoverskrift</p>
+						<h2>Velkommen til min side</h2>
+						<p>
+						<div class="col-sm-8 text-left" id="mamma">
+						<form class="knappstil" action="/Slit/MyPage/ProfilePicture.jsp">
+							<input type="submit" name="Bytt Profilbilde" value="ProfilePicture">
+						</form>
+
+						<form class="knappstil" action="/Slit/MyPage/changePassword.jsp">
+							<input type ="submit" name="Bytt Passord" value="Bytt Passord">
+
+						</form>
+				</div>
+						</p>
 					</header>
 
 					<!-- <a href="#" class="image fit"><img src="../Static/images/pic08.jpg" alt="" /></a> -->

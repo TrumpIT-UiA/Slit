@@ -31,6 +31,7 @@ Modified for use in SLIT -->
             <li><a href="../App/welcome.jsp">Home</a></li>
             <li><a href=#>Moduler</a></li>
             <li><a href="../Admin/AdminPage.jsp">Admin</a></li>
+            <li><a href="/Slit/MyPage/MyPage.jsp">Min Side</a></li>
         </ul>
     </nav>
 </header>
@@ -83,7 +84,7 @@ Modified for use in SLIT -->
             <section class="4u$ 12u$(medium) 12u$(small)">
                 <h3>Kontakt oss</h3>
                 <ul class="icons">
-                    <li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github/span></a></li>
+                    <li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github</span></a></li>
                 </ul>
             </section>
         </div>

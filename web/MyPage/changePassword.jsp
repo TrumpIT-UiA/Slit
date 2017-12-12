@@ -3,6 +3,7 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 	Modified for use in SLIT -->
+
 <html lang="en">
 	<head>
 		<!-- <meta charset="UTF-8"> -->
@@ -29,11 +30,7 @@
 					<ul>
 						<li><a href="../App/welcome.jsp">Home</a></li>
 						<li><a href=#>Moduler</a></li>
-						<li><a style="" href="../Admin/AdminPage.jsp">Admin</a></li>
-						</div>
-
-
-						<Li><a href="../MyPage/MyPage.jsp">Min Side</a></Li>
+						<li><a href="../Admin/AdminPage.jsp">Admin</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -43,12 +40,25 @@
 				<div class="container">
 
 					<header class="major">
-						<h2>Overskrift</h2>
-						<p>Underoverskrift</p>
+						<h2>Her kan du bytte passord</h2>
+						<p>
+						<div>
+							<div class="form">
+								<form method="post" action="/Slit/ChangePassword">
+									<input type="password" name="theOldPW" placeholder="Gammelt Password"/>
+
+									<input type="password" name="theNewPW" placeholder="Nytt Password"/>
+
+									<input type="password" name="theNewPWCheck" placeholder=" Nytt Password på nytt"/>
+
+									<input type="submit" name="ByttePassord" value="Trykk her for å bytte passord!" />
+								</form>
+							</div>
+					</div>
+						</p>
 					</header>
 
 					<!-- <a href="#" class="image fit"><img src="../Static/images/pic08.jpg" alt="" /></a> -->
-					<p>Undertekst side</p>
 				</div>
 			</section>
 
