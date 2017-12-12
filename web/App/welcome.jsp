@@ -30,7 +30,7 @@ Modified for use in SLIT -->
     <nav id="nav">
         <ul>
             <li><a href="../App/welcome.jsp">Home</a></li>
-            <li><a href=#>Moduler</a></li>
+            <li><a href="../App/Module/ViewModule.jsp">Moduler</a></li>
             <li><a href="../Admin/AdminPage.jsp">Admin</a></li>
             <li><a href="Teacher/TeacherMenu.jsp">Lærermeny</a></li>
         </ul>

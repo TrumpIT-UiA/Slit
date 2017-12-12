@@ -1,9 +1,10 @@
 package feedbackManagement;
 
-import javax.ejb.Local;
+import java.util.List;
 
 public interface FeedbackManagerLocal {
     Feedback getFeedback(String primaryChunk);
     boolean saveFeedback(Feedback f);
     boolean updateFeedback(Feedback f);
+    public List allEntries();
 }

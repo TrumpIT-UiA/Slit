@@ -726,6 +726,7 @@ table.alt tfoot {
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
+.chooseFile,
 .button {
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -755,6 +756,7 @@ input[type="button"],
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
+.chooseFile:hover,
 .button:hover {
 	background-color: #42b972;
 }
@@ -762,6 +764,7 @@ input[type="button"]:hover,
 input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active,
+.chooseFile:active,
 .button:active {
 	background-color: #34935a;
 }
@@ -769,6 +772,7 @@ input[type="button"]:active,
 input[type="submit"].icon,
 input[type="reset"].icon,
 input[type="button"].icon,
+.chooseFile.icon,
 .button.icon {
 	padding-left: 1.35em;
 }
@@ -776,6 +780,7 @@ input[type="button"].icon,
 input[type="submit"].icon:before,
 input[type="reset"].icon:before,
 input[type="button"].icon:before,
+.chooseFile.icon:before,
 .button.icon:before {
 	margin-right: 0.5em;
 }
@@ -783,6 +788,7 @@ input[type="button"].icon:before,
 input[type="submit"].fit,
 input[type="reset"].fit,
 input[type="button"].fit,
+.chooseFile.fit,
 .button.fit {
 	display: block;
 	margin: 0 0 1em 0;
@@ -792,6 +798,7 @@ input[type="button"].fit,
 input[type="submit"].small,
 input[type="reset"].small,
 input[type="button"].small,
+.chooseFile.small,
 .button.small {
 	font-size: 0.8em;
 }
@@ -799,6 +806,7 @@ input[type="button"].small,
 input[type="submit"].big,
 input[type="reset"].big,
 input[type="button"].big,
+.chooseFile.big,
 .button.big {
 	font-size: 1.35em;
 }
@@ -806,6 +814,7 @@ input[type="button"].big,
 input[type="submit"].alt,
 input[type="reset"].alt,
 input[type="button"].alt,
+.chooseFile.alt,
 .button.alt {
 	background-color: transparent;
 	box-shadow: inset 0 0 0 2px rgba(144, 144, 144, 0.25);
@@ -815,6 +824,7 @@ input[type="button"].alt,
 input[type="submit"].alt:hover,
 input[type="reset"].alt:hover,
 input[type="button"].alt:hover,
+.chooseFile:hover,
 .button.alt:hover {
 	background-color: rgba(144, 144, 144, 0.075);
 }
@@ -822,6 +832,7 @@ input[type="button"].alt:hover,
 input[type="submit"].alt:active,
 input[type="reset"].alt:active,
 input[type="button"].alt:active,
+.chooseFile.alt:active,
 .button.alt:active {
 	background-color: rgba(144, 144, 144, 0.2);
 }
@@ -829,6 +840,7 @@ input[type="button"].alt:active,
 input[type="submit"].alt.icon:before,
 input[type="reset"].alt.icon:before,
 input[type="button"].alt.icon:before,
+.chooseFile.alt.icon:before,
 .button.alt.icon:before {
 	color: #888;
 }
@@ -836,6 +848,7 @@ input[type="button"].alt.icon:before,
 input[type="submit"].special,
 input[type="reset"].special,
 input[type="button"].special,
+.chooseFile.special,
 .button.special {
 	background-color: #4dac71;
 	color: #ffffff !important;
@@ -844,6 +857,7 @@ input[type="button"].special,
 input[type="submit"].special:hover,
 input[type="reset"].special:hover,
 input[type="button"].special:hover,
+.chooseFile.special:hover,
 .button.special:hover {
 	background-color: #5cb67e;
 }
@@ -851,6 +865,7 @@ input[type="button"].special:hover,
 input[type="submit"].special:active,
 input[type="reset"].special:active,
 input[type="button"].special:active,
+.chooseFile.special:active,
 .button.special:active {
 	background-color: #459a65;
 }
@@ -860,6 +875,8 @@ input[type="reset"].disabled,
 input[type="reset"]:disabled,
 input[type="button"].disabled,
 input[type="button"]:disabled,
+.chooseFile.disabled,
+.chooseFile:disabled,
 .button.disabled,
 .button:disabled {
 	background-color: #444 !important;
@@ -881,6 +898,7 @@ body.landing #header {
 #header {
 	background-color: #202222;
 	color: #ffffff;
+	position: fixed;
 	cursor: default;
 	height: 4.75em;
 	line-height: 4.75em;
@@ -1072,6 +1090,7 @@ body.landing #header {
 	-ms-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 	color: #888;
+
 }
 
 #footer a:active, #footer a:hover {
@@ -1106,4 +1125,31 @@ body.landing #header {
 	border-left: 0;
 	margin-left: 0;
 	padding-left: 0;
+}
+
+#goToTop {
+	display: none; /* Hidden by default */
+	position: fixed; /* Fixed/sticky position */
+	bottom: 20px; /* Place the button at the bottom of the page */
+	right: 10px; /* Place the button 10px from the right */
+	z-index: 99; /* Make sure it does not overlap */
+	outline: none; /* Remove outline */
+	cursor: pointer; /* Add a mouse pointer on hover */
+	transition: all 0.3s ease 0s;
+	border-radius: 4px;
+	border: 0;
+	font-weight: 400;
+	height: 2.85em;
+	line-height: 2.8em;
+	padding: 0 2em;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	background-color: #3ba666;
+	color: #ffffff;
+}
+
+#goToTop:hover {
+	background-color: #42b972; /* Add a dark-grey background on hover */
+	box-shadow: 2px 3px 5px #474747;
 }

@@ -3,7 +3,6 @@ package fileManagement;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.sql.Date;
 
 /**
  * @Author Emil-Ruud
@@ -15,10 +14,6 @@ public class File implements Serializable {
     @Id
     @Column
     private String mergedNrEmail;
-
-    @GeneratedValue
-    @Column
-    private int fileIndex;
     @Column
     private String modulNr;
     @Column
@@ -51,9 +46,6 @@ public class File implements Serializable {
 
     public String getMergedNrEmail() { return mergedNrEmail; }
     public void setMergedNrEmail(String mergedNrEmail) { this.mergedNrEmail = mergedNrEmail; }
-
-    public int getIndex() { return fileIndex; }
-    public void setIndex(int fileIndex) { this.fileIndex = fileIndex; }
 
     // Getter og setter for nr på modul
     public String getModulNr() { return modulNr; }

@@ -120,8 +120,7 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("approvalCriterias", stringLinebreak.LineBreak(approvalCriterias));
         request.getSession().setAttribute("tasks", stringLinebreak.LineBreak(tasks));
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ModuleDescriptionAndDelivery.jsp");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect("/Slit/App/Module/ViewModule.jsp");
         //Dette sender en varibelverdi som et parameter til session -
         //slik at andre servlets kan hente inn verdien.
         HttpSession session = request.getSession();
@@ -139,8 +138,7 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("approvalCriterias", "");
         request.getSession().setAttribute("tasks", "");
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ModuleDescriptionAndDelivery.jsp");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect("/Slit/App/Module/ViewModule.jsp");
     }
 
     @Override

@@ -1,7 +1,6 @@
 package feedbackManagement;
 
-import Diverse.DataRelated;
-import users.User;
+import Diverse.StringEditor;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @WebServlet(name = "WriteFeedbackServlet", urlPatterns = "/WriteFeedback")
 public class WriteFeedbackServlet extends HttpServlet {
@@ -49,11 +45,10 @@ public class WriteFeedbackServlet extends HttpServlet {
         int scoreInt = Integer.parseInt(score);
 
         HttpSession session = req.getSession();
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        String currentUserEmail = loggedInUser.getEmail();
+        String currentUserEmail = req.getRemoteUser();
         String primaryChunk = currentUserEmail + modulNr + "fb";
 
-        DataRelated dr = new DataRelated();
+        StringEditor dr = new StringEditor ();
         String timeWritten = dr.getCurrentTimeString();
 
         Feedback f = new Feedback(primaryChunk, comment, hiddenComment, scoreInt, timeWritten);
