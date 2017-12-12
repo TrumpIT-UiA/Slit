@@ -97,7 +97,7 @@ Modified for use in SLIT -->
             <input type="submit" value="Last opp" name="upload" id="upload"/>
         </form>
         <textarea name="studComment" style="margin-top: 30px" form="uploadForm" id="comment"
-                  placeholder="Her kan du skrive en kommentar til innleveringen hvis du har lyst"></textarea>
+                  placeholder="Her kan du skrive en kommentar til innleveringen"></textarea>
         <p>${message}</p>
         <c:remove var="message" scope="session"/>
     </div>

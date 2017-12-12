@@ -27,8 +27,10 @@ public class DownloadServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
+        String modulNummer = (String) session.getAttribute("modulNummer");
+        String currentUserEmail = request.getRemoteUser();
+        String mergedNrEmail = currentUserEmail + modulNummer;
 
-        String mergedNrEmail = "PLACEHOLDER";
         File file = fml.getFile(mergedNrEmail);
 
         InputStream inStream = new ByteArrayInputStream(file.getFileContent());
