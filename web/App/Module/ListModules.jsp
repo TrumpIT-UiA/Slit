@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
+
 <!--Interphase by TEMPLATED
 templated.co @templatedco
 Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
@@ -59,7 +60,7 @@ Modified for use in SLIT -->
 				<td><c:out value="${ModulFil.getFilename()}"/></td>
 				<td><c:out value="${ModulFil.getComment()}"/></td>
 				<td><c:out value="${ModulFil.getDeliveredTime()}"/></td>
-                <td></td>
+                <td><button> onclick="<% request %>"</button></td>
             </tr>
         </table>
 	</div>
