@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ReadFeedbackServlet", urlPatterns = "/ReadFeedback")
@@ -46,7 +45,6 @@ public class ReadFeedbackServlet extends HttpServlet {
 
         String knappTrykketString = Integer.toString(knappTrykketInt);
 
-        HttpSession session = req.getSession();
         String currentUser = req.getRemoteUser();
 
         String primaryChunk = currentUser + knappTrykketString + "fb";
@@ -75,7 +73,7 @@ public class ReadFeedbackServlet extends HttpServlet {
         req.getSession().setAttribute("comment", stringLinebreak.LineBreak(feedbackcontent));
         req.getSession().setAttribute("score", score);
         req.getSession().setAttribute("timewritten", timeWritten);
-        res.sendRedirect("ReadFeedback.jsp");
+        res.sendRedirect("/Slit/App/Module/ReadFeedback.jsp");
     }
     private void writeNullToJSP(HttpServletRequest req, HttpServletResponse res, String knappTrykketString) throws IOException {
         String feedbackError = "Det skjedde en feil ¯\\_(&#x30C4;)_/¯<BR>Vi fant dessverre ingenting i databasen.<BR>Tips: Spør læreren om han/hun har lagt ut feedback til din modul nr. " + knappTrykketString + ".";
@@ -84,7 +82,7 @@ public class ReadFeedbackServlet extends HttpServlet {
         req.getSession().setAttribute("comment", null);
         req.getSession().setAttribute("score", null);
         req.getSession().setAttribute("timewritten", null);
-        res.sendRedirect("ReadFeedback.jsp");
+        res.sendRedirect("/Slit/App/Module/ReadFeedback.jsp");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

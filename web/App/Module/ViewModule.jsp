@@ -48,8 +48,8 @@ Modified for use in SLIT -->
         <!-- <a href="#" class="image fit"><img src="../Static/images/pic08.jpg" alt="" /></a> -->
         <h3>${moduleError}</h3>
         <c:remove var="moduleError" scope="session"/>
-        <form action="/Slit/ViewModule" method="post" id="getModule" accept-charset="UTF-8">
-            <a style="display: inline;" href="ModuleDescriptionAndDelivery.jsp">
+        <form action="/Slit/ProgressionPlan" method="post" id="getModule" accept-charset="UTF-8">
+            <a style="display: inline;" href="../../App/Module/ViewModule.jsp">
                 <input type="submit" name="module1" value="Modul 1"/>
                 <input type="submit" name="module2" value="Modul 2"/>
                 <input type="submit" name="module3" value="Modul 3"/>

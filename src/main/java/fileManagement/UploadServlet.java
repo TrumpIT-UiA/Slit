@@ -120,7 +120,7 @@ public class UploadServlet extends HttpServlet {
 
         } catch (NullPointerException npe) {
             String message = "Fristen har dessverre gått ut";
-            npe.printStackTrace();
+            skrivUt(message, request, response);
         }
 
 

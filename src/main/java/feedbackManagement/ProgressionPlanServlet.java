@@ -171,6 +171,7 @@ public class ProgressionPlanServlet extends HttpServlet {
      * p1, p2, p3, p4, p5: stolpene i diagrammet hvor scoren er høyden i cm.
      * i1, i2, i3, i4, i5: stolpene i diagrammet hvor høyden er gjennomsnittsverdien av score.
      * a, b, c, d, e: antall ganger én modul har blitt levert; ex: a er antall ganger modul 1 har blitt levert.
+     *
      * @param res
      * @param p1
      * @param p2
@@ -193,72 +194,108 @@ public class ProgressionPlanServlet extends HttpServlet {
     private void writeNewJSP(HttpServletResponse res, String p1, String p2, String p3, String p4, String p5, String i1, String i2, String i3, String i4, String i5, int totalDelivered, int a, int b, int c, int d, int e) throws IOException {
         PrintWriter out = res.getWriter();
 
-        out.write("<!DOCTYPE html>");
-        out.write("<html lang=\"no\">");
-        out.write("<head>");
-        out.write("<title>Modulbeskrivelse & Innlevering</title>");
-        out.write("<meta charset=\"UTF-8\">");
-        out.write("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
-        out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"Templates/CSS/MainPageTemplate.css\">");
-        out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"Templates/CSS/barChartStylesheet.css\">");
-        out.write("<script src=\"Templates/Javascript/goToTop.js\"></script>");
-        out.write("</head>");
-        out.write("<body>");
-        out.write("<div class=\"navbar\">");
-        out.write("<a href=\"/App/welcome.jsp\">&Sopf;&Lopf;&Iopf;&Topf;</a>");
-        out.write("<a href=\"/Admin/opprettAdmin.jsp\">Admin</a>");
-        out.write("<a class=\"active\" href=\"/Slit/ModuleDescriptionAndDelivery.jsp\">Moduler</a>");
-        out.write("<div class=\"knapperHoyre\">");
-        out.write("<a href=\"/Slit/MyPage\">Min side</a>");
-        out.write("<a href=\"Logout\">Logout</a>");
-        out.write("</div>");
-        out.write("</div>");
-        out.write("<div class=\"sidenav\">");
-        out.write("<label for=\"sidebarFeedback\" class=\"sidenavContent\">");
-        out.write("Feedback");
-        out.write("</label>");
-        out.write("<br>");
-        out.write("<label for=\"sidebarProgPlan\" class=\"sidenavContent\" style=\"margin-bottom: 20px;\">");
-        out.write("Din progresjon");
-        out.write("</label>");
-        out.write("<form action=\"ReadFeedback.jsp\">");
-        out.write("<input type=\"submit\" id=\"sidebarFeedback\" class=\"sidebarFeedback\">");
-        out.write("</form>");
-        out.write("<form action=\"/Slit/ProgressionPlan\" method=\"post\">");
-        out.write("<input type=\"submit\" id=\"sidebarProgPlan\" class=\"sidebarProgPlan\">");
-        out.write("</form>");
-        out.write("</div>");
-        out.write("<main style=\"margin-top: 200px; margin-left: 500px;\">");
-        out.write("<h1 style=\"position: relative; top: -80px; right: 220px\">Stolpediagram for din progresjon</h1>");
-        out.write("<div class=\"bars\">");
-        out.write(p1);
-        out.write(p2);
-        out.write(p3);
-        out.write(p4);
-        out.write(p5);
-        out.write("</div>");
-        out.write("<br>");
-        out.write("<h1 style=\"position: relative; right: 220px; float: left; bottom: 70px\">Gjennomsnitt-score per modul i IS-109</h1>");
-        out.write("<br>");
-        out.write("<div class=\"bars\" style=\"margin-top: 60px bottom: 70px\">");
-        out.write(i1);
-        out.write(i2);
-        out.write(i3);
-        out.write(i4);
-        out.write(i5);
-        out.write("</div>");
-        out.write("<div style=\"position: relative; right: 220px; float: left; bottom: 70px\">");
-        out.write("<BR>Totalt antall leverte moduler i IS-109: " + totalDelivered + " moduler");
-        out.write("<BR>Antall som har levert modul 1: " + a + " personer.");
-        out.write("<BR>Antall som har levert modul 2: " + b + " personer.");
-        out.write("<BR>Antall som har levert modul 3: " + c + " personer.");
-        out.write("<BR>Antall som har levert modul 4: " + d + " personer.");
-        out.write("<BR>Antall som har levert modul 5: " + e + " personer.");
-        out.write("</div>");
-        out.write("</main>");
-        out.write("<button onclick=\"topFunction()\" id=\"goToTop\" title=\"Go to top\">Gå til toppen</button>");
-        out.write("</body>");
-        out.write("</html>");
+        out.write("<!--Interphase by TEMPLATED\n" +
+                "templated.co @templatedco\n" +
+                "Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)\n" +
+                "Modified for use in SLIT -->\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <!-- <meta charset=\"UTF-8\"> -->\n" +
+                "    <title>Slit</title>\n" +
+                "    <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"/>\n" +
+                "    <meta name=\"description\" content=\"\"/>\n" +
+                "    <meta name=\"keywords\" content=\"\"/>\n" +
+                "\n" +
+                "    <script src=\"/Slit/Static/js/jquery.min.js\"></script>\n" +
+                "    <script src=\"/Slit/Static/js/skel.min.js\"></script>\n" +
+                "    <script src=\"/Slit/Static/js/skel-layers.min.js\"></script>\n" +
+                "    <script src=\"/Slit/Static/js/init.js\"></script>\n" +
+                "    <script src=\"/Slit/Static/Javascript/goToTop.js\"></script>\n" +
+                "\n" +
+                "    <link rel=\"stylesheet\" href=\"/Slit/Static/Styles/skel.css\"/>\n" +
+                "    <link rel=\"stylesheet\" href=\"/Slit/Static/Styles/style.css\"/>\n" +
+                "    <link rel=\"stylesheet\" href=\"/Slit/Static/Styles/style-xlarge.css\"/>\n" +
+                "    <link rel=\"stylesheet\" href=\"/Slit/Static/Styles/barChartStylesheet.css\"/>\n" +
+                "\n" +
+                "</head>\n" +
+                "\n" +
+                "<body>\n" +
+                "<!-- Header -->\n" +
+                "<header id=\"header\">\n" +
+                "    <h1><a href=\"../../App/welcome.jsp\">Slit</a></h1>\n" +
+                "    <nav id=\"nav\">\n" +
+                "        <ul>\n" +
+                "            <li><a href=\"../../App/welcome.jsp\">Home</a></li>\n" +
+                "            <li><a href=\"../../App/Module/ViewModule.jsp\">Moduler</a></li>\n" +
+                "            <li><a href=\"../../Admin/AdminPage.jsp\">Admin</a></li>\n" +
+                "        </ul>\n" +
+                "    </nav>\n" +
+                "</header>\n" +
+                "\n" +
+                "<!-- Main -->\n" +
+                "<section id=\"main\" class=\"wrapper\">\n" +
+                "    <div class=\"container\">\n" +
+                "\n" +
+                "        <header class=\"major\">\n" +
+                "            <h2>Stolpediagram for din progresjon</h2>\n" +
+                "            <p>Her finner du din progresjon i IS-109" +
+                "        </header>" +
+                "<main style=\"display: inline-block\">" +
+                "<h1 style=\"position: relative\"></h1>" +
+                "<div class=\"bars\">" +
+                p1 +
+                p2 +
+                p3 +
+                p4 +
+                p5 +
+                "</div>" +
+                "<br>" +
+                "<h2 style=\"position: relative\">Gjennomsnitt-score per modul i IS-109 for alle leverte moduler</h1>" +
+                "<br>" +
+                "<div class=\"bars\" style=\"margin-top: 60px bottom: 200px\">" +
+                i1 +
+                i2 +
+                i3 +
+                i4 +
+                i5 +
+                "</div>" +
+                "<div style=\"position: relative; margin-bottom: 40px; margin-top: 30px;\">" +
+                "<BR>Totalt antall leverte moduler i IS-109: " + totalDelivered + " moduler" +
+                "<BR>Antall som har levert modul 1: " + a + " personer." +
+                "<BR>Antall som har levert modul 2: " + b + " personer." +
+                "<BR>Antall som har levert modul 3: " + c + " personer." +
+                "<BR>Antall som har levert modul 4: " + d + " personer." +
+                "<BR>Antall som har levert modul 5: " + e + " personer." +
+                "</div>" +
+                "</main>" +
+                "</div>\n" +
+                "</section>\n" +
+                "\n" +
+                "<!-- Footer -->\n" +
+                "<footer id=\"footer\">\n" +
+                "    <div class=\"container\">\n" +
+                "        <div class=\"row\">\n" +
+                "            <section class=\"4u$ 12u$(medium) 12u$(small)\">\n" +
+                "                <h3>Kontakt oss</h3>\n" +
+                "                <ul class=\"icons\">\n" +
+                "                    <li><a href=\"https://github.com/TrumpIT-UiA\" class=\"icon rounded fa-github\"><span class=\"label\">Github</span></a>\n" +
+                "                    </li>\n" +
+                "                </ul>\n" +
+                "            </section>\n" +
+                "        </div>\n" +
+                "        <ul class=\"copyright\">\n" +
+                "            <li>&copy; Untitled. All rights reserved.</li>\n" +
+                "            <li>Design: <a href=\"http://templated.co\">TEMPLATED</a></li>\n" +
+                "            <li>Images: <a href=\"http://unsplash.com\">Unsplash</a></li>\n" +
+                "        </ul>\n" +
+                "    </div>\n" +
+                "</footer>\n" +
+                "<a>\n" +
+                "    <button onclick=\"topFunction()\" id=\"goToTop\" title=\"Go to top\">Gå til toppen</button>\n" +
+                "</a>\n" +
+                "</body>\n" +
+                "</html>");
+
 
     }
 

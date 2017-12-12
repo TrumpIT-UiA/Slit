@@ -1,5 +1,7 @@
 package moduleManagement;
 
+import com.sun.beans.editors.StringEditor;
+
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -112,7 +114,7 @@ public class ViewModule extends HttpServlet {
 
         Diverse.StringEditor stringLinebreak = new Diverse.StringEditor();
         request.getSession().setAttribute("message", null);
-        request.getSession().setAttribute("moduleError",null);
+        request.getSession().setAttribute("moduleError", null);
         request.getSession().setAttribute("mNr", stringLinebreak.LineBreak(modulNummer));
         request.getSession().setAttribute("goals", stringLinebreak.LineBreak(goals));
         request.getSession().setAttribute("resources", stringLinebreak.LineBreak(resources));
