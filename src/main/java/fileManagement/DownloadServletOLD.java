@@ -15,9 +15,9 @@ import java.io.PrintWriter;
 /**
  * @author Emil-Ruud
  */
-@WebServlet(name = "DownloadServlet", urlPatterns = {"/Download"})
+@WebServlet(name = "DownloadServletOLD", urlPatterns = {"/DownloadOLD"})
 @MultipartConfig(maxFileSize = 10485760) //10Mib
-public class DownloadServlet extends HttpServlet {
+public class DownloadServletOLD extends HttpServlet {
 
     @EJB
     FileManagerLocal fml;

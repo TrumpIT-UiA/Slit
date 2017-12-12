@@ -110,7 +110,7 @@ public class ViewModule extends HttpServlet {
 
     private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String approvalCriterias, String tasks, LocalDate localDateDeadLine) throws IOException, ServletException {
 
-        Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+        Diverse.StringEditor stringLinebreak = new Diverse.StringEditor();
         request.getSession().setAttribute("message", null);
         request.getSession().setAttribute("moduleError",null);
         request.getSession().setAttribute("mNr", stringLinebreak.LineBreak(modulNummer));
