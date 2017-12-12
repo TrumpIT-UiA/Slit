@@ -31,7 +31,17 @@ public class DownloadServlet extends HttpServlet {
         String currentUserEmail = request.getRemoteUser();
         String mergedNrEmail = currentUserEmail + modulNummer;
 
-        File file = fml.getFile(mergedNrEmail);
+        downloadFile(request, response, mergedNrEmail);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        download(request, response);
+    }
+
+    private void downloadFile(HttpServletRequest request, HttpServletResponse response, String mergedNumberEmail) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        File file = fml.getFile(mergedNumberEmail);
 
         InputStream inStream = new ByteArrayInputStream(file.getFileContent());
 
@@ -42,9 +52,6 @@ public class DownloadServlet extends HttpServlet {
             response.getOutputStream().write(buffer, 0, bytesRead);
         }
         inStream.close();
-    }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        download(request, response);
     }
 }
