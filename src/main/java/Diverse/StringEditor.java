@@ -4,10 +4,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DataRelated {
+public class StringEditor {
 
     /**
      * Felt
+     *
      * @param input
      * @return
      */
@@ -23,6 +24,7 @@ public class DataRelated {
 
     /**
      * Felt for å
+     *
      * @return timeWritten
      */
     public String getCurrentTimeString() {
@@ -35,6 +37,7 @@ public class DataRelated {
     /**
      * Felt for å reversere en string/"gjøre den bakvendt"
      * Dette feltet er ikke i bruk så lang, så slett dersom
+     *
      * @param input
      * @return reversedStr
      */
@@ -45,6 +48,7 @@ public class DataRelated {
     /**
      * Felt for å fjerne de siste bokstavene i en string.
      * Index er antall tegn som blir fjernet.
+     *
      * @param input
      * @param index
      * @return str = input - index
@@ -52,5 +56,8 @@ public class DataRelated {
     public String rmCharsFromString(String input, int index) {
         return input.substring(0, input.length() - index);
     }
-}
 
+
+    public String getLastCharFromString(String input) { return input.substring(input.length() - 1); }
+
+}

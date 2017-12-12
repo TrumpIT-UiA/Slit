@@ -20,20 +20,43 @@
 		<link rel="stylesheet" href="../Static/Styles/style.css" />
 		<link rel="stylesheet" href="../Static/Styles/style-xlarge.css" />
 	</head>
-	<body>
 
+	<body>
 		<!-- Header -->
 			<header id="header">
 				<h1><a href="../App/welcome.jsp">Slit</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="../App/welcome.jsp">Home</a></li>
-						<li><a href=#>Moduler</a></li>
-						<li><a style="" href="../Admin/AdminPage.jsp">Admin</a></li>
+						<div class="dropdown">
+							<button onclick="myFunction()" class="dropbtn">Moduler</button>
+							<div id="myDropdown" class="dropdown-content">
+								<a href="../../App/Module/ReadFeedback.jsp">Feedback</a>
+								<a href="../../App/Module/ViewModule.jsp">Moduler</a>
+								<a href="/Slit/ProgressionPlan">Progresjonsplan</a>
+							</div>
 						</div>
-
-
-						<Li><a href="../MyPage/MyPage.jsp">Min Side</a></Li>
+						<script>
+                            /* When the user clicks on the button,
+                            toggle between hiding and showing the dropdown content */
+                            function myFunction() {
+                                document.getElementById("myDropdown").classList.toggle("show");
+                            }
+                            // Close the dropdown if the user clicks outside of it
+                            window.onclick = function(event) {
+                                if (!event.target.matches('.dropbtn')) {
+                                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                                    var i;
+                                    for (i = 0; i < dropdowns.length; i++) {
+                                        var openDropdown = dropdowns[i];
+                                        if (openDropdown.classList.contains('show')) {
+                                            openDropdown.classList.remove('show');
+                                        }
+                                    }
+                                }
+                            }
+						</script>
+						<li><a href="../Admin/AdminPage.jsp">Admin</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -56,11 +79,7 @@
 			<footer id="footer">
 				<div class="container">
 					<div class="row">
-						<section class="4u 6u(medium) 12u$(small)">
-							<h3>Hei</h3>
-						</section>
-
-						<section class="4u$ 12u$(medium) 12u$(small)">
+						<section class="4u$ 12u$(medium) 12u$(small)" id="test">
 							<h3>Kontakt oss</h3>
 							<ul class="icons">
 								<li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github</span></a></li>

@@ -3,6 +3,11 @@ package feedbackManagement;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 /**
  * @author Emil-Ruud
@@ -43,6 +48,15 @@ public class FeedbackManagerBean implements FeedbackManagerLocal {
             return false;
         }
         return true;
+    }
+    @Override
+    public List<Feedback> allEntries() {
+        CriteriaBuilder cb = emFeedback.getCriteriaBuilder();
+        CriteriaQuery<Feedback> cq = cb.createQuery(Feedback.class);
+        Root<Feedback> rootEntry = cq.from(Feedback.class);
+        CriteriaQuery<Feedback> all = cq.select(rootEntry);
+        TypedQuery<Feedback> allQuery = emFeedback.createQuery(all);
+        return allQuery.getResultList();
     }
 
 }

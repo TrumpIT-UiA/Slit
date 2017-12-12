@@ -1,53 +1,81 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!--Interphase by TEMPLATED
+templated.co @templatedco
+Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+Modified for use in SLIT -->
+<html lang="en">
 <head>
+    <!-- <meta charset="UTF-8"> -->
     <title>Slit</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/Slit/Templates/CSS/MainPageTemplate.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <script src="../Static/js/jquery.min.js"></script>
+    <script src="../Static/js/skel.min.js"></script>
+    <script src="../Static/js/skel-layers.min.js"></script>
+    <script src="../Static/js/init.js"></script>
+
+    <link rel="stylesheet" href="../Static/Styles/skel.css" />
+    <link rel="stylesheet" href="../Static/Styles/style.css" />
+    <link rel="stylesheet" href="../Static/Styles/style-xlarge.css" />
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/Slit/App/welcome.jsp">Slit</a>
-        </div>
 
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/Slit/App/welcome.jsp">Home</a></li>
-                <li><a href="/Slit/Admin/NewUser.jsp">Admin</a></li>
+<!-- Header -->
+<header id="header">
+    <h1><a href="../App/welcome.jsp">Slit</a></h1>
+    <nav id="nav">
+        <ul>
+            <li><a href="../App/welcome.jsp">Home</a></li>
+            <li><a href=#>Moduler</a></li>
+            <li><a href="../Admin/AdminPage.jsp">Admin</a></li>
+        </ul>
+    </nav>
+</header>
 
-            </ul>
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="container">
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href=#>Min Side</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logg ut</a></li>
-            </ul>
-        </div>
+        <header class="major">
+            <h2>Hei</h2>
+            <p>Her kan du opprette nye brukere av alle typer</p>
+        </header>
+
+        <h1>Vennligst oppgi din brukerinformasjon</h1>
+        <form action="/Slit/NewUser" method="post">
+            E-post: <input name="email" type="text"><br>
+            Passord: <input name="passWord" type="password"><br>
+            Fornavn: <input name="firstName" type="text"><br>
+            Etternavn: <input name="lastName" type="text"><br>
+            Brukertype: <select name = "userType">
+            <option value="Admin">Administrator</option>
+            <option value="Teacher">Lærer</option>
+            <option value="AssistantTeacher">Hjelpelærer</option>
+        </select> <br>
+            <input type="submit" value="Lagre"> <br>
+        </form>
     </div>
-</nav>
-<h1>Vennligst oppgi din brukerinformasjon</h1>
-<form action="/Slit/NewUser" method="post">
-    E-post: <input name="email" type="text"><br>
-    Passord: <input name="passWord" type="password"><br>
-    Fornavn: <input name="firstName" type="text"><br>
-    Etternavn: <input name="lastName" type="text"><br>
-    Brukertype: <select name = "userType">
-    <option value="Admin">Administrator</option>
-    <option value="Teacher">Lærer</option>
-    <option value="AssistantTeacher">Hjelpelærer</option>
-</select> <br>
-    <input type="submit" value="Lagre"> <br>
-</form>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <section class="4u$ 12u$(medium) 12u$(small)">
+                <h3>Kontakt oss</h3>
+                <ul class="icons">
+                    <li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github</span></a></li>
+                </ul>
+            </section>
+        </div>
+
+        <ul class="copyright">
+            <li>Design: <a href="http://templated.co">Templated</a></li>
+            <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package moduleManagement;
 
+import com.sun.beans.editors.StringEditor;
+
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -110,9 +112,9 @@ public class ViewModule extends HttpServlet {
 
     private void skrivModulTilJSP(HttpServletRequest request, HttpServletResponse response, String modulNummer, String goals, String resources, String approvalCriterias, String tasks, LocalDate localDateDeadLine) throws IOException, ServletException {
 
-        Diverse.DataRelated stringLinebreak = new Diverse.DataRelated();
+        Diverse.StringEditor stringLinebreak = new Diverse.StringEditor();
         request.getSession().setAttribute("message", null);
-        request.getSession().setAttribute("moduleError",null);
+        request.getSession().setAttribute("moduleError", null);
         request.getSession().setAttribute("mNr", stringLinebreak.LineBreak(modulNummer));
         request.getSession().setAttribute("goals", stringLinebreak.LineBreak(goals));
         request.getSession().setAttribute("resources", stringLinebreak.LineBreak(resources));
@@ -120,8 +122,7 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("approvalCriterias", stringLinebreak.LineBreak(approvalCriterias));
         request.getSession().setAttribute("tasks", stringLinebreak.LineBreak(tasks));
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ModuleDescriptionAndDelivery.jsp");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect("/Slit/App/Module/ViewModule.jsp");
         //Dette sender en varibelverdi som et parameter til session -
         //slik at andre servlets kan hente inn verdien.
         HttpSession session = request.getSession();
@@ -139,8 +140,7 @@ public class ViewModule extends HttpServlet {
         request.getSession().setAttribute("approvalCriterias", "");
         request.getSession().setAttribute("tasks", "");
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ModuleDescriptionAndDelivery.jsp");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect("/Slit/App/Module/ViewModule.jsp");
     }
 
     @Override
