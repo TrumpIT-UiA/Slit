@@ -100,6 +100,13 @@ Modified for use in SLIT -->
                   placeholder="Her kan du skrive en kommentar til innleveringen"></textarea>
         <p>${message}</p>
         <c:remove var="message" scope="session"/>
+        <h2>Her kan du laste ned filen til modul ${mNr}!</h2>
+        <c:remove var="mNr" scope="session"/>
+        <form method="POST" action="/Slit/Download" enctype="multipart/form-data" id="downloadForm">
+            Last ned den fil her:
+            <br>
+            <input type="submit" value="Laste ned" name="download" id="download"/>
+        </form>
     </div>
 </section>
 
