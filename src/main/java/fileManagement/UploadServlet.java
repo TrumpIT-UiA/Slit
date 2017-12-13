@@ -1,6 +1,7 @@
 package fileManagement;
 
 //Egne pakker
+
 import Diverse.StringEditor;
 
 //Servlet-importer
@@ -23,6 +24,7 @@ import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
 //Logger - fra Object for å føre feil
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +45,7 @@ public class UploadServlet extends HttpServlet {
     @EJB
     FileManagerLocal fml;
 
-    private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NullPointerException, ClassCastException {
         request.setCharacterEncoding("UTF-8");
 
         //Lokale variabler
@@ -52,15 +54,15 @@ public class UploadServlet extends HttpServlet {
         InputStream filePartInputStream;
 
         HttpSession session = request.getSession();
-        LocalDate localDateDeadline = (LocalDate) session.getAttribute("deadline");
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        String textDate = formatter.format(LocalDate.now());
-        LocalDate parsedToday = LocalDate.parse(textDate, formatter);
-
-
         try {
+            LocalDate localDateDeadline = (LocalDate) session.getAttribute("deadline");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            String textDate = formatter.format(LocalDate.now());
+            LocalDate parsedToday = LocalDate.parse(textDate, formatter);
+
+
             try {
 
                 if (parsedToday.isAfter(localDateDeadline)) {
@@ -90,11 +92,11 @@ public class UploadServlet extends HttpServlet {
                              * for å se kommunikasjonen med databasen.
                              */
                             if (fml.updateFile(file, request, response)) {
-                                String message = "Filen din har blitt oppdatert.<BR>Info om ny innlevering:<BR>Filnavn: " + file.getFilename() + "<BR>Filstørrelse: " + filePart.getSize() + " bytes" + "<BR>Levert: " + dr.getCurrentTimeString() + "<BR>Kommentar: " + comment;
+                                String message = "<h2>Filen din har blitt oppdatert!<BR><BR>Info om ny innlevering:<BR>Filnavn: " + file.getFilename() + "<BR>Filstørrelse: " + filePart.getSize() + " bytes" + "<BR>Levert: " + dr.getCurrentTimeString() + "<BR>Kommentar: " + comment;
                                 skrivUt(message, request, response);
                             } else {
                                 if (fml.saveFile(file)) {
-                                    String message = "Filen din har blitt lastet opp.";
+                                    String message = "<h2>Filen din har blitt lastet opp!<BR>";
                                     skrivUt(message, request, response);
                                 } else {
                                     String message = "Filen din kunne ikke bli lastet opp";
@@ -115,20 +117,19 @@ public class UploadServlet extends HttpServlet {
             } catch (IOException ioe) {
                 String message = "Input/Output-feil";
                 skrivUt(message, request, response);
+            } catch (NullPointerException npe) {
+                String message = "Enten har fristen gått ut eller så har du ikke valgt fil for opplastning";
+                skrivUt(message, request, response);
             }
-            throw new ServletException();
-
-        } catch (NullPointerException npe) {
-            String message = "Fristen har dessverre gått ut";
+        } catch (ClassCastException cce) {
+            String message = "Modulen har ikke blitt lastet opp, du må nok smøre deg med litt tålmodighet";
             skrivUt(message, request, response);
         }
-
-
     }
 
     private void skrivUt(String message, HttpServletRequest request, HttpServletResponse response) throws
             IOException {
-        request.getSession().setAttribute("message", message);
+        request.getSession().setAttribute("moduleError", message);
         response.sendRedirect("/Slit/App/Module/ViewModule.jsp");
     }
 

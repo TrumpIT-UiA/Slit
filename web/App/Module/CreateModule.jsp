@@ -15,12 +15,10 @@ Modified for use in SLIT -->
     <script src="../../Static/js/skel.min.js"></script>
     <script src="../../Static/js/skel-layers.min.js"></script>
     <script src="../../Static/js/init.js"></script>
-    <script src="../../Static/Javascript/goToTop.js"></script>
 
     <link rel="stylesheet" href="../../Static/Styles/skel.css"/>
     <link rel="stylesheet" href="../../Static/Styles/style.css"/>
     <link rel="stylesheet" href="../../Static/Styles/style-xlarge.css"/>
-
 </head>
 
 <body>
@@ -74,80 +72,86 @@ Modified for use in SLIT -->
     <div class="container">
 
         <header class="major">
-            <h2>Moduler</h2>
-            <p>Her finner du modulene i IS-109<br>Trykk på en av knappene under for å vise informasjonen til modulen du vil se<br>Dersom du skal levere - gå til bunnen av siden</p>
+            <h2>Opprett en ny modul</h2>
+            <p>Dersom du skal endre på en allerede eksisterende modul trenger du bare å velge modulnummer, fylle ut feltene du vil endre og legge inn deadline
+                <br>Eksempel: Hvis du endrer alle feltene bortsett fra "Learning goals" vil ikke "Learning goals" bli oppdatert i
+                databasen og derfor vil den som tidligere ble skrevet bli vist.
+            </p>
         </header>
 
         <!-- <a href="#" class="image fit"><img src="../Static/images/pic08.jpg" alt="" /></a> -->
-        <h3>${moduleError}</h3>
-        <c:remove var="moduleError" scope="session"/>
-        <form action="/Slit/ViewModule" method="post" id="getModule" accept-charset="UTF-8">
-            <a style="display: inline;" href="../../App/Module/ViewModule.jsp">
-                <input type="submit" name="module1" value="Modul 1"/>
-                <input type="submit" name="module2" value="Modul 2"/>
-                <input type="submit" name="module3" value="Modul 3"/>
-                <input type="submit" name="module4" value="Modul 4"/>
-                <input type="submit" name="module5" value="Modul 5"/>
-            </a>
-            <br>
-            <br>
-            <h2>Modul ${mNr}</h2>
-            <c:remove var="mNr" scope="session"/>
+        <form action="/Slit/newModule" method="post" id="newM" accept-charset="UTF-8">
+            <label><input type="radio" name="module" value="1"> Modul 1</label><br>
+            <label><input type="radio" name="module" value="2"> Modul 2</label><br>
+            <label><input type="radio" name="module" value="3"> Modul 3</label><br>
+            <label><input type="radio" name="module" value="4"> Modul 4</label><br>
+            <label><input type="radio" name="module" value="5"> Modul 5</label><br>
 
-            <h3>Mål:</h3>
-            <p>${goals}</p>
-            <c:remove var="goals" scope="session"/>
-
-            <h3>Akseptansekriterier: </h3>
-            <p>${approvalCriterias}</p>
-            <c:remove var="approvalCriterias" scope="session"/>
-
-            <h3>Oppgaver:</h3>
-            <p>${tasks}</p>
-            <c:remove var="tasks" scope="session"/>
-
-            <h3>Hjelpemidler:</h3>
-            <p>${resources}</p>
-            <c:remove var="resources" scope="session"/>
-
-            <h3>Innleveringsfrist:</h3>
-            <p>${deadline}</p>
-            <c:remove var="deadline" scope="session"/>
-            <br>
+            <p>${errorMessage}</p>
+            <c:remove var="errorMessage" scope="session"/>
         </form>
-        <h2>Her kan du laste opp din innlevering til modul ${mNr}!</h2>
-        <c:remove var="mNr" scope="session"/>
-        <p>NB! Filen du laster opp må være en zip-fil og kan ikke være større enn 10Mib.</p>
-        <form method="POST" action="/Slit/Upload" enctype="multipart/form-data" id="uploadForm">
-            Last opp din fil her:
+        <div class="tooltip">Spesialtegn for Mac
+            <span class="tooltiptext">
+            &#8997; + A |  <br>
+            &#8997; + Q | • <br>
+            &#8679; + &#8997; + N | “ <br>
+            &#8679; + &#8997; + M | ” <br>
+            &#8679; + &#8997; + 8 | { <br>
+            &#8679; + &#8997; + 9 | }
+        </span>
+        </div>
+        <div class="tooltip">Spesialtegn for Windows
+            <span class="tooltiptext" style="width: 200px; left: 55px;">
+            FN + ALT + 0149 | •<br>
+            &uArr; Går ikke uten numerisk tastatur<br>
+            <span style="font-family: Wingdings">&#255;</span> + D | show/hide desktop<br>
+            <span style="font-family: Wingdings">&#255;</span> + L | lås maskin <br>
+
+        </span>
+        </div>
+        <div class="tooltip">Spesialtegn i HTML
+            <span class="tooltiptext">
+            &amp;bull; | &bull;<br>
+            &amp;infin; | &infin;<br>
+            &amp;real; |  &real;<br>
+            &amp;spades; | &spades;<br>
+            &amp;clubs; | &clubs;<br>
+            &amp;hearts; | &hearts;<br>
+            &amp;diams; | &diams;
+        </span>
+        </div>
+        <div>
             <br>
-            <label for="file-upload" class="chooseFile">
-                Velg fil
-            </label>
+            Læringsmål: <br>
+            <textarea name="learningGoals" form="newM" placeholder="Skriv om læringsmål her"></textarea>
+
             <br>
-            <input id="file-upload" type="file" value="Velg fil" name="file" style="opacity: 0"/>
+            Oppgavebeskrivelse: <br>
+            <textarea name="tasks" form="newM" placeholder="Skriv selve oppgavebeskrivelsen her"></textarea> <br>
+
             <br>
-            <input type="submit" value="Last opp" name="upload" id="upload"/>
-        </form>
-        <textarea name="studComment" style="margin-top: 30px" form="uploadForm" id="comment"
-                  placeholder="Her kan du skrive en kommentar til innleveringen"></textarea>
-        <p>${moduleError}</p>
-        <c:remove var="message" scope="session"/>
-        <h2>Her kan du laste ned filen til modul ${mNr}!</h2>
-        <c:remove var="mNr" scope="session"/>
-        <form method="POST" action="/Slit/Download" enctype="multipart/form-data" id="downloadForm">
-            Last ned den fil her:
+            Hjelpemidler: <br>
+            <textarea name="resources" form="newM" placeholder="List opp hjelpemidler her"></textarea> <br>
+
             <br>
-            <input type="submit" value="Laste ned" name="download" id="download"/>
-        </form>
+            Approval criteria: <br>
+            <textarea name="approvalCriterias" form="newM" placeholder="Skriv om approval criterias her"></textarea>
+
+            <br>
+            Deadline: <br>
+            <input type="date" name="deadline" form="newM">
+            <p> NB! Datoen vil bli skrevet ut i følgende format: yyyy-mm-dd</p><br>
+            <input type="submit" value="Last opp" form="newM" style="margin-bottom: 1cm">
+            <input type="reset" value="Reset" form="newM" style="margin-bottom: 1cm">
+        </div>
     </div>
 </section>
-<form style="display: none" id="progressionplan" action="/Slit/ProgressionPlan" method="post"></form>
+
 <!-- Footer -->
 <footer id="footer">
     <div class="container">
         <div class="row">
-            <section class="4u$ 12u$(medium) 12u$(small)">
+            <section class="4u$ 12u$(medium) 12u$(small)" id="test">
                 <h3>Kontakt oss</h3>
                 <ul class="icons">
                     <li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github</span></a>
@@ -162,8 +166,5 @@ Modified for use in SLIT -->
         </ul>
     </div>
 </footer>
-<a>
-    <button onclick="topFunction()" id="goToTop" title="Go to top">Gå til toppen</button>
-</a>
 </body>
 </html>

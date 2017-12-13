@@ -1225,7 +1225,7 @@ body.landing #header {
 
 #footer h2, #footer h3, #footer h4 {
 	color: #ffffff;
-	text-align: center;
+	text-align: left;
 }
 
 #footer a {
@@ -1283,16 +1283,16 @@ body.landing #header {
 	transition: all 0.3s ease 0s;
 	border-radius: 4px;
 	border: 0;
-	font-weight: 400;
-	height: 2.85em;
+	padding: 5px 10px 5px 10px;
+	font-weight: 300;
 	line-height: 2.8em;
-	padding: 0 2em;
 	text-align: center;
 	text-decoration: none;
 	white-space: nowrap;
 	background-color: #3ba666;
 	color: #ffffff;
-}
+	font-family: FontAwesome;
+	font-size: medium;}
 
 #goToTop:hover {
 	background-color: #42b972; /* Add a dark-grey background on hover */
@@ -1301,28 +1301,33 @@ body.landing #header {
 
 
 .dropbtn {
-	background-color: #4CAF50;
-	color: white;
+	background-color: transparent;
+	color: #cee8d8;
 	padding: 16px;
 	font-size: 16px;
 	border: none;
 	cursor: pointer;
+	text-decoration: none;
+	font-weight: 300;
+	margin-left: 0.5cm;
+
 }
 
 .dropbtn:hover, .dropbtn:focus {
-	background-color: #3e8e41;
+	color: #fffbf7;
 }
 
 .dropdown {
 	position: relative;
 	display: inline-block;
+
 }
 
 .dropdown-content {
 	display: none;
 	position: absolute;
 	background-color: #f9f9f9;
-	min-width: 160px;
+	min-width: 70px;
 	overflow: auto;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
@@ -1330,7 +1335,7 @@ body.landing #header {
 
 .dropdown-content a {
 	color: black;
-	padding: 12px 16px;
+	padding: 10px 10px;
 	text-decoration: none;
 	display: block;
 }

@@ -23,7 +23,6 @@ Modified for use in SLIT -->
 </head>
 
 <body class="landing">
-
 <!-- Header -->
 <header id="header">
     <h1><a href="../App/welcome.jsp">Slit</a></h1>
@@ -33,11 +32,16 @@ Modified for use in SLIT -->
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn">Moduler</button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="../App/Module/ReadFeedback.jsp">Feedback</a>
                     <a href="../App/Module/ViewModule.jsp">Moduler</a>
-                    <a for="">Progresjonsplan</a>
+                    <a href="../App/Module/ReadFeedback.jsp">Feedback</a>
+                    <a onclick="progression()">Progresjonsplan</a>
                 </div>
             </div>
+            <script>
+                function progression() {
+                    document.getElementById("progressionplan").submit();
+                }
+            </script>
                 <script>
                     /* When the user clicks on the button,
                     toggle between hiding and showing the dropdown content */
@@ -80,7 +84,7 @@ Modified for use in SLIT -->
 
         <div class="row">
             <section class="feature 6u 12u$(small)">
-                <img class="image fit" src="../Static/images/Open24.jpg" alt="" />
+                <img class="image fit" src="../Static/images/Open24.jpg" alt=""/>
                 <h3 class="title">Levere modul, vi er alltid åpne ;)</h3>
                 <p></p>
             </section>
@@ -99,7 +103,7 @@ Modified for use in SLIT -->
         </div>
     </div>
 </section>
-
+<form style="display: none" id="progressionplan" action="/Slit/ProgressionPlan" method="post"></form>
 <!-- Footer -->
 <footer id="footer">
     <div class="container">

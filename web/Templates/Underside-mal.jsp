@@ -31,11 +31,16 @@
 						<div class="dropdown">
 							<button onclick="myFunction()" class="dropbtn">Moduler</button>
 							<div id="myDropdown" class="dropdown-content">
-								<a href="../../App/Module/ReadFeedback.jsp">Feedback</a>
-								<a href="../../App/Module/ViewModule.jsp">Moduler</a>
-								<a href="/Slit/ProgressionPlan">Progresjonsplan</a>
+								<a href="../App/Module/ViewModule.jsp">Moduler</a>
+								<a href="../App/Module/ReadFeedback.jsp">Feedback</a>
+								<a onclick="progression()">Progresjonsplan</a>
 							</div>
 						</div>
+						<script>
+                            function progression() {
+                                document.getElementById("progressionplan").submit();
+                            }
+						</script>
 						<script>
                             /* When the user clicks on the button,
                             toggle between hiding and showing the dropdown content */
@@ -74,6 +79,7 @@
 					<p>Undertekst side</p>
 				</div>
 			</section>
+		<form style="display: none" id="progressionplan" action="/Slit/ProgressionPlan" method="post"></form>
 
 		<!-- Footer -->
 			<footer id="footer">

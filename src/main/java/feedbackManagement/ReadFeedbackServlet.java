@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet(name = "ReadFeedbackServlet", urlPatterns = "/ReadFeedback")
 public class ReadFeedbackServlet extends HttpServlet {
-
     StringEditor stringLinebreak = new StringEditor();
 
     private void checkButtonValue(HttpServletRequest request, HttpServletResponse response) throws IOException {
