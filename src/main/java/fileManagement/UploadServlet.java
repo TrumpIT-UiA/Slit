@@ -1,7 +1,6 @@
 package fileManagement;
 
 //Egne pakker
-
 import Diverse.StringEditor;
 
 //Servlet-importer
@@ -16,16 +15,12 @@ import javax.servlet.http.HttpSession;
 
 //EJB for kommunikasjon med databasen
 import javax.ejb.EJB;
-import javax.validation.constraints.Null;
 
 //IO-Stream
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
-//Logger - fra Object for å føre feil
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
@@ -45,6 +40,19 @@ public class UploadServlet extends HttpServlet {
     @EJB
     FileManagerLocal fml;
 
+    /**
+     * Denne metoden er "hovedmetoden" som henter inn Parts med http-request, sjekker om dags dato IKKE er etter deadline,
+     * filnavnet ender med ".zip" (en slags sjekk for zip-fil), om størrelsen ikke er større enn 10Mib.
+     * Lager den et nytt objekt av File med alle nødvendige parametere.
+     * Prøver først å updateFile() for å se om brukeren allerede har lastet opp en fil til gitt modul
+     * Hvis ikke filen finnes brukes saveFile()
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     * @throws NullPointerException - dersom fristen har gått ut
+     * @throws ClassCastException - dersom modulen ikke er lastet opp
+     */
     private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NullPointerException, ClassCastException {
         request.setCharacterEncoding("UTF-8");
 
@@ -133,6 +141,13 @@ public class UploadServlet extends HttpServlet {
         response.sendRedirect("/Slit/App/Module/ViewModule.jsp");
     }
 
+    /**
+     * @param part
+     * @return filnavnet
+     * Felt for å hente ut filnavnet - ferdiglagd metode fra Oracle sine sider:
+     * https://docs.oracle.com/javaee/6/tutorial/doc/glraq.html#gmhbq
+     * Feltet returnerer filnavnet eller null.
+     */
     private String getFileNameOracle(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
         LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
@@ -144,14 +159,6 @@ public class UploadServlet extends HttpServlet {
         }
         return null;
     }
-
-    /**
-     * @param part
-     * @return filnavnet
-     * Felt for å hente ut filnavnet - ferdiglagd metode fra Oracle sine sider:
-     * https://docs.oracle.com/javaee/6/tutorial/doc/glraq.html#gmhbq
-     * Feltet returnerer filnavnet eller null.
-     */
 
     /**
      * @param filePartInputStream
@@ -172,6 +179,13 @@ public class UploadServlet extends HttpServlet {
         return fileOutPutStream.toByteArray();
     }
 
+    /**
+     * Denne metoden kalles fra form og kjører metoden upload
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         upload(request, response);

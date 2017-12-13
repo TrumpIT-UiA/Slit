@@ -13,6 +13,7 @@ import java.io.*;
 
 /**
  * @author Snorre
+ * En servlet for å laste ned én fil fra databasen.
  */
 @WebServlet(name = "DownloadServlet", urlPatterns = {"/Download"})
 @MultipartConfig(maxFileSize = 10485760) //10Mib
@@ -21,16 +22,13 @@ public class DownloadServlet extends HttpServlet {
     @EJB
     private FileManagerLocal fml;
 
+
     private void download(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+        // Henter modulnummer og brukereemail fra sesjonen.
         HttpSession session = request.getSession();
         String modulNummer = (String) session.getAttribute("modulNummer");
         String currentUserEmail = request.getRemoteUser();
-        //Tester litt
-        //String currentUserEmail =
-        //String mergedNrEmail = currentUserEmail + modulNummer;
-        String mergedNrEmail = request.getParameter("MergedNrUsernameFromListModules");
         currentUserEmail = currentUserEmail + modulNummer;
         downloadFile(request, response, currentUserEmail, modulNummer);
     }
@@ -38,8 +36,10 @@ public class DownloadServlet extends HttpServlet {
     private void downloadFile(HttpServletRequest request, HttpServletResponse response, String mergedNumberEmail, String modulNummer) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         try {
+            // Finner en fil i databasen.
             File file = fml.getFile(mergedNumberEmail);
 
+            // Leser filen og så skriver den ut gjennom en stream.
             InputStream inStream = new ByteArrayInputStream(file.getFileContent());
 
             int bytesRead;
