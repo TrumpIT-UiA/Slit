@@ -84,7 +84,7 @@ Modified for use in SLIT -->
 
         <div class="row">
             <section class="feature 6u 12u$(small)">
-                <img class="image fit" src="../Static/images/Open24.jpg" alt="" />
+                <img class="image fit" src="../Static/images/Open24.jpg" alt=""/>
                 <h3 class="title">Levere modul, vi er alltid åpne ;)</h3>
                 <p></p>
             </section>

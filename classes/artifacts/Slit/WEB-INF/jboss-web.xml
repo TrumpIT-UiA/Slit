@@ -1,4 +1,4 @@
-
+<!-- Definerer ett "sikkerhetsdomene" slik at webserveren vet hvordan den skal håndtere sikkerheten, og hvor brukerene tilhører -->
 <jboss-web>
     <security-domain>Slit</security-domain>
 </jboss-web>
