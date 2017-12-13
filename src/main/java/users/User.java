@@ -33,7 +33,7 @@ public abstract class User implements Serializable{
         this.lName = lName;
     }
 
-    protected User(){
+    public User(){
     }
 
     /**

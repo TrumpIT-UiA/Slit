@@ -19,6 +19,7 @@
         </form-login-config>
     </login-config>
 
+    <!-- Definerer error-meldinger dersom man ønsker å spesialisere disse. -->
     <error-page>
         <error-code>403</error-code>
         <location>/Error/HTTPCodes/403.jsp</location>
@@ -46,7 +47,7 @@
         <role-name>Student</role-name>
     </security-role>
 
-    <!-- Definerer hvilke roller som har tilgang til hvilke mapper og filer -->
+    <!-- Definerer hvilke roller som har tilgang til hvilke mapper og evt hvilke filer -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin sider</web-resource-name>
@@ -126,6 +127,21 @@
             <role-name>Teacher</role-name>
             <role-name>AssistantTeacher</role-name>
             <role-name>Student</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Lærermeny</web-resource-name>
+            <url-pattern>/App/Teacher/*</url-pattern>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
         </auth-constraint>
     </security-constraint>
 </web-app>

@@ -27,7 +27,10 @@ public class DownloadServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String modulNummer = (String) session.getAttribute("modulNummer");
         String currentUserEmail = request.getRemoteUser();
-        String mergedNrEmail = currentUserEmail + modulNummer;
+        //Tester litt
+        //String currentUserEmail =
+        //String mergedNrEmail = currentUserEmail + modulNummer;
+        String mergedNrEmail = (String) request.getParameter("MergedNrUsernameFromListModules");
 
         downloadFile(request, response, mergedNrEmail, modulNummer);
     }
