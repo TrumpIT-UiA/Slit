@@ -46,7 +46,10 @@
 					</header>
 
 					<!-- <a href="#" class="image fit"><img src="../Static/images/pic08.jpg" alt="" /></a> -->
+<<<<<<< Updated upstream
 					<p>Undertekst side</p>
+=======
+>>>>>>> Stashed changes
 				</div>
 			</section>
 
