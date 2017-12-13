@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <welcome-file-list>
+        <welcome-file>/App/welcome.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- Definerer hva slags autentiseringstype man vil bruke (FORM i dette tilfellet)
+    Og også hvilke sider man vil vise når det kreves innlogging eller innloggingen feilet -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>Slit</realm-name>
+        <form-login-config>
+            <form-login-page>/Public/Login/Login.jsp</form-login-page>
+            <form-error-page>/Error/LoginErrors/LoginFailed.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <!-- Definerer error-meldinger dersom man ønsker å spesialisere disse. -->
+    <error-page>
+        <error-code>403</error-code>
+        <location>/Error/HTTPCodes/403.jsp</location>
+    </error-page>
+
+    <error-page>
+        <location>/Error/error.jsp</location>
+    </error-page>
+
+    <!-- Definerer navnene på sikkerhetsrollene, disse er samme som brukertypene.
+       Disse blir via standalone.xml referert til slik at eks alle objekter som er instanceof Admin er i Admin security-rollen. -->
+    <security-role>
+        <role-name>Admin</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>Teacher</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>AssistantTeacher</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>Student</role-name>
+    </security-role>
+
+    <!-- Definerer hvilke roller som har tilgang til hvilke mapper og evt hvilke filer -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin sider</web-resource-name>
+            <url-pattern>/Admin/*</url-pattern>
+            <http-method>DELETE</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+   <security-constraint>
+       <web-resource-collection>
+           <web-resource-name>Registrering av nye brukere</web-resource-name>
+           <url-pattern>/App/Registration/*</url-pattern>
+           <http-method>HEAD</http-method>
+           <http-method>OPTIONS</http-method>
+           <http-method>TRACE</http-method>
+           <http-method>GET</http-method>
+           <http-method>POST</http-method>
+       </web-resource-collection>
+       <auth-constraint>
+           <role-name>Admin</role-name>
+           <role-name>Teacher</role-name>
+       </auth-constraint>
+   </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Slit App</web-resource-name>
+            <url-pattern>/App/*</url-pattern>
+            <http-method>DELETE</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
+            <role-name>AssistantTeacher</role-name>
+            <role-name>Student</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>CSS-Filer</web-resource-name>
+            <url-pattern>/Static/*</url-pattern>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
+            <role-name>AssistantTeacher</role-name>
+            <role-name>Student</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Moduler</web-resource-name>
+            <url-pattern>/App/Module/*</url-pattern>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
+            <role-name>AssistantTeacher</role-name>
+            <role-name>Student</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Lærermeny</web-resource-name>
+            <url-pattern>/App/Teacher/*</url-pattern>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>Teacher</role-name>
+        </auth-constraint>
+    </security-constraint>
+</web-app>
