@@ -30,9 +30,9 @@ public class DownloadServlet extends HttpServlet {
         //Tester litt
         //String currentUserEmail =
         //String mergedNrEmail = currentUserEmail + modulNummer;
-        String mergedNrEmail = (String) request.getParameter("MergedNrUsernameFromListModules");
-
-        downloadFile(request, response, mergedNrEmail, modulNummer);
+        String mergedNrEmail = request.getParameter("MergedNrUsernameFromListModules");
+        currentUserEmail = currentUserEmail + modulNummer;
+        downloadFile(request, response, currentUserEmail, modulNummer);
     }
 
     private void downloadFile(HttpServletRequest request, HttpServletResponse response, String mergedNumberEmail, String modulNummer) throws ServletException, IOException {
@@ -48,6 +48,7 @@ public class DownloadServlet extends HttpServlet {
             while ((bytesRead = inStream.read(buffer)) != -1) {
                 response.getOutputStream().write(buffer, 0, bytesRead);
             }
+
             inStream.close();
         } catch (NullPointerException npe) {
             npe.printStackTrace();

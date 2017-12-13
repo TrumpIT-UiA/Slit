@@ -64,6 +64,8 @@ Modified for use in SLIT -->
                 </script>
             <li><a href="../Admin/AdminPage.jsp">Admin</a></li>
             <li><a href="Teacher/TeacherMenu.jsp">Lærermeny</a></li>
+            <li><a href="../MyPage/MyPage.jsp">Min side</a></li>
+            <li><a href="/Slit/Log">Logg ut</a></li>
         </ul>
     </nav>
 </header>
@@ -95,7 +97,7 @@ Modified for use in SLIT -->
                 <p></p>
             </section>
 
-            <section class="feature 6u 12u$(small)">
+            <section class="feature 6u 1 2u$(small)">
                 <img class="image fit" src="../Static/images/Road.jpg" alt="" />
                 <h3 class="title">Din progresjonsplan</h3>
                 <p></p>
