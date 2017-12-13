@@ -19,7 +19,7 @@ Modified for use in SLIT -->
 
         <link rel="stylesheet" href="../Static/Styles/skel.css"/>
         <link rel="stylesheet" href="../Static/Styles/style.css"/>
-        <link rel="stylesheet" href="../Static/Styles/style-xlarge.css"/>
+        <link rel="stylesheet" href="../Static/Styles/styl e-xlarge.css"/>
 </head>
 
 <body class="landing">
@@ -28,10 +28,16 @@ Modified for use in SLIT -->
     <h1><a href="../App/welcome.jsp">Slit</a></h1>
     <nav id="nav">
         <ul>
+            <li><a href="../MyPage/MyPage.jsp">Min Side</a></li>
             <li><a href="../App/welcome.jsp">Home</a></li>
             <li><a href=#>Moduler</a></li>
             <li><a href="../Admin/AdminPage.jsp">Admin</a></li>
+
         </ul>
+        <form class="knappstil" action="/Slit/Log">
+            <input type ="submit" name="ByttPassord" value="Log ut">
+
+        </form>
     </nav>
 </header>
 
@@ -83,7 +89,7 @@ Modified for use in SLIT -->
             <section class="4u$ 12u$(medium) 12u$(small)">
                 <h3>Kontakt oss</h3>
                 <ul class="icons">
-                    <li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github/span></a></li>
+                    <li><a href="https://github.com/TrumpIT-UiA" class="icon rounded fa-github"><span class="label">Github</span></a></li>
                 </ul>
             </section>
         </div>
