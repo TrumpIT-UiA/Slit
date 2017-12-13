@@ -102,10 +102,17 @@ public abstract class User implements Serializable{
         this.username = email;
     }
 
+    /**
+    * @author Nicolay
+    **/
     public byte[] getProfileImage() {
         return profileImage;
     }
 
+    
+    /**
+    * @author Nicolay
+    **/
     public void setProfileImage(byte[] profileImage) {
         this.profileImage = profileImage;
     }
