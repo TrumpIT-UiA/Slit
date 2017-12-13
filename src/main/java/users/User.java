@@ -18,6 +18,8 @@ public abstract class User implements Serializable{
     private String fName;
     @Column
     private String lName;
+    @Column
+    private byte[] profileImage;
 
     /**
      *
@@ -98,5 +100,13 @@ public abstract class User implements Serializable{
      */
     public void setEmail(String email) {
         this.username = email;
+    }
+
+    public byte[] getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(byte[] profileImage) {
+        this.profileImage = profileImage;
     }
 }
