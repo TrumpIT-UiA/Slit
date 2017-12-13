@@ -29,27 +29,33 @@ public class DownloadServlet extends HttpServlet {
         String currentUserEmail = request.getRemoteUser();
         String mergedNrEmail = currentUserEmail + modulNummer;
 
-        downloadFile(request, response, mergedNrEmail);
+        downloadFile(request, response, mergedNrEmail, modulNummer);
+    }
+
+    private void downloadFile(HttpServletRequest request, HttpServletResponse response, String mergedNumberEmail, String modulNummer) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        try {
+            File file = fml.getFile(mergedNumberEmail);
+
+            InputStream inStream = new ByteArrayInputStream(file.getFileContent());
+
+            int bytesRead;
+            byte[] buffer = new byte[8192];
+
+            while ((bytesRead = inStream.read(buffer)) != -1) {
+                response.getOutputStream().write(buffer, 0, bytesRead);
+            }
+            inStream.close();
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+            System.out.println("inStream = null, dvs det ligger ingen fil i DB");
+            request.getSession().setAttribute("moduleError", "Du har dessverre ikke levert modul " + modulNummer);
+            response.sendRedirect("/Slit/App/Module/ViewModule.jsp");
+        }
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         download(request, response);
-    }
-
-    private void downloadFile(HttpServletRequest request, HttpServletResponse response, String mergedNumberEmail) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-
-        File file = fml.getFile(mergedNumberEmail);
-
-        InputStream inStream = new ByteArrayInputStream(file.getFileContent());
-
-        int bytesRead;
-        byte[] buffer = new byte[8192];
-
-        while ((bytesRead = inStream.read(buffer)) != -1) {
-            response.getOutputStream().write(buffer, 0, bytesRead);
-        }
-        inStream.close();
-
     }
 }

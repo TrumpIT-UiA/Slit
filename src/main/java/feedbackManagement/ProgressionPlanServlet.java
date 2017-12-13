@@ -222,12 +222,45 @@ public class ProgressionPlanServlet extends HttpServlet {
                 "<body>\n" +
                 "<!-- Header -->\n" +
                 "<header id=\"header\">\n" +
-                "    <h1><a href=\"../../App/welcome.jsp\">Slit</a></h1>\n" +
+                "    <h1><a href=\"/Slit/App/welcome.jsp\">Slit</a></h1>\n" +
                 "    <nav id=\"nav\">\n" +
                 "        <ul>\n" +
-                "            <li><a href=\"../../App/welcome.jsp\">Home</a></li>\n" +
-                "            <li><a href=\"../../App/Module/ViewModule.jsp\">Moduler</a></li>\n" +
-                "            <li><a href=\"../../Admin/AdminPage.jsp\">Admin</a></li>\n" +
+                "            <li><a href=\"/Slit/App/welcome.jsp\">Home</a></li>\n" +
+                "<div class=\"dropdown\">\n" +
+                "                <button onclick=\"myFunction()\" class=\"dropbtn\">Moduler</button>\n" +
+                "                <div id=\"myDropdown\" class=\"dropdown-content\">\n" +
+                "                    <a href=\"/Slit/App/Module/ViewModule.jsp\">Moduler</a>\n" +
+                "                    <a href=\"/Slit/App/Module/ReadFeedback.jsp\">Feedback</a>\n" +
+                "                    <a onclick=\"progression()\">Progresjonsplan</a>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "            <script>\n" +
+                "                function progression() {\n" +
+                "                    document.getElementById(\"progressionplan\").submit();\n" +
+                "                }\n" +
+                "            </script>\n" +
+                "            <script>\n" +
+                "                /* When the user clicks on the button,\n" +
+                "                toggle between hiding and showing the dropdown content */\n" +
+                "                function myFunction() {\n" +
+                "                    document.getElementById(\"myDropdown\").classList.toggle(\"show\");\n" +
+                "                }\n" +
+                "\n" +
+                "                // Close the dropdown if the user clicks outside of it\n" +
+                "                window.onclick = function (event) {\n" +
+                "                    if (!event.target.matches('.dropbtn')) {\n" +
+                "                        var dropdowns = document.getElementsByClassName(\"dropdown-content\");\n" +
+                "                        var i;\n" +
+                "                        for (i = 0; i < dropdowns.length; i++) {\n" +
+                "                            var openDropdown = dropdowns[i];\n" +
+                "                            if (openDropdown.classList.contains('show')) {\n" +
+                "                                openDropdown.classList.remove('show');\n" +
+                "                            }\n" +
+                "                        }\n" +
+                "                    }\n" +
+                "                }\n" +
+                "            </script>" +
+                "            <li><a href=\"/Slit/Admin/AdminPage.jsp\">Admin</a></li>\n" +
                 "        </ul>\n" +
                 "    </nav>\n" +
                 "</header>\n" +
@@ -241,7 +274,7 @@ public class ProgressionPlanServlet extends HttpServlet {
                 "            <p>Her finner du din progresjon i IS-109" +
                 "        </header>" +
                 "<main style=\"display: inline-block\">" +
-                "<h1 style=\"position: relative\"></h1>" +
+                "<h2 style=\"position: relative\">Din score for alle moduler i IS-109</h2>" +
                 "<div class=\"bars\">" +
                 p1 +
                 p2 +
@@ -260,18 +293,20 @@ public class ProgressionPlanServlet extends HttpServlet {
                 i5 +
                 "</div>" +
                 "<div style=\"position: relative; margin-bottom: 40px; margin-top: 30px;\">" +
-                "<BR>Totalt antall leverte moduler i IS-109: " + totalDelivered + " moduler" +
-                "<BR>Antall som har levert modul 1: " + a + " personer." +
-                "<BR>Antall som har levert modul 2: " + b + " personer." +
-                "<BR>Antall som har levert modul 3: " + c + " personer." +
-                "<BR>Antall som har levert modul 4: " + d + " personer." +
-                "<BR>Antall som har levert modul 5: " + e + " personer." +
+                "<BR>Totalt antall leverte moduler i IS-109 med feedback: " + totalDelivered + " moduler" +
+                "<BR>Antall som har fått feedback på modul 1: " + a + " personer." +
+                "<BR>Antall som har fått feedback på modul 2: " + b + " personer." +
+                "<BR>Antall som har fått feedback på modul 3: " + c + " personer." +
+                "<BR>Antall som har fått feedback på modul 4: " + d + " personer." +
+                "<BR>Antall som har fått feedback på modul 5: " + e + " personer." +
+                "<BR><BR>Dersom du ikke ser noen score på diverse stolper i diagrammene vil det si at score = 1." +
                 "</div>" +
                 "</main>" +
                 "</div>\n" +
                 "</section>\n" +
                 "\n" +
                 "<!-- Footer -->\n" +
+                "<form style=\"display: none\" id=\"progressionplan\" action=\"/Slit/ProgressionPlan\" method=\"post\"></form>\n" +
                 "<footer id=\"footer\">\n" +
                 "    <div class=\"container\">\n" +
                 "        <div class=\"row\">\n" +
